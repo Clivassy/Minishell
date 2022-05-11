@@ -13,21 +13,18 @@
 # include <stdio.h>
 # include "libft.h"
 
-typedef struct s_env
+typedef struct s_data
 {
 	int exit_asked;
     char *read_line;
-
-}	t_env;
+    char **env;
+}	t_data;
 
 typedef struct s_elm
 {
-    int type;
-    
+    char **cmd;
+    int fd[2];
     struct s_elm *next;
-
-
-
-
 }   t_elm;
+
 #endif
