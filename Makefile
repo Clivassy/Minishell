@@ -3,7 +3,7 @@
 NAME = minishell
 
 # Sources
-SRCS += src/*.c
+SRCS += src/main.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -26,7 +26,6 @@ $(NAME): $(OBJS) $(HEADER)
 	make -C ./libft all
 	${CC} ${OBJS} -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
 
-
 %.o: %.c $(HEADER)
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES_DIR)
 
@@ -41,3 +40,15 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
+yann: $(OBJS) $(HEADER)
+	rm -f $(NAME)
+	make -C ./libft all
+	${CC} src/*.c main_yann.c -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+
+julia: $(OBJS) $(HEADER)
+	rm -f $(NAME)
+	make -C ./libft all
+	${CC} src/*.c main_julia.c -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}

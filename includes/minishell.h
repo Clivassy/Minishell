@@ -27,4 +27,10 @@ typedef struct s_elm
     struct s_elm *next;
 }   t_elm;
 
+
+// minishell_loop
+void    ft_minishell_loop(t_data *env);
+
+
+
 #endif

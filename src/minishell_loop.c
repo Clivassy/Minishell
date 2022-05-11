@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-void    ft_minishell_loop(t_env *env)
+void    ft_minishell_loop(t_data *env)
 {
-    while(!exit_asked)
+    while(!env->exit_asked)
     {
         // affichage prompt
         // lecture entrees sur stdin avec readline
