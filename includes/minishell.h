@@ -24,7 +24,7 @@ typedef struct s_elm
 {
     int type;
     
-    t_elm *next;
+    struct s_elm *next;
 
 
 

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int main(int argc, char **argc, char **envp)
+int main(int argc, char **argv, char **envp)
 {
     // initialisation (structure, parsing envp..)
 // lancement du minishell (minishell_loop)
