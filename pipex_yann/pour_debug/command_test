@@ -1,0 +1,31 @@
+clear && gcc sources/*.c -I ./includes && ./a.out infile "ls -l" "wc -l" outfile
+
+
+clear && gcc sources/*.c -I ./includes && ./a.out infile "grep a1" "wc -w" outfile
+clear && gcc sources/*.c -I ./includes && ./a.out /dev/random "cat" "wc -w" outfile
+clear && gcc sources/*.c -I ./includes && ./a.out /dev/random "cat" "cat" outfile
+
+clear  &&  gcc sources/*.c -I ./includes && ./a.out infile "cat" "cat" outfile
+
+
+./pipex infile "grep a1" "wc -w" outfile
+
+./pipex infile "cat" "cat" outfile
+./pipex /dev/random "cat" "cat" outfile
+
+env -i ./pipex infile "grep a1" "cat" outfile
+<infile grep a1 | cat >default_outfile
+
+./pipex /dev/random "cat" "cat" outfile
+./pipex /dev/null "cat" "cat" /dev/null
+
+supprimer infile
+
+changer droit outfile
+
+tester commandes inexistantes des 2 cotes
+
+tester commande avec env -i avant
+
+
+nm -u
