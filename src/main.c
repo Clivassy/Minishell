@@ -1,4 +1,4 @@
-#include "minishell.h"
+/*#include "minishell.h"
 
 int main_tmp(int argc, char **argv, char **envp)
 {
@@ -6,4 +6,4 @@ int main_tmp(int argc, char **argv, char **envp)
 // lancement du minishell (minishell_loop)
     // free et exit
 
-}
+}*/

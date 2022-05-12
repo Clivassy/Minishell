@@ -64,6 +64,14 @@ ft_lstdelone.c \
 ft_lstclear.c \
 ft_lstiter.c \
 ft_lstmap.c \
+ft_printf.c \
+ft_print_hexa.c \
+ft_print_integer.c \
+ft_print_string.c \
+ft_print_ptr.c \
+ft_print_unsigned.c \
+ft_printf_utils.c \
+ft_search_format.c \
 
 OBJS = ${SRCS:.c=.o}
 

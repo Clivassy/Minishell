@@ -17,6 +17,7 @@
 # endif
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -82,4 +83,15 @@ size_t	ft_buflen(char *str);
 char	*ft_initbuffer(char *buf);
 int		ft_has_eol(char *str);
 
+//FT_PRINTF
+int			ft_printf(const char *s, ...);
+void	    ft_putchar(int c, int *count);
+void	    ft_search_format(va_list args, int *count, const char s);
+void	    ft_is_hexa(unsigned int nb, const char c, int *count);
+void	    ft_is_i_or_d(int nb, int *count);
+void	    ft_is_pointer(unsigned long long ptr, int *count);
+void	    ft_print_str(char *str, int *count);
+void	    ft_print_unsigned(unsigned int n, int *count);
+char		*ft_utoa(unsigned int nb);
+char	    *ft_strncpy(char *dest, char *src, int n);
 #endif

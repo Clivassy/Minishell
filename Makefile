@@ -10,9 +10,9 @@ OBJS = ${SRCS:.c=.o}
 HEADER += includes/minishell.h
 HEADER += libft/libft.h
 
-INCLUDES_DIR= -I ./includes -I ./libft/
+INCLUDES_DIR= -I ./includes/ -I ./libft/
 
-LIB_INCLUDE = -L ./libft
+LIB_INCLUDE = -L ./libft -lft
 
 # Compilateurs
 CC = cc
@@ -43,12 +43,12 @@ re: fclean all
 
 
 
-yann: $(OBJS) $(HEADER)
+yann: $(HEADER)
 	rm -f $(NAME)
 	make -C ./libft all
-	${CC} src/*.c main_yann.c -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+	${CC} src/*.c main_yann.c -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
 
-julia: $(OBJS) $(HEADER)
+julia: $(HEADER)
 	rm -f $(NAME)
 	make -C ./libft all
-	${CC} src/*.c main_julia.c -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+	${CC} src/*.c main_julia.c -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
