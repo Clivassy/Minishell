@@ -1,0 +1,9 @@
+Commandes ok
+
+
+
+
+Commandes KO
+double pipe :
+ls || cat
+ls | <space, tab> | cat
