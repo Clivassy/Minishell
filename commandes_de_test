@@ -1,9 +1,22 @@
-Commandes ok
+---------------   Commandes ok   ---------------
+multiples rediretions entree et sorties
+ls >fichier1 | >fichier | >fichier2
+ls >fichier1 | >fichier2>fichier3 > fichier4c
+ls >fichier1 | >fichier2>fichier3 > fichier4c <fichier5 <fichier6 | cat
 
 
 
 
-Commandes KO
+
+
+---------------   Commandes KO   ---------------
 double pipe :
 ls || cat
 ls | <space, tab> | cat
+
+multichevrons
+ls | <<< fichier
+ls | >>>fichier
+
+chevron fin
+ls >test1 | >test>
