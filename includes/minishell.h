@@ -30,9 +30,6 @@ typedef struct s_data
     t_elm   *exec_list;
 }	t_data;
 
-
-
-
 // minishell_loop
 void    ft_minishell_loop(t_data *env);
 
