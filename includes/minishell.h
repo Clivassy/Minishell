@@ -13,19 +13,24 @@
 # include <stdio.h>
 # include "libft.h"
 
+typedef struct s_elm
+{
+    char **cmd;
+    int file_in;
+    int file_out;
+    struct s_elm *next;
+}   t_elm;
+
 typedef struct s_data
 {
 	int exit_asked;
     char *read_line;
     char **env;
+    char **command_list;
+    t_elm   *exec_list;
 }	t_data;
 
-typedef struct s_elm
-{
-    char **cmd;
-    int fd[2];
-    struct s_elm *next;
-}   t_elm;
+
 
 
 // minishell_loop

@@ -11,11 +11,10 @@ ls >fichier1 | >fichier2>fichier3 > fichier4c <fichier5 <fichier6 | cat
 
 ---------------   Commandes KO   ---------------
 double pipe :
-ls || cat
+ls ||| cat
 ls | <space, tab> | cat
 
 multichevrons
-ls | <<< fichier
 ls | >>>fichier
 
 chevron fin

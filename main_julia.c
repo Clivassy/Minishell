@@ -3,6 +3,13 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+
+Commandes OK
+cmd > cmd
+cmd > fichier 
+
+
+
 // LEXER 
 /* 
 - Premier checck : input valid ? 
@@ -34,14 +41,14 @@ TOKEN[0] =
 // EXEC 
 int main(int ac, char **av)
 {
-    int temp = 0;
     const char *ptr;
     while (temp == 0)
     {
         ft_printf("minishell>");
-        readline(ptr);
-        temp++;
+        ptr = readline(ptr);
     }
     return (0);
  // boucle infinie : lance le script   
 }
+
+
