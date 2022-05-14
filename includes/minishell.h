@@ -13,6 +13,7 @@
 # include <stdio.h>
 # include "libft.h"
 
+
 typedef struct s_elm
 {
     char **cmd;
@@ -36,6 +37,11 @@ typedef struct s_data
 // minishell_loop
 void    ft_minishell_loop(t_data *env);
 
+// exit
+void    ft_exit(t_data *data);
 
+// TBD a suprimer a la fin
+# include "minishell_julia.h"
+# include "minishell_yann.h"
 
 #endif
