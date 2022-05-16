@@ -1,19 +1,4 @@
 #include "minishell.h"
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-
-
-
-/* Check if there are quotes */
-void ft_search_quotes(char *str)
-{   
-    if (ft_strchr(str, '"') || ft_strchr(str, '\''))
-        ft_printf("String contains dquote or squote");
-    else
-        ft_printf("String no contains quote");
-    exit(EXIT_FAILURE);
-}
 
 /*Fonction qui va initialiserla structure */
 
