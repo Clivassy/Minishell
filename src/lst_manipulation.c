@@ -22,8 +22,8 @@ void    ft_lst_print(t_elm *elm)
 			ft_printf(" %s", elm->cmd[j]);
 			j++;
 		}
-		ft_printf("\n| file_in = %d\n", elm->file_in);
-		ft_printf("| file_out = %d\n", elm->file_out);
+		ft_printf("\n| fd_in = %d\n", elm->fd_in);
+		ft_printf("| fd_out = %d\n", elm->fd_out);
 		ft_printf("| next element = %p\n", elm->next);
 		ft_printf("----------------------------\n");
 		ft_printf("              |             \n");

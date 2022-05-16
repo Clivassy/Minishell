@@ -30,4 +30,8 @@ int main()
     ft_lst_add(&(pt_data->exec_list), elm_tmp);
 
     // ft_lst_print(pt_data->exec_list);
+
+    // ------------------ lancement command -----------------------
+    ft_exec_command(pt_data);
+
 }
