@@ -17,9 +17,10 @@
 typedef struct s_elm
 {
     char **cmd;
-    int file_in;
-    int file_out;
+    int fd_in;
+    int fd_out;
     struct s_elm *next;
+
 }   t_elm;
 
 typedef struct s_data

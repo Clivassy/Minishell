@@ -43,10 +43,15 @@ re: fclean all
 
 
 
+TOCOMPILE = main_yann.c
+TOCOMPILE += src/elm_manipulation.c
+TOCOMPILE += src/exec_command.c
+TOCOMPILE += src/exit.c
+TOCOMPILE += src/lst_manipulation.c
 yann: $(HEADER)
 	rm -f $(NAME)
 	make -C ./libft all
-	${CC} src/*.c main_yann.c -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+	${CC} ${TOCOMPILE} -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
 
 julia: $(HEADER)
 	rm -f $(NAME)
