@@ -56,7 +56,8 @@ int ft_is_operator_into_quotes(char *str)
         {
             ft_printf("found operator into dquotes");
             return (1);
-        }
+        }  
+        // attention : rajouter une condition si il ne trouve pas de quote de fin 
         i++;
     }
     ft_printf("found NO pipe into dquotes");

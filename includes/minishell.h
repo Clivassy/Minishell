@@ -12,7 +12,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "libft.h"
-
+# include <readline/readline.h>
+# include <readline/history.h>
 
 typedef struct s_elm
 {
