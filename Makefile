@@ -48,6 +48,9 @@ TOCOMPILE += src/elm_manipulation.c
 TOCOMPILE += src/exec_command.c
 TOCOMPILE += src/exit.c
 TOCOMPILE += src/lst_manipulation.c
+TOCOMPILE += src/70_debug/print_env.c
+TOCOMPILE += src/10_initialisation/start_initialisation.c
+
 yann: $(HEADER)
 	rm -f $(NAME)
 	make -C ./libft all

@@ -1,7 +1,17 @@
 #include "minishell.h"
 
-int main()
+int main(int argc, char **argv, char **envp)
 {
+    t_data data;
+    data.env = NULL;
+    dup_env(&data, envp);
+    return(0);
+}
+
+int main_exec()
+{
+
+
     // ------------------ Creation exec_list -----------------------
     t_data data;
     t_data *pt_data = &data;
@@ -33,5 +43,5 @@ int main()
 
     // ------------------ lancement command -----------------------
     ft_exec_command(pt_data);
-
+    return (0);
 }

@@ -1,6 +1,7 @@
 *.a
 *.o
 *.out
+.vscode/
 minishell
 infile
 outfile
