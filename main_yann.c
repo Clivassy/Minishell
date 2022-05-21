@@ -5,6 +5,9 @@ int main(int argc, char **argv, char **envp)
     t_data data;
     data.env = NULL;
     dup_env(&data, envp);
+
+    ft_test_echo();
+
     return(0);
 }
 
