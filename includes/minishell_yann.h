@@ -21,7 +21,7 @@ void    ft_exec_command(t_data *data);
 void    ft_launch_processus(t_data *data, int index);
 
 // 40 builtin
-void    ft_echo(char **arguments_list);
+void    ft_echo(char **argument_list);
 
 // 70 debug
 void    print_env(char **env);
