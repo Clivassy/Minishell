@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_initialisation.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:19:26 by ybellot           #+#    #+#             */
+/*   Updated: 2022/05/23 17:19:27 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-
-static int nb_of_env_lines(char **envp)
-{
-    int i;
-
-    i = 0;
-    while (envp[i])
-        i++;
-    return (i);
-}
 
 void    dup_env(t_data *data, char **envp)
 {

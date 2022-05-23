@@ -2,11 +2,18 @@
 
 int main(int argc, char **argv, char **envp)
 {
+	ft_printf(" ################## DEBUT PROGRAM  ##########################\n");
     t_data data;
     data.env = NULL;
-    dup_env(&data, envp);
+    //dup_env(&data, envp);
+	//print_env(data.env);
 
-    ft_test_echo();
+    //ft_test_echo();
+	char *tmp[2] = {"ls",NULL};
+	chdir("/mnt/nfs/homes/ybellot/");
+	execve("/usr/bin/ls",tmp , envp);
+
+	ft_cd(NULL);
 
     return(0);
 }
@@ -37,7 +44,7 @@ int main_exec()
     char *command3[3]= {"grep", "m",NULL};
     elm_tmp = ft_elm_ceate_new(pt_data, command3, 5, 6);
     ft_lst_add(&(pt_data->exec_list), elm_tmp);
-    
+
     char *command4[2]= {"cat",NULL};
     elm_tmp = ft_elm_ceate_new(pt_data, command4, 7, 8);
     ft_lst_add(&(pt_data->exec_list), elm_tmp);

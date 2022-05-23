@@ -47,9 +47,11 @@ TOCOMPILE = main_yann.c
 TOCOMPILE += src/10_initialisation/start_initialisation.c
 TOCOMPILE += src/30_command_execution/exec_command.c
 TOCOMPILE += src/40_builtin/echo.c
+TOCOMPILE += src/40_builtin/cd.c
 TOCOMPILE += src/50_exit_functions/exit.c
-TOCOMPILE += src/60_tools/lst_manipulation.c
 TOCOMPILE += src/60_tools/elm_manipulation.c
+TOCOMPILE += src/60_tools/env_manipulation.c
+TOCOMPILE += src/60_tools/lst_manipulation.c
 TOCOMPILE += src/70_debug/test_echo.c
 TOCOMPILE += src/70_debug/print_env.c
 
