@@ -89,7 +89,6 @@ void ft_search_quotes(char *str)
 Return error if :
 - 2 of more pipe are stuck together 
 - 3 or more < > are stuck together 
-- < follow < || > follow > || << follow << || >> follow >>
 *******************************************************************/
 void    ft_check_separator_errors(char *str)
 {

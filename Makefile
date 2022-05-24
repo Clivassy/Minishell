@@ -55,7 +55,9 @@ TOCOMPILE += src/60_tools/lst_manipulation.c
 TOCOMPILE += src/70_debug/test_echo.c
 TOCOMPILE += src/70_debug/print_env.c
 
-
+JULIACOMPILE = main_julia.c
+JULIACOMPILE += src/20_parsing_lexing/lexer.c
+JULIACOMPILE += src/20_parsing_lexing/parser.c
 
 yann: $(HEADER)
 	rm -f $(NAME)
@@ -65,4 +67,4 @@ yann: $(HEADER)
 julia: $(HEADER)
 	rm -f $(NAME)
 	make -C ./libft all
-	${CC} src/*.c main_julia.c -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+	${CC} ${JULIACOMPILE} -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
