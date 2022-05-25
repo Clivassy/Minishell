@@ -27,11 +27,6 @@ TOCKENS stockés dans un char** (ft_get_tokens).
 
 -----------------------------------------------------------------------*/
 
-void    ft_lexing_error(char *msg)
-{
-    ft_printf("%s\n", msg);
-    exit(EXIT_FAILURE);
-}
 
 /*-------------------------------------------------
 Return 0 in there are no | or no << >> in quotes 
@@ -73,39 +68,16 @@ void ft_search_quotes(char *str)
         // lauch pre-parsing
         //ft_printf("String contains dquote or squote");
         ft_is_operator_into_quotes(str);
-        ft_check_separator_errors(str);
+        ft_check_multiples_pipes(str);
         exit(EXIT_SUCCESS);
     }
     else
     {
         // lauch parsing classic
-        ft_check_separator_errors(str);
+        ft_check_multiples_pipes(str);
         ft_printf("String no contains quote");
     }
     exit(EXIT_FAILURE);
-}
-
-/*******************************************************************
-Return error if :
-- 2 of more pipe are stuck together 
-- 3 or more < > are stuck together 
-*******************************************************************/
-void    ft_check_separator_errors(char *str)
-{
-    int i; 
-
-    i = 0;
-    while (str[i] == '\t' || str[i] == ' ') // voir si ca concerne tous les isspaces ou pas
-        i++;
-    if (str[i] == '|')
-        ft_lexing_error("Error : pipe syntax error");
-    while (str[i])
-    {   
-        if (str[i] == '|' && str[i + 1] == '|')
-            ft_lexing_error("Error : pipe syntax error");
-        i++;
-    }
-    ft_printf("Pipes ok\n");
 }
 
 /*** 

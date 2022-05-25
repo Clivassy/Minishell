@@ -56,8 +56,10 @@ TOCOMPILE += src/70_debug/test_echo.c
 TOCOMPILE += src/70_debug/print_env.c
 
 JULIACOMPILE = main_julia.c
-JULIACOMPILE += src/20_parsing_lexing/lexer.c
-JULIACOMPILE += src/20_parsing_lexing/parser.c
+JULIACOMPILE += src/20_parser_lexer/lexer.c
+JULIACOMPILE += src/20_parser_lexer/parser.c
+JULIACOMPILE += src/20_parser_lexer/lexer_errors.c
+JULIACOMPILE += src/20_parser_lexer/pre_lexer.c
 
 yann: $(HEADER)
 	rm -f $(NAME)
