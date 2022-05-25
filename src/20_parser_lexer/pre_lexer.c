@@ -25,15 +25,34 @@ void    ft_check_multiples_pipes(char *str)
     int i; 
 
     i = 0;
-    while (str[i] == '\t' || str[i] == ' ') // voir si ca concerne tous les isspaces ou pas
+    while (str[i] == ' ') // voir si ca concerne tous les isspaces ou pas
         i++;
     if (str[i] == '|')
         ft_lexer_error("Error: syntax error near unexpected token `|'");
-    while (str[i] != '|')
+    // faire une fonction qui va check si il y a quelque chose après le | 
+    i++;
+    while (str[i] && (str[i] == ' ' || str[i] == '>'
+			|| str[i] == '<' || str[i] == '|'))
     {
-        if (str[i] != ' ' || str[i] != '\t')
-            i++;
-        
+        if (str[i] == '|')
+            ft_lexer_error("error");
+        i++;
+    }
+    while (str[i])
+    {
+        if (str[i] && str[i] == '|')
+        {
+            while (str[i] && (str[i] == ' ' || str[i] == '>'
+			|| str[i] == '<' || str[i] == '|'))
+            {
+                if (str[i] == '|')
+                    ft_lexer_error("error");
+                i++;
+            }
+        }
+        if (str[i] == '\0')
+            break;
+        i++;
     }
     ft_printf("Pipes ok\n");
 }
