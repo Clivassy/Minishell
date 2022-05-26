@@ -19,42 +19,38 @@ Cas gérés comme des erreurs :
 - Pipe en début d'input
 - Double pipe ou +
 - Pipe - isspace - pipe 
+- Succession de pipe et chevrons au tout debut de l'input 
+
 *******************************************************************/
-void    ft_check_multiples_pipes(char *str)
+char    *ft_check_multiples_pipes(char *str)
 {
     int i; 
 
     i = 0;
-    while (str[i] == ' ') // voir si ca concerne tous les isspaces ou pas
-        i++;
-    if (str[i] == '|')
-        ft_lexer_error("Error: syntax error near unexpected token `|'");
-    // faire une fonction qui va check si il y a quelque chose après le | 
-    i++;
     while (str[i] && (str[i] == ' ' || str[i] == '>'
 			|| str[i] == '<' || str[i] == '|'))
     {
         if (str[i] == '|')
-            ft_lexer_error("error");
+            ft_lexer_error("Error: succesion d'operateur en debut d'input");
         i++;
     }
     while (str[i])
     {
         if (str[i] && str[i] == '|')
         {
+            i++;
             while (str[i] && (str[i] == ' ' || str[i] == '>'
 			|| str[i] == '<' || str[i] == '|'))
             {
                 if (str[i] == '|')
-                    ft_lexer_error("error");
+                    ft_lexer_error("Error: uniquement operateurs ou espaces au milieu de pipe");
                 i++;
             }
         }
-        if (str[i] == '\0')
-            break;
         i++;
     }
-    ft_printf("Pipes ok\n");
+    ft_printf("Correct input format\n");
+    return(str);
 }
 
 /*******************************************************************

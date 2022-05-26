@@ -1,18 +1,28 @@
 #include "minishell.h"
 
+void    ft_init_struct(t_data *input)
+{
+    input->read_line = NULL;
+    input->command_list = (char**)malloc(10* sizeof(char*));
+}
+
 int main(int ac, char **av)
 {
-    char *ptr = NULL;
-    int temp = -1;
 
+    t_data *input;
+
+    int temp = -1;
+    input = malloc(sizeof(t_data));
+    ft_init_struct(input);
     ft_pre_check_input();
     if (ac == 1)
     {
         while (temp <= 0)
         {
             ft_printf("minishell>");
-            ptr = readline(ptr);
-            ft_search_quotes(ptr);
+            input->read_line  = readline(input->read_line );
+            //ft_search_quotes(input->read_line );
+            ft_parse_quote(input);
             temp++;
         }
     }

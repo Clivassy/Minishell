@@ -60,6 +60,7 @@ JULIACOMPILE += src/20_parser_lexer/lexer.c
 JULIACOMPILE += src/20_parser_lexer/parser.c
 JULIACOMPILE += src/20_parser_lexer/lexer_errors.c
 JULIACOMPILE += src/20_parser_lexer/pre_lexer.c
+JULIACOMPILE += src/20_parser_lexer/parser_quotes.c
 
 yann: $(HEADER)
 	rm -f $(NAME)
