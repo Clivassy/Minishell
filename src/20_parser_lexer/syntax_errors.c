@@ -1,17 +1,6 @@
 #include "minishell.h"
 
 /*******************************************************************
-Return error if : 
-Standard input is NOT from the terminal 
-*******************************************************************/
-
-void    ft_pre_check_input(void)
-{
-    if (!isatty(0)) // check if the standar input is from a terminal
-        ft_lexer_error("Error: standard input in not from a terminal");
-}
-
-/*******************************************************************
 Return error if :
 - 2 of more pipe are stuck together 
 
@@ -52,12 +41,33 @@ char    *ft_check_multiples_pipes(char *str)
     ft_printf("Correct input format\n");
     return(str);
 }
+/************************************************
+Return 0 in there are no | or no << >> in quotes 
+return 1 if there are | or <> << >> in quotes 
 
-/*******************************************************************
-Return error if :
-- 3 or more < > are stuck together 
+**************************************************/ 
+int ft_is_operator_into_quotes(char *str)
+{
+    int i;
+    char quote_type;
 
-Cas gérés comme des erreurs : 
-- 
-****************************************************************** 
-*/
+    i = 0;
+    while (str[i] && (str[i] != '"' && str[i] != '\''))
+        i++;
+    quote_type = str[i];
+    //printf("\n%c", quote_type);
+    i++;
+    while (str[i])
+    {   
+        if (str[i] == quote_type)
+            break;
+        if (str[i] == '|' || str[i] == '<' || str[i] == '>')
+        {
+            ft_printf("found operator into dquotes");
+            return (1);
+        }
+        i++;
+    }
+    ft_printf("found NO pipe into dquotes");
+    return (0);
+}

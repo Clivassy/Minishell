@@ -1,5 +1,16 @@
 #include "minishell.h"
 
+/*******************************************************************
+Return error if : 
+Standard input is NOT from the terminal 
+
+*******************************************************************/
+void    ft_pre_check_input(void)
+{
+    if (!isatty(0)) // check if the standar input is from a terminal
+        ft_lexer_error("Error: standard input in not from a terminal");
+}
+
 void    ft_init_struct(t_data *input)
 {
     input->read_line = NULL;
@@ -8,22 +19,22 @@ void    ft_init_struct(t_data *input)
 
 int main(int ac, char **av)
 {
-
-    t_data *input;
+    t_data *input_minishell;
 
     int temp = -1;
-    input = malloc(sizeof(t_data));
-    ft_init_struct(input);
+    input_minishell = malloc(sizeof(t_data));
+    ft_init_struct(input_minishell);
     ft_pre_check_input();
     if (ac == 1)
     {
         while (temp <= 0)
         {
             ft_printf("minishell>");
-            input->read_line  = readline(input->read_line );
-            //ft_search_quotes(input->read_line );
-            ft_parse_quote(input);
+            // ici faire toutes les vérifs de l'input (isatty)
+            input_minishell->read_line  = readline(input_minishell->read_line);
             temp++;
+            // if PB on quitte proprement
+            ft_minishell(input_minishell);
         }
     }
     else 
