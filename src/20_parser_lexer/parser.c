@@ -1,13 +1,11 @@
 #include "minishell.h"
 
-/*----------------------------- PARSER ------------------------------*/
+/*----------------------------- PARSER ------------------------------
 
-/*******************************************************************/
-/* 
-- Récuperer la liste de tokens
-- Parser les tokens un a un
-IF 
-- Chercher si il y a des < > ou << >> : strchr 
-*/
-/********************************************************************/
+3 ) Parsing : lecture analyse des morceaux de phrase :
+-> on va stocker chaque commande dans un char** de notre liste chainée globale.
+(chaque potentielle cmd étant délimitée par un pipe)
+----------------------------------------------------------------------*/
+
+
         
