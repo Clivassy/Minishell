@@ -11,28 +11,26 @@ void    ft_pre_check_input(void)
         ft_lexer_error("Error: standard input in not from a terminal");
 }
 
-void    ft_init_struct(t_data *input)
+void    ft_init_struct(t_data *input_minishell)
 {
-    input->read_line = NULL;
-    input->command_list = (char**)malloc(10* sizeof(char*));
+    input_minishell->read_line = NULL;
+    input_minishell->exit_asked = 1;
+    // ++ 
 }
 
 int main(int ac, char **av)
 {
     t_data *input_minishell;
 
-    int temp = -1;
     input_minishell = malloc(sizeof(t_data));
     ft_init_struct(input_minishell);
-    ft_pre_check_input();
     if (ac == 1)
     {
-        while (temp <= 0)
+        while (input_minishell->exit_asked == 1)
         {
-            ft_printf("minishell>");
+            ft_printf("minishell> ");
             // ici faire toutes les vérifs de l'input (isatty)
             input_minishell->read_line  = readline(input_minishell->read_line);
-            temp++;
             // if PB on quitte proprement
             ft_minishell(input_minishell);
         }

@@ -1,12 +1,17 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-/*# define COMMAND 0
-# define PIPE 1
-# define SIMPLE_INPUT_REDIRECT 2
-# define DOUBLE_INPUT_REDIRECT 3
-# define SIMPLE_OUTPUT_REDIRECT 4
-# define DOUBLE_OUTPUT_REDIRECT 5*/
+/* Define TOKENS */
+# define    PIPE 1
+# define    DOLLARS 2
+# define    REDIRECT_IN 3
+# define    REDIRECT_OUT 4
+# define    HEREDOC 5
+# define    D_REDIRECT_OUT 6
+# define    S_QUOTE 7
+# define    D_QUOTE 8
+# define    SPACE 9
+# define    WORD 10
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -17,8 +22,8 @@
 
 typedef struct s_token
 {
-    char *type;
-    int value;
+    int type;
+    char *value;
     struct s_token *prev;
     struct s_token *next;
 

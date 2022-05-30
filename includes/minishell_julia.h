@@ -1,17 +1,5 @@
-/* Define TOKENS */
-
-typedef enum token
-{
-    PIPE,
-    DOLLARS,
-    REDIRECT_IN,
-    REDIRECT_OUT,
-    HEREDOC,
-    D_REDIRECT_OUT,
-    S_QUOTE,
-    D_QUOTE,
-    SPACE,
-}   t_enum_token;
+#include <errno.h>
+#include <string.h>
 
 /* LEXER */
 void    ft_minishell(t_data *input_minishell);
@@ -24,4 +12,10 @@ char    **ft_get_word_into_quote(char quote_type, char *str);
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
 void    ft_pre_check_input(void);
+
+/* LIST TOKENS*/
+void	ft_lstadd_back_token(t_token **alst, t_token *new);
+t_token	*ft_new_token(char *value, int type);
+t_token	*ft_lstlast_token(t_token *lst);
+void    ft_print_token_list(t_token *elm);
 
