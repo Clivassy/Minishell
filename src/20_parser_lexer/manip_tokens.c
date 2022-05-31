@@ -13,7 +13,6 @@ t_token	*ft_new_token(char *value, int type)
 	new->value = value;
 	new->type = type;
 	new->next = NULL;
-	new->prev = NULL;
 	return (new);
 }
 

@@ -1,6 +1,7 @@
 *.a
 *.o
 *.out
+.sdYM/
 .vscode/
 minishell
 infile

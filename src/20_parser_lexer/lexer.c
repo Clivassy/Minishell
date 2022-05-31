@@ -71,30 +71,14 @@ int ft_lexer_quotes(t_token *token_list, char *read_line, int index)
     return (0);
 }
 
-int ft_is_space(t_token **token_list, char *read_line, int index)
-{
-    char *space_token;
-    t_token *space;
-
-    if (read_line[index] == ' ' && read_line[index -1] != ' ')
-    {
-        space_token = ft_substr(read_line, index, 1);
-        if (!space_token)
-            return (-1);
-        space = ft_new_token(space_token, SPACE);
-        ft_lstadd_back_token(token_list, space);
-    }
-    return (0);
-}
-
 // a diviser en fonction pour plus de clarté
+/*         || read_line[index] != '\'' || read_line[index] != '\"'
+        || read_line[index] != '<' || read_line[index] != '>'
+        || read_line[index] != '$') */
 int ft_is_not_meta(char *read_line, int index)
 {
-    if (read_line[index] != '|' || read_line[index] != ' '
-        || read_line[index] != '\'' || read_line[index] != '\"'
-        || read_line[index] != '<' || read_line[index] != '>'
-        || read_line[index] != '$')
-            return (0);
+    if (read_line[index] != '|' || read_line[index] != ' ')
+        return (0);
     else
         return (1);
 }
@@ -107,7 +91,7 @@ int ft_word_len(char *read_line, int index)
         len++;
         index++;
     }
-    printf("%d\n", len);
+    printf("word len :%d\n", len);
     return (len);
 }
 
@@ -129,20 +113,44 @@ int ft_is_word(t_token **token_list, char *read_line, int index)
     return (0);
 }
 
-int ft_is_pipe(t_token **token_list, char *read_line, int index)
+int ft_is_space(t_token **token_list, char *read_line, int index)
 {
-    char *pipe_token;
-    t_token *pipe; 
+    char *space_token;
+    t_token *space;
 
-    if (read_line[index] == '|')
+    if (read_line[index] == ' ' && read_line[index -1] != ' ')
     {
-        pipe_token = ft_substr(read_line, index, 1);
-        if (!pipe_token)
+        space_token = ft_substr(read_line, index, 1);
+        if (!space_token)
             return (-1);
-      //  printf("token pipe is : '%s'\n", pipe_token);
-        pipe = ft_new_token(pipe_token, PIPE);
-        ft_lstadd_back_token(token_list, pipe);
-       // printf("token string : %s\n", pipe->value);
+        space = ft_new_token(space_token, SPACE);
+        ft_lstadd_back_token(token_list, space);
+    }
+    return (0);
+}
+
+int ft_get_separators(t_token **token_list, char *read_line, int index)
+{
+    char *separator;
+    t_token *separator_token;
+
+    if (read_line[index] == ' ')
+            ft_is_space(token_list, read_line, index);
+    if (read_line[index] == '$' || read_line[index] == '<' ||
+        read_line[index] == '>' || read_line[index] == '|')
+    {
+        separator = ft_substr(read_line, index, 1);
+        if (!separator)
+            return (-1);
+        if (read_line[index] == '|')
+            separator_token = ft_new_token(separator, PIPE);
+        if (read_line[index] == '$')
+            separator_token = ft_new_token(separator, DOLLARS);
+        if (read_line[index] == '<')
+            separator_token = ft_new_token(separator, REDIRECT_IN);
+        if (read_line[index] == '>')
+            separator_token = ft_new_token(separator, REDIRECT_OUT);
+        ft_lstadd_back_token(token_list, separator_token);
     }
     return (1);
 }
@@ -154,15 +162,12 @@ t_token *ft_fill_tokens_list(char *read_line,t_token *token_list)
     i =  0; 
     while (read_line[i])
     {
-        // forêt de if ou je vais parcourir a la recherche des tokens 
-        //i += ft_lexer_quotes(token_list, read_line, i)
+        ft_get_separators(&token_list, read_line, i); // récup de tous les metacharactères. 
+       // ft_get_words(&token_list, read_line, i);
         // attention, si quote, il faut bien continuer à parser a partir du charactère
-        // qui suit la quote fermée. 
-        ft_is_pipe(&token_list, read_line, i);
-        //printf("i = %d\n", i);
-        ft_is_space(&token_list, read_line, i);
-        if (ft_is_word(&token_list, read_line, i) == 0)
-            i += ft_word_len(read_line, i);
+        // qui suit la quote fermée (+ attention au cas ou bonjour"ca va" -> un seul token word)
+       //if (ft_is_word(&token_list, read_line, i) == 0)
+          //  i += ft_word_len(read_line, i);
         i++;
     }
     return (token_list);
@@ -187,5 +192,6 @@ void    ft_minishell(t_data *input_minishell)
     errno = 0;
     token_list = malloc(sizeof(t_token));
     token_list = ft_lexer(input_minishell->read_line, token_list);
+    ///TEST ///
     ft_print_token_list(token_list);
 }
