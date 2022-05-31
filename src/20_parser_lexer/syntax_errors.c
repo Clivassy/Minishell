@@ -4,11 +4,13 @@
 Return error if :
 - 2 of more pipe are stuck together 
 
-Cas gérés comme des erreurs : 
+Cas à gérer comme des erreurs : 
 - Pipe en début d'input
 - Double pipe ou +
-- Pipe - isspace - pipe 
+- Triple chevron ou plus
+- Pipe - metacharactere - pipe 
 - Succession de pipe et chevrons au tout debut de l'input 
+- Eventuellement pipe non fermé
 
 *******************************************************************/
 char    *ft_check_multiples_pipes(char *str)
