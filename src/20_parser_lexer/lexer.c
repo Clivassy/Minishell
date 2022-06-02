@@ -134,6 +134,7 @@ t_token *ft_lexer(char *readline)
 {
     t_token *token_list; 
 
+    token_list = NULL;
     token_list = ft_fill_tokens_list(readline, token_list);
     if (token_list == NULL)
         return (NULL);

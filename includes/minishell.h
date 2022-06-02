@@ -42,7 +42,7 @@ typedef struct s_data
 	int exit_asked;
     char *read_line;
     char **env;
-    char **command_list;
+   // char **command_list;
     t_token *tokens_list;
     t_elm   *exec_list;
 }	t_data;
