@@ -43,16 +43,12 @@ void	ft_lstadd_back_token(t_token **alst, t_token *new)
 
 void    ft_print_token_list(t_token *token_list)
 {
-	int i;
-	int	j;
-
 	if (!token_list)
 	{
 		ft_printf("liste vide\n");
-		return;
+		exit(EXIT_FAILURE);
 	}
-	i= 1;
-	while (token_list)
+	while (token_list!= NULL)
 	{
 		ft_printf("----------------------------\n");
 		ft_printf("| value = [%s]", token_list->value);
@@ -62,8 +58,8 @@ void    ft_print_token_list(t_token *token_list)
 		ft_printf("              |             \n");
 		ft_printf("              v             \n");
 		token_list = token_list->next;
-		i++;
 	}
 }  
 
 // fct pour libérer toute la liste (free du premier maillon jusqu'au dernier) : lstclear
+// a adapter aux tokens.

@@ -2,7 +2,7 @@
 
 /*----------------------------- LEXER ------------------------------
 
-- Récupérer la string entree en input avec readline
+- Récupérer la string entree en input avec readline : OK 
 - FIRST CHECK : if there are invalid nb of pipes, chevrons ou des chevrons mal orientés
 - SECOND CHECK : if there are squotes || dquotes 
 

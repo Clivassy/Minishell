@@ -3,7 +3,7 @@
 
 /* LEXER */
 void    ft_minishell(t_data *input_minishell);
-t_token *ft_lexer(char *read_line,t_token *tokenizer);
+t_token *ft_lexer(char *readline);
 void    ft_parse_quote(t_data *input);
 void    ft_search_quotes(char *str);
 char    *ft_check_multiples_pipes(char *str);
