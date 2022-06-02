@@ -41,19 +41,19 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
-
-
-TOCOMPILE = main_yann.c
-TOCOMPILE += src/10_initialisation/start_initialisation.c
-TOCOMPILE += src/30_command_execution/exec_command.c
-TOCOMPILE += src/40_builtin/echo.c
-TOCOMPILE += src/40_builtin/cd.c
-TOCOMPILE += src/50_exit_functions/exit.c
-TOCOMPILE += src/60_tools/elm_manipulation.c
-TOCOMPILE += src/60_tools/env_manipulation.c
-TOCOMPILE += src/60_tools/lst_manipulation.c
-TOCOMPILE += src/70_debug/test_echo.c
-TOCOMPILE += src/70_debug/print_env.c
+YANNCOMPILE = main_yann.c
+YANNCOMPILE += src/10_initialisation/start_initialisation.c
+YANNCOMPILE += src/30_command_execution/exec_command.c
+YANNCOMPILE += src/40_builtin/echo.c
+YANNCOMPILE += src/40_builtin/cd.c
+YANNCOMPILE += src/50_exit_functions/exit.c
+YANNCOMPILE += src/60_tools/elm_manipulation.c
+YANNCOMPILE += src/60_tools/env_manipulation.c
+YANNCOMPILE += src/60_tools/lst_manipulation.c
+YANNCOMPILE += src/60_tools/garbage_collector.c
+YANNCOMPILE += src/70_debug/test_echo.c
+YANNCOMPILE += src/70_debug/print_env.c
+YANNCOMPILE += src/70_debug/test_garbage_collector.c
 
 JULIACOMPILE = main_julia.c
 JULIACOMPILE += src/20_parser_lexer/lexer.c
@@ -64,7 +64,7 @@ JULIACOMPILE += src/20_parser_lexer/manip_tokens.c
 yann: $(HEADER)
 	rm -f $(NAME)
 	make -C ./libft all
-	${CC} ${TOCOMPILE} -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+	${CC} ${YANNCOMPILE} -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
 
 julia: $(HEADER)
 	rm -f $(NAME)

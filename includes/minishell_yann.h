@@ -24,8 +24,17 @@ t_elm	*ft_elm_ceate_new(t_data *data, char **cmd, int fd_in, int fd_out);
 void    ft_lst_print(t_elm *elm);
 void    ft_lst_add(t_elm **elm_list, t_elm *new_elm);
 t_elm	*ft_lst_get_last_elm(t_elm *lst);
+// garbage collector
+void	ft_init_garbage_collector(t_data *data);
+void	*ft_malloc(t_data *data, size_t size);
+void	ft_add_to_garbage_collector(t_data *data, void *content);
+void	ft_free_garbage_collector(t_data *data);
+void	ft_print_garbage_collector(t_data *data);
+
 
 // 70 debug
 void    print_env(char **env);
 void    ft_test_echo();
+void    ft_test_garbage_collector(t_data *data);
+
 

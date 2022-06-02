@@ -45,6 +45,7 @@ typedef struct s_data
    // char **command_list;
     t_token *tokens_list;
     t_elm   *exec_list;
+	t_list	*garbage_collector;
 }	t_data;
 
 // minishell_loop

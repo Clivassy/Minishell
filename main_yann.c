@@ -9,11 +9,15 @@ int main(int argc, char **argv, char **envp)
 	//print_env(data.env);
 
     //ft_test_echo();
-	char *tmp[2] = {"ls",NULL};
-	chdir("/mnt/nfs/homes/ybellot/");
-	execve("/usr/bin/ls",tmp , envp);
+	//char *tmp[2] = {"ls",NULL};
+	//chdir("/mnt/nfs/homes/ybellot/");
+	//execve("/usr/bin/ls",tmp , envp);
 
-	ft_cd(NULL);
+	// test cd
+	//ft_cd(NULL);
+
+	// test garbagge collector
+	ft_test_garbage_collector(&data);
 
     return(0);
 }
@@ -30,7 +34,7 @@ int main_exec()
     pt_data->exit_asked = 0;
     pt_data->read_line = NULL;
     pt_data->env = NULL;
-    pt_data->command_list = NULL;
+    //pt_data->command_list = NULL;
     pt_data->exec_list = NULL;
 
     char *command1[3]= {"ls","-la",NULL};
