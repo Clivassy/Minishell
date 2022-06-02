@@ -11,7 +11,7 @@ A RETRAVAILLER ET A METTRE AU PROPRE
 -------------------------------------------------------*/
 
 /* Retourne la longeur du mot entre les quotes */
-int ft_len_inside_quote(char *str, int index)
+/* int ft_len_inside_quote(char *str, int index)
 {
     char quote_type;
     int i;
@@ -65,4 +65,4 @@ int ft_is_not_meta(char *read_line, int index)
         return (0);
     else
         return (1);
-}
+} */
