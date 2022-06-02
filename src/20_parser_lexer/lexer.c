@@ -36,15 +36,15 @@ Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
     dans ft_fill_tokens_list. 
 
 --------------------------------------------------------------------------------------------------------------*/
-int ft_get_word(t_token **token_list, char *read_line, int index)
+/* int ft_get_word(t_token **token_list, char *read_line, int index)
 {
     char *word_token;
     t_token *word; 
     int word_len; 
     // 
-}
+} */
 
-int ft_lexer_quotes(t_token *token_list, char *read_line, int index)
+/* int ft_lexer_quotes(t_token *token_list, char *read_line, int index)
 {
     (void)token_list;
     char *word_token;
@@ -61,14 +61,14 @@ int ft_lexer_quotes(t_token *token_list, char *read_line, int index)
            // printf("token word is : %s\n", word_token);
             exit(0);
         }
-        else
+        elsegit s
         {
             printf("prout");
             exit(0);
         }
     }
     return (0);
-}
+} */
 
 int ft_is_space(t_token **token_list, char *read_line, int index)
 {
@@ -120,7 +120,7 @@ t_token *ft_fill_tokens_list(char *read_line,t_token *token_list)
     while (read_line[i])
     {
         ft_get_separators(&token_list, read_line, i); // récup de tous les metacharactères. 
-        ft_get_words(&token_list, read_line, i);
+        //ft_get_words(&token_list, read_line, i);
         // attention, si quote, il faut bien continuer à parser a partir du charactère
         // qui suit la quote fermée (+ attention au cas ou bonjour"ca va" -> un seul token word)
        //if (ft_is_word(&token_list, read_line, i) == 0)
