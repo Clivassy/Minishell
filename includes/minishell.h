@@ -2,16 +2,16 @@
 # define MINISHELL_H
 
 /* Define TOKENS */
-# define    PIPE 1
-# define    DOLLARS 2
-# define    REDIRECT_IN 3
-# define    REDIRECT_OUT 4
-# define    HEREDOC 5
+# define    T_PIPE 1
+# define    T_DOLLARS 2
+# define    T_REDIRECT_IN 3
+# define    T_REDIRECT_OUT 4
+# define    T_HEREDOC 5
 # define    D_REDIRECT_OUT 6
 # define    S_QUOTE 7
 # define    D_QUOTE 8
-# define    SPACE 9
-# define    WORD 10
+# define    T_SPACE 9
+# define    T_WORD 10
 
 # include <unistd.h>
 # include <stdlib.h>

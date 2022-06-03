@@ -48,7 +48,7 @@ void    ft_print_token_list(t_token *token_list)
 		ft_printf("liste vide\n");
 		exit(EXIT_FAILURE);
 	}
-	while (token_list!= NULL)
+	while (token_list != NULL)
 	{
 		ft_printf("----------------------------\n");
 		ft_printf("| value = [%s]", token_list->value);

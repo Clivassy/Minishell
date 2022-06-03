@@ -34,22 +34,25 @@ A RETRAVAILLER ET A METTRE AU PROPRE
     printf("len is :%d\n", len); 
     return (len);
 }
-
-int ft_is_word(char *read_line, int index)
+*/
+int ft_is_word(char *read_line, int index, int word_len)
 {
-    while (read_line[index])
+    while (read_line[index] && (index != word_len))
     {
-        if (read_line[index] != '\'' || read_line[index] != '\"'
-        || read_line[index] != '<' || read_line[index] != '>'
-        || read_line[index] != '$')
+        if (read_line[index] == '<' || read_line[index] == '>'
+        || read_line[index] == '$'|| read_line[index] == ' ' 
+        || read_line[index] == '|')
+            return(0);
         index++;
     }
+    return (1);
 }
 
 int ft_word_len(char *read_line, int index)
 {
     int len = 0;
-    while (read_line[index] && read_line[index] != ' ')
+    while (read_line[index] && read_line[index] != ' '
+            && read_line[index] != '|')
     {
         len++;
         index++;
@@ -57,12 +60,3 @@ int ft_word_len(char *read_line, int index)
     printf("word len :%d\n", len);
     return (len);
 }
-
-
-int ft_is_not_meta(char *read_line, int index)
-{
-    if (read_line[index] != '|' || read_line[index] != ' ')
-        return (0);
-    else
-        return (1);
-} */
