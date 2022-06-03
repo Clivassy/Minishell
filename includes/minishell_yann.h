@@ -3,6 +3,16 @@
 //commandes pour tests
 // clear && make yann && ./minishell
 
+//Colors
+# define COLOR_NORMAL  "\x1B[0m"
+# define COLOR_RED  "\x1B[31m"
+# define COLOR_GREEN  "\x1B[32m"
+# define COLOR_YELLOW  "\x1B[33m"
+# define COLOR_BLUE  "\x1B[34m"
+# define COLOR_MAGENTA  "\x1B[35m"
+# define COLOR_CYAN  "\x1B[36m"
+# define COLOR_WHITE  "\x1B[37m"
+
 
 // Initialisation
 void    dup_env(t_data *data, char **envp);
@@ -30,6 +40,9 @@ void	*ft_malloc(t_data *data, size_t size);
 void	ft_add_to_garbage_collector(t_data *data, void *content);
 void	ft_free_garbage_collector(t_data *data);
 void	ft_print_garbage_collector(t_data *data);
+void	ft_free(t_data *data, void *address);
+// print_color
+void	ft_print_color(char *str);
 
 
 // 70 debug

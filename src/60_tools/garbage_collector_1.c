@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   garbage_collector.c                                :+:      :+:    :+:   */
+/*   garbage_collector_1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:18:17 by ybellot           #+#    #+#             */
-/*   Updated: 2022/06/02 23:55:38 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:53:51 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,11 @@ void	ft_print_garbage_collector(t_data *data)
 	int		i;
 	t_list	*elm;
 
+	ft_print_color(COLOR_CYAN);
 	if (!data->garbage_collector)
 	{
 		ft_printf("garbage collector vide\n");
+		ft_print_color(COLOR_NORMAL);
 		return ;
 	}
 	i = 0;
@@ -91,4 +93,5 @@ void	ft_print_garbage_collector(t_data *data)
 		elm = elm->next;
 		i++;
 	}
+	ft_print_color(COLOR_NORMAL);
 }

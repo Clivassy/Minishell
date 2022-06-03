@@ -38,4 +38,40 @@ void    ft_test_garbage_collector(t_data *data)
 	ft_free_garbage_collector(data);
 	ft_print_garbage_collector(data);
 
+	// remplissage garbge collector
+	ft_printf("remplissage garbage collector (5 elements)\n");
+	char *elem4 = ft_malloc(data, sizeof(char) * 1);
+	elem4[0] = '\0';
+	char *elem5 = ft_malloc(data, sizeof(char) * 1);
+	elem5[0] = '\0';
+	char *elem6 = ft_malloc(data, sizeof(char) * 1);
+	elem6[0] = '\0';
+	char *elem7 = ft_malloc(data, sizeof(char) * 1);
+	elem7[0] = '\0';
+	char *elem8 = ft_malloc(data, sizeof(char) * 1);
+	elem8[0] = '\0';
+	ft_print_garbage_collector(data);
+
+
+	// free 1 element
+	ft_printf("free du 2n element\n");
+	ft_free(data, elem5);
+	ft_print_garbage_collector(data);
+
+	ft_printf("free du 1er element\n");
+	ft_free(data, elem4);
+	ft_print_garbage_collector(data);
+
+	ft_printf("free du dernier element\n");
+	ft_free(data, elem8);
+	ft_print_garbage_collector(data);
+
+	ft_printf("free du 1er element\n");
+	ft_free(data, elem6);
+	ft_print_garbage_collector(data);
+
+	ft_printf("free du 1er element\n");
+	ft_free(data, elem7);
+	ft_print_garbage_collector(data);
+
 }
