@@ -48,7 +48,8 @@ int ft_get_word(t_token **token_list, char *read_line, int index)
         ft_printf("Found quote!\n");
     }
     printf("index before word : %d\n", index);
-    if (ft_isalnum(read_line[index]) == 1)
+    if (read_line[index] >= 33 && read_line[index] <= 126
+    && ft_is_word(read_line, index, word_len) == 1)
    // if (ft_is_word(read_line, index, word_len) == 1)
     {   
         word_token = ft_substr(read_line, index, word_len);
@@ -96,7 +97,7 @@ int ft_is_space(t_token **token_list, char *read_line, int index)
     {
         space_token = ft_substr(read_line, index, 1);
         if (!space_token)
-            return (-1);
+            return (-1); // ft_exit 
         space = ft_new_token(space_token, T_SPACE);
         ft_lstadd_back_token(token_list, space);
     }
@@ -179,7 +180,7 @@ t_token *ft_fill_tokens_list(char *read_line,t_token *token_list)
     while (read_line[index])
     {  
         ft_printf("%d\n", index);
-        //index += ft_get_separators(&token_list, read_line, index);
+        index += ft_get_separators(&token_list, read_line, index);
         index += ft_get_word(&token_list, read_line, index);
         index++;
     // récup de tous les metacharactères. 
