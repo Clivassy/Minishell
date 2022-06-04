@@ -50,12 +50,11 @@ int ft_get_word(t_token **token_list, char *read_line, int index)
     printf("index before word : %d\n", index);
     if (read_line[index] >= 33 && read_line[index] <= 126
     && ft_is_word(read_line, index, word_len) == 1)
-   // if (ft_is_word(read_line, index, word_len) == 1)
     {   
         word_token = ft_substr(read_line, index, word_len);
         word = ft_new_token(word_token, T_WORD);
         ft_lstadd_back_token(token_list, word);
-        return(word_len);
+        return(word_len - 1);
     }
     else
         printf("No word found\n");
@@ -126,6 +125,7 @@ int ft_is_redirect(t_token **token_list, char *read_line, int index)
         separator = ft_substr(read_line, index, 2);
         separator_token = ft_new_token(separator, D_REDIRECT_OUT);
         ft_lstadd_back_token(token_list, separator_token);
+
     }
     else if (read_line[index] == '<' && read_line[index + 1] == '<')
     {
@@ -141,17 +141,20 @@ int ft_get_separators(t_token **token_list, char *read_line, int index)
     char *separator;
     t_token *separator_token;
 
+    printf("OK\n");
+    printf("char : %c\n", read_line[index]);
     if (read_line[index] == ' ')
     {
+        printf("this is a space!\n");
         ft_is_space(token_list, read_line, index);
         return(0);
     }
     if (read_line[index] == '<' || read_line[index] == '>')
     {
-        ft_printf("is redirect!");
+        ft_printf("is redirect!\n");
         ft_is_redirect(token_list, read_line, index);
         if (read_line[index + 1] != '<'
-            && read_line[index + 1] != '>')
+            || read_line[index + 1] != '>')
             return (1);
         else
             return (0);
@@ -168,6 +171,7 @@ int ft_get_separators(t_token **token_list, char *read_line, int index)
         ft_lstadd_back_token(token_list, separator_token);
         return(0);
     }
+    printf("no metacharactere found\n");
     return(0);
 }
 
@@ -179,9 +183,9 @@ t_token *ft_fill_tokens_list(char *read_line,t_token *token_list)
     
     while (read_line[index])
     {  
-        ft_printf("%d\n", index);
-        index += ft_get_separators(&token_list, read_line, index);
+        ft_printf("index before boucle : %d\n", index);
         index += ft_get_word(&token_list, read_line, index);
+        index += ft_get_separators(&token_list, read_line, index);
         index++;
     // récup de tous les metacharactères. 
         //ft_get_words(&token_list, read_line, i);
