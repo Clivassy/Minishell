@@ -36,6 +36,25 @@ A RETRAVAILLER ET A METTRE AU PROPRE
 }
 */
 
+int ft_check_no_space(char *read_line, int index, int len)
+{
+    int i;
+
+    i = 0;
+    while(i < len)
+    {
+        if (read_line[index] == '"'
+            && ft_is_word(read_line, index - 1))
+            {
+                printf("STUCK\n");
+                return (1);
+            }
+        i++;
+        index++;
+    }
+    return(0);
+}
+
 int ft_quote_word_len(char *read_line, int index)
 {
     char quote_type;
