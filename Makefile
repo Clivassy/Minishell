@@ -42,13 +42,14 @@ re: fclean all
 .PHONY: all clean fclean re
 
 YANNCOMPILE = main_yann.c
-YANNCOMPILE += src/10_initialisation/start_initialisation.c
+YANNCOMPILE += src/10_initialisation/data_initialisation.c
 YANNCOMPILE += src/30_command_execution/exec_command.c
 YANNCOMPILE += src/40_builtin/echo.c
 YANNCOMPILE += src/40_builtin/cd.c
+YANNCOMPILE += src/45_environment/env_initialisation.c
+YANNCOMPILE += src/45_environment/env_manipulation.c
 YANNCOMPILE += src/50_exit_functions/exit.c
 YANNCOMPILE += src/60_tools/elm_manipulation.c
-YANNCOMPILE += src/60_tools/env_manipulation.c
 YANNCOMPILE += src/60_tools/lst_manipulation.c
 YANNCOMPILE += src/60_tools/garbage_collector_1.c
 YANNCOMPILE += src/60_tools/garbage_collector_2.c

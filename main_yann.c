@@ -4,7 +4,8 @@ int main(int argc, char **argv, char **envp)
 {
 	ft_printf(" ################## DEBUT PROGRAM  ##########################\n");
     t_data data;
-    data.env = NULL;
+	ft_data_initialisation(&data);
+    //data.env = NULL;
     //dup_env(&data, envp);
 	//print_env(data.env);
 

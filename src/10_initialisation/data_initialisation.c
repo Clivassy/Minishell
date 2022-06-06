@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_initialisation.c                               :+:      :+:    :+:   */
+/*   data_initialisation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/04 14:42:18 by ybellot           #+#    #+#             */
-/*   Updated: 2022/06/04 14:42:19 by ybellot          ###   ########.fr       */
+/*   Created: 2022/06/06 22:46:50 by ybellot           #+#    #+#             */
+/*   Updated: 2022/06/06 22:59:13 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
 
-void    dup_env(t_data *data, char **envp)
+void	ft_data_initialisation(t_data *data)
 {
-    int i;
-
-    data->env = malloc(sizeof(char *) * nb_of_env_lines(envp) + 1);
-    printf("nb lines = %d\n", nb_of_env_lines(envp));
-    i = 0;
-    while (i < nb_of_env_lines(envp) + 1)
-    {
-        data->env[i] = NULL;
-        i++;
-    }
-    i = 0;
-    while (envp[i])
-    {
-        data->env[i] = ft_strdup((const char *)envp[i]);
-        i++;
-    }
-    print_env(data->env);
+	data->exit_asked = 0;
+    data->env = NULL;
+    data->tokens_list = NULL;
+    data->exec_list = NULL;
+	data->garbage_collector = NULL;
 }
-

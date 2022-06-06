@@ -3,8 +3,9 @@
 //commandes pour tests
 // clear && make yann && ./minishell
 
-// Initialisation
-void    dup_env(t_data *data, char **envp);
+// 10_initialisation
+// data initialisation
+void	ft_data_initialisation(t_data *data);
 
 // exec_command
 void    ft_exec_command(t_data *data);
@@ -14,9 +15,15 @@ void    ft_launch_processus(t_data *data, int index);
 void    ft_echo(char **argument_list);
 void	ft_cd(char **arguments);
 
-// 60_tools
+// 45_environment
+// env_initialisation
+void	dup_env(t_data *data, char **envp);
 // env_manipulation
 int nb_of_env_lines(char **envp);
+
+
+// 60_tools
+
 // elm_manipulation.c
 t_elm	*ft_elm_ceate_new(t_data *data, char **cmd, int fd_in, int fd_out);
 // lst_manipulation.c
