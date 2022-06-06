@@ -35,25 +35,49 @@ A RETRAVAILLER ET A METTRE AU PROPRE
     return (len);
 }
 */
-int ft_is_word(char *read_line, int index, int word_len)
+
+int ft_quote_word_len(char *read_line, int index)
 {
-    while (read_line[index] && (index != word_len))
+    char quote_type;
+    int i;
+    int len;
+
+    if (read_line == NULL || read_line[index] == '\0')
+	    return (0);
+    quote_type = read_line[index];
+    //printf("%c\n", quote_type);
+    i = index + 1; 
+    //printf("index = %d\n", i);
+    len = 0;
+    while (read_line[i] && read_line[i] != quote_type)
     {
-        if (read_line[index] == '<' || read_line[index] == '>'
-        || read_line[index] == '$'|| read_line[index] == ' ' 
-        || read_line[index] == '|')
-            return(0);
-        index++;
+        len++;
+        i++;
     }
+    if (read_line[i] != quote_type)
+        ft_lexer_error("quote non close");
+    printf("len inside quote is :%d\n", len); 
+    return (len);
+}
+
+int ft_is_word(char *read_line, int index)
+{
+    if (read_line[index] == '<' || read_line[index] == '>'
+        || read_line[index] == '$'|| read_line[index] == ' ' 
+        || read_line[index] == '|' )
+            return(0);
     return (1);
 }
 
 int ft_word_len(char *read_line, int index)
 {
     int len = 0;
-    while (read_line[index] && read_line[index] != ' '
-            && read_line[index] != '|')
+    while (read_line[index])
     {
+        if (read_line[index] == '<' || read_line[index] == '>'
+        || read_line[index] == '$'|| read_line[index] == ' ' 
+        || read_line[index] == '|' )
+            return(len);
         len++;
         index++;
     }
