@@ -3,7 +3,7 @@
 
 /* LEXER */
 void    ft_minishell(t_data *input_minishell);
-int ft_is_word(char *read_line, int index, int word_len);
+int ft_is_word(char *read_line, int index);
 int ft_word_len(char *read_line, int index);
 t_token *ft_lexer(char *readline);
 void    ft_parse_quote(t_data *input);
@@ -11,6 +11,7 @@ void    ft_search_quotes(char *str);
 char    *ft_check_multiples_pipes(char *str);
 int ft_get_word(t_token **token_list, char *read_line, int index);
 char    **ft_get_word_into_quote(char quote_type, char *str);
+int ft_quote_word_len(char *read_line, int index);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);

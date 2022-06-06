@@ -36,21 +36,53 @@ Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
     dans ft_fill_tokens_list. 
 
 --------------------------------------------------------------------------------------------------------------*/
+int ft_get_quotes_token(t_token **token_list, char *read_line, int index)
+{
+    char *quote;
+    t_token *quote_token;
+    
+    quote = ft_substr(read_line, index, 1);
+    if (read_line[index] == '\'')
+        quote_token = ft_new_token(quote, S_QUOTE);
+    else 
+        quote_token = ft_new_token(quote, D_QUOTE);
+    ft_lstadd_back_token(token_list, quote_token);
+    return (0);
+}
+
+int   ft_word_into_quotes(t_token **token_list, char *read_line, int index, int len_inside_quotes)
+{
+    char *word;
+    t_token *word_inside_quotes; 
+    ft_get_quotes_token( token_list, read_line, index);
+    word = ft_substr(read_line, index + 1, len_inside_quotes);
+    word_inside_quotes = ft_new_token(word, T_WORD);
+    ft_lstadd_back_token(token_list, word_inside_quotes);
+    index += len_inside_quotes + 1;
+    ft_get_quotes_token( token_list, read_line, index);
+    return(0);
+}
+
 int ft_get_word(t_token **token_list, char *read_line, int index)
 {
     char *word_token;
     t_token *word; 
     int word_len; 
+    int len_inside_quotes;
 
     word_len = ft_word_len(read_line, index);
     if (read_line[index] == '\'' || read_line[index] == '\"')
     {
         ft_printf("Found quote!\n");
+        len_inside_quotes = ft_quote_word_len(read_line, index);
+        ft_word_into_quotes(token_list, read_line, index, len_inside_quotes);
+        return(len_inside_quotes + 2);
     }
-    printf("index before word : %d\n", index);
-    if (read_line[index] >= 33 && read_line[index] <= 126
-    && ft_is_word(read_line, index, word_len) == 1)
-    {   
+    //printf("index before word : %d\n", index);
+    // printf("charactere : %c\n", read_line[index]);
+    if (read_line[index] >= 33 && read_line[index] <= 126 
+        && ft_is_word(read_line, index))
+    {
         word_token = ft_substr(read_line, index, word_len);
         word = ft_new_token(word_token, T_WORD);
         ft_lstadd_back_token(token_list, word);
@@ -60,32 +92,6 @@ int ft_get_word(t_token **token_list, char *read_line, int index)
         printf("No word found\n");
     return (0); 
 }
-
-/* int ft_lexer_quotes(t_token *token_list, char *read_line, int index)
-{
-    (void)token_list;
-    char *word_token;
-    int inside_quote;
-
-    if (read_line[index] == '\'' || read_line[index] == '\"')
-    {
-        //printf("%s\n", read_line);
-        inside_quote = ft_len_inside_quote(read_line, index);
-        word_token = ft_substr(read_line, index + 1, inside_quote);
-        if (read_line[index] == '\'')
-        {
-           // printf("found ' at index : %d\n", index);
-           // printf("token word is : %s\n", word_token);
-            exit(0);
-        }
-        elsegit s
-        {
-            printf("prout");
-            exit(0);
-        }
-    }
-    return (0);
-} */
 
 int ft_is_space(t_token **token_list, char *read_line, int index)
 {
@@ -187,7 +193,7 @@ t_token *ft_fill_tokens_list(char *read_line,t_token *token_list)
         index += ft_get_word(&token_list, read_line, index);
         index += ft_get_separators(&token_list, read_line, index);
         index++;
-    // récup de tous les metacharactères. 
+        // récup de tous les metacharactères. 
         //ft_get_words(&token_list, read_line, i);
         // attention, si quote, il faut bien continuer à parser a partir du charactère
         // qui suit la quote fermée (+ attention au cas ou bonjour"ca va" -> un seul token word)
