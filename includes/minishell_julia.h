@@ -5,7 +5,7 @@
 int ft_get_mixed_token(t_token **token_list, char *read_line, int index, int len);
 int ft_get_separators(t_token **token_list, char *read_line, int index);
 t_token *ft_lexer(char *readline);
-int ft_check_no_space(char *read_line, int index, int len);
+int ft_check_no_space(char *read_line, int index, int len, char c);
 void    ft_minishell(t_data *input_minishell);
 int ft_is_word(char *read_line, int index);
 int ft_word_len(char *read_line, int index);

@@ -36,21 +36,18 @@ A RETRAVAILLER ET A METTRE AU PROPRE
 }
 */
 
-int ft_check_no_space(char *read_line, int index, int len)
+int ft_check_no_space(char *read_line, int index, int len, char c)
 {
     int i;
 
     i = 0;
+    printf("letter :%c\n",read_line[index]);
     while(i < len)
     {
-        if (read_line[index] == '"'
+        if (read_line[index] == c
             && ft_is_word(read_line, index - 1))
-            {
-                printf("STUCK\n");
                 return (1);
-            }
         i++;
-        index++;
     }
     return(0);
 }
