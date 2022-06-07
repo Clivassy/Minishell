@@ -17,9 +17,9 @@ void	ft_cd(char **arguments);
 
 // 45_environment
 // env_initialisation
-void	dup_env(t_data *data, char **envp);
+void	ft_dup_env(t_data *data, char **envp);
 // env_manipulation
-int nb_of_env_lines(char **envp);
+int ft_env_nb_of_lines(char **envp);
 
 
 // 60_tools
