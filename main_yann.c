@@ -6,7 +6,7 @@ int main(int argc, char **argv, char **envp)
     t_data data;
 	ft_data_initialisation(&data);
     //data.env = NULL;
-    //dup_env(&data, envp);
+    //ft_dup_env(&data, envp);
 	//print_env(data.env);
 
     //ft_test_echo();
