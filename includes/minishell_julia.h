@@ -32,11 +32,3 @@ t_token *ft_new_token(char *value, int type);
 t_token *ft_lstlast_token(t_token *lst);
 void    ft_print_token_list(t_token *elm);
 
-// garbage collector
-void	ft_init_garbage_collector(t_data *data);
-void	*ft_malloc(t_data *data, size_t size);
-void	ft_add_to_garbage_collector(t_data *data, void *content);
-void	ft_free_garbage_collector(t_data *data);
-void	ft_print_garbage_collector(t_data *data);
-void	ft_free(t_data *data, void *address);
-

@@ -57,6 +57,7 @@ YANNCOMPILE += src/60_tools/print_color.c
 YANNCOMPILE += src/70_debug/test_echo.c
 YANNCOMPILE += src/70_debug/print_env.c
 YANNCOMPILE += src/70_debug/test_garbage_collector.c
+YANNCOMPILE += src/70_debug/test_env.c
 
 JULIACOMPILE = main_julia.c
 JULIACOMPILE += src/20_parser_lexer/lexer.c

@@ -65,6 +65,16 @@ void    ft_minishell_loop(t_data *env);
 // exit
 void    ft_exit(t_data *data);
 
+// 60_tools
+// garbage collector 1
+void	ft_init_garbage_collector(t_data *data);
+void	*ft_malloc(t_data *data, size_t size);
+void	ft_add_to_garbage_collector(t_data *data, void *content);
+void	ft_free_garbage_collector(t_data *data);
+void	ft_print_garbage_collector(t_data *data);
+// garbage collector 2
+void	ft_free(t_data *data, void *address);
+
 // TBD a suprimer a la fin
 # include "minishell_julia.h"
 # include "minishell_yann.h"

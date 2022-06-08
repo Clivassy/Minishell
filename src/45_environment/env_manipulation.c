@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   env_manipulation.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/04 14:42:25 by ybellot           #+#    #+#             */
-/*   Updated: 2022/06/08 00:31:41 by ybellot          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 int ft_env_nb_of_lines(char **envp)
@@ -51,21 +39,43 @@ char *ft_env_get_key_on_line(t_data *data, char *line)
 	char	*copy_line;
 	int		i;
 
-	copy_line = ft_strdup((const)line);
+	copy_line = ft_strdup((const char *)line);
 	if (!copy_line)
 		ft_exit(data);
 	ft_add_to_garbage_collector(data, copy_line);
 	i = 0;
-	while (copy_line[i] && copy_line != '=')
+	while (copy_line[i] && copy_line[i] != '=')
 	{
 		i++;
 	}
 	if (copy_line[i] == '=')
+	{
 		copy_line[i] = '\0';
+		return(copy_line);
+	}
 	else
 		return (NULL);
 }
 
+char *ft_env_get_value_on_line(t_data *data, char *line)
+{
+	char	*copy_line;
+	int		i;
+
+	i = 0;
+	while (line[i] != '=')
+	{
+		i++;
+	}
+	i++;
+	copy_line = ft_strdup(&line[i]);
+	if (!copy_line)
+		ft_exit(data);
+	ft_add_to_garbage_collector(data, copy_line);
+	return (copy_line);
+}
+
+// fonction pour le moment non utilisee
 int	ft_env_key_is_present(t_data *data, char *key_searched)
 {
 	int		i;
@@ -74,18 +84,31 @@ int	ft_env_key_is_present(t_data *data, char *key_searched)
 	i = 0;
 	while (data->env[i])
 	{
-		key = ft_get_key_on_env_line(data, data->env[i]);
+		key = ft_env_get_key_on_line(data, data->env[i]);
 		if (ft_strncmp(key, key_searched, strlen(key_searched)) == 0)
 		{
 			return (1);
 		}
 		ft_free(data, key);
+		i++;
 	}
 	return (0);
 }
 
-char *ft_env_get_value_with_key(t_data *data, char *key)
+char *ft_env_get_value(t_data *data, char *key_searched)
 {
-	// TBD recuperer la valeur associee a une key dans env
+	int		i;
+	char	*key;
+
+	i = 0;
+
+	while (data->env[i])
+	{
+		key = ft_env_get_key_on_line(data, data->env[i]);
+		if (ft_strncmp(key, key_searched, strlen(key_searched)) == 0)
+			return (ft_env_get_value_on_line(data, data->env[i]));
+		i++;
+	}
+	return (NULL);
 }
 
