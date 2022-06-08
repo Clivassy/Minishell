@@ -11,7 +11,7 @@ A RETRAVAILLER ET A METTRE AU PROPRE
 -------------------------------------------------------*/
 
 /* Retourne la longeur du mot entre les quotes */
-/* int ft_len_inside_quote(char *str, int index)
+int ft_len_inside_quote(char *str, int index)
 {
     char quote_type;
     int i;
@@ -34,7 +34,7 @@ A RETRAVAILLER ET A METTRE AU PROPRE
     printf("len is :%d\n", len); 
     return (len);
 }
-*/
+
 
 int ft_check_no_space(char *read_line, int index, int len, char c)
 {
@@ -45,9 +45,11 @@ int ft_check_no_space(char *read_line, int index, int len, char c)
     while(i < len)
     {
         if (read_line[index] == c
-            && ft_is_word(read_line, index - 1))
+            && ft_is_word(read_line, index - 1) 
+            || ft_is_word(read_line, index + 1))
                 return (1);
         i++;
+        index++;
     }
     return(0);
 }
@@ -85,18 +87,77 @@ int ft_is_word(char *read_line, int index)
     return (1);
 }
 
-int ft_word_len(char *read_line, int index)
+/*int ft_word_len(char *read_line, int index)
 {
     int len = 0;
     while (read_line[index])
     {
-        if (read_line[index] == '<' || read_line[index] == '>'
-        || read_line[index] == '$'|| read_line[index] == ' ' 
-        || read_line[index] == '|' )
+        if (!ft_is_word(read_line, index))
             return(len);
         len++;
         index++;
     }
     printf("word len :%d\n", len);
     return (len);
+}*/
+
+int ft_word_len(char *read_line, int index)
+{
+    int len = 0;
+    while (read_line[index])
+    {
+        if (!ft_is_word(read_line, index))
+            return(len);
+        if (read_line[index] == '\"')
+        {
+            index++;
+            len++;
+            while(read_line[index] != '\"')
+            {
+                index++;
+                len++;
+            }
+            //len += ft_len_inside_quote(read_line, index);
+            //printf("word len :%d\n", len);
+            //return(len + 2);
+        }
+        if (ft_is_word(read_line, index))
+        {
+            if (read_line[index] == '\0')
+                return(len);
+        }
+        len++;
+        index++;
+    }
+    printf("word len :%d\n", len);
+    return (len);
 }
+
+/*int ft_word_len(char *read_line, int index)
+{
+    int len = 0;
+    while (read_line[index] && read_line[index] != '\"' 
+        && !ft_is_word(read_line, index))
+    {
+        index++;
+        len++;
+    }
+    if (read_line[index] == '\"')
+    {
+        len += ft_len_inside_quote(read_line, index);
+        printf("word len :%d\n", len);
+        return(len + 2);
+    }
+    else
+    {
+        while (read_line[index])
+        {
+            if (!ft_is_word(read_line, index))
+                return(len);
+        len++;
+        index++;
+        }
+    }
+    printf("word len :%d\n", len);
+    return (len);
+}*/

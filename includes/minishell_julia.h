@@ -2,6 +2,8 @@
 #include <string.h>
 
 /* LEXER */
+//temp
+int ft_word_len_stuck(char *read_line, int index);
 int ft_get_mixed_token(t_token **token_list, char *read_line, int index, int len);
 int ft_get_separators(t_token **token_list, char *read_line, int index);
 t_token *ft_lexer(char *readline);

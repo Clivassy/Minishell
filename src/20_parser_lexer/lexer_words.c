@@ -49,14 +49,16 @@ int ft_get_word(t_token **token_list, char *read_line, int index)
     int len_inside_quotes;
     
     word_len = ft_word_len(read_line, index);
-    if (ft_check_no_space(read_line, index, word_len, read_line[index]))
-    {
-        //printf("letter :%c\n",read_line[index]);
-        ft_get_mixed_token(token_list, read_line, index, word_len);
-        return(word_len - 1);
-    }
+    printf("len of the word is : %d\n", word_len);
     if (read_line[index] == '\'' || read_line[index] == '\"')
     {
+        if (ft_check_no_space(read_line, index, word_len, read_line[index]))
+        {   
+            printf("IN THE LOOP");
+            printf("WORD STUCK\n");
+            ft_get_mixed_token(token_list, read_line, index, word_len);
+            return(word_len);
+        }
         ft_printf("Found quote!\n");
         len_inside_quotes = ft_quote_word_len(read_line, index);
         ft_word_into_quotes(token_list, read_line, index, len_inside_quotes);
@@ -70,7 +72,7 @@ int ft_get_word(t_token **token_list, char *read_line, int index)
         word_token = ft_substr(read_line, index, word_len);
         word = ft_new_token(word_token, T_WORD);
         ft_lstadd_back_token(token_list, word);
-        return(word_len - 1);
+        return(word_len);
     }
     else
         printf("No word found\n");
