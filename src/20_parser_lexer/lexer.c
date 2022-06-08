@@ -20,42 +20,42 @@ Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
 
 -----------------------------------------------------------------------*/
 
-t_token *ft_fill_tokens_list(char *read_line,t_token *token_list)
+t_token *ft_fill_tokens_list(t_data *data)
 {
     int index ;
 
     index = 0;
     
-    while (read_line[index])
+    while (data->read_line[index])
     {  
         ft_printf("index before boucle : %d\n", index);
-        index += ft_get_word(&token_list, read_line, index);
-        index += ft_get_separators(&token_list, read_line, index);
+        index += ft_get_word(data, index);
+        index += ft_get_separators(data, index);
         index++;
     }
-    return (token_list);
+    return (data->tokens_list);
 }
 
-t_token *ft_lexer(char *readline)
+t_token *ft_lexer(t_data *data)
 {
-    t_token *token_list; 
 
-    token_list = NULL;
-    token_list = ft_fill_tokens_list(readline, token_list);
-    if (token_list == NULL)
+    data->tokens_list = NULL;
+    data->tokens_list = ft_fill_tokens_list(data);
+    if (data->tokens_list == NULL)
         return (NULL);
     // une fois la listes chainées remplie avec les tokens
     // Checker ici les erreurs de syntaxe
     // autres check ??
-    ft_print_token_list(token_list);
-    return (token_list);
+    ft_print_token_list(data->tokens_list);
+    return (data->tokens_list);
 }
 
-void    ft_minishell(t_data *input_minishell)
+void    ft_minishell(t_data *data)
 {
     // autres checks eventuels
-    if (ft_lexer(input_minishell->read_line) == NULL)
+    if (ft_lexer(data) == NULL)
         ft_lexer_error("Error: can't create list");
        // ft_exit() quitter avec ft_exit
+   // if ()
     
 }

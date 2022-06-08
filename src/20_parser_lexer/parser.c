@@ -10,3 +10,23 @@
 
 
         
+/*--------------------------------------------------------------------------
+
+NB : On part du principe que j'ai extrait le pipe suivant chaque commande 
+une commande == ce qui ce situe avant un pipe 
+structure de commande ok : 
+[heredoc][word][heredoc]
+[word][redirect][word][$][word] 
+
+-------------------------------------------------------------------------- 
+
+structure incorrecte :
+
+[pipe][word][redirect]
+[space] [redirect]
+[space]
+[redirect]
+[word] [D_redirect_out] [redirect_in]
+[heredoc][heredoc]
+
+--------------------------------------------------------------------------*/

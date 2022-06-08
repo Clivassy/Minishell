@@ -11,32 +11,33 @@ void    ft_pre_check_input(void)
         ft_lexer_error("Error: standard input in not from a terminal");
 }
 
-void    ft_init_struct(t_data *input_minishell)
+void    ft_init_struct(t_data *data)
 {
-    input_minishell->read_line = NULL;
-    input_minishell->exit_asked = 1;
+    data->read_line = NULL;
+    data->exit_asked = 1;
     // ++ 
 }
 
 int main(int ac, char **av)
 {
-    t_data *input_minishell;
+    t_data *data;
 
-    input_minishell = malloc(sizeof(t_data));
-    ft_init_struct(input_minishell);
+    data = malloc(sizeof(t_data));
+    ft_init_struct(data);
     if (ac == 1)
     {
-        while (input_minishell->exit_asked == 1)
+        while (data->exit_asked == 1)
         {
             ft_printf("minishell> ");
             // ici faire toutes les vérifs de l'input (isatty)
-            input_minishell->read_line  = readline(input_minishell->read_line);
+           data->read_line  = readline(data->read_line);
             // if PB on quitte proprement
-            ft_minishell(input_minishell);
+            ft_minishell(data);
         }
     }
     else 
         ft_lexer_error("Error: invalid number of args");
+    ft_free_garbage_collector(data);
     return (0);
  // boucle infinie : lance le script   
 }

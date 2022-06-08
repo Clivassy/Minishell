@@ -1,59 +1,32 @@
 #include "minishell.h"
 
-/*------------------------------------------------------
-Utils to : 
-- Detect Dquotes / Squotes
-- Detect chevrons 
-- Detect heredoc
-- Detect 
-
-A RETRAVAILLER ET A METTRE AU PROPRE
--------------------------------------------------------*/
-
-/* Retourne la longeur du mot entre les quotes */
-int ft_len_inside_quote(char *str, int index)
+int     ft_is_double_redirect(char *str, int index, char c)
 {
-    char quote_type;
+    if (str[index] == c && str[index + 1] == c)
+        return (1);
+    return (0);
+}
+
+/* Return 1 if word into quotes is stuck with simple word */
+int ft_check_no_space(char *line, int index, char c)
+{
     int i;
     int len;
 
-    if (str == NULL || str[index] == '\0')
-	    return (0);
-    quote_type = str[index];
-    //printf("%c\n", quote_type);
-    i = index + 1; 
-    //printf("index = %d\n", i);
-    len = 0;
-    while (str[i] && str[i] != quote_type)
-    {
-        len++;
-        i++;
-    }
-    if (str[i] != quote_type)
-        ft_lexer_error("quote non close");
-    printf("len is :%d\n", len); 
-    return (len);
-}
-
-
-int ft_check_no_space(char *read_line, int index, int len, char c)
-{
-    int i;
-
+    len = ft_word_len(line, index);
     i = 0;
-    printf("letter :%c\n",read_line[index]);
     while(i < len)
     {
-        if (read_line[index] == c
-            && ft_is_word(read_line, index - 1) 
-            || ft_is_word(read_line, index + 1))
+        if (line[index] == c
+            && ft_is_word(line, index - 1) 
+            || ft_is_word(line, index + 1))
                 return (1);
         i++;
-        index++;
     }
     return(0);
 }
 
+/* Return quoted word len*/
 int ft_quote_word_len(char *read_line, int index)
 {
     char quote_type;
@@ -63,9 +36,7 @@ int ft_quote_word_len(char *read_line, int index)
     if (read_line == NULL || read_line[index] == '\0')
 	    return (0);
     quote_type = read_line[index];
-    //printf("%c\n", quote_type);
     i = index + 1; 
-    //printf("index = %d\n", i);
     len = 0;
     while (read_line[i] && read_line[i] != quote_type)
     {
@@ -74,33 +45,21 @@ int ft_quote_word_len(char *read_line, int index)
     }
     if (read_line[i] != quote_type)
         ft_lexer_error("quote non close");
-    printf("len inside quote is :%d\n", len); 
+   // printf("len inside quote is :%d\n", len); 
     return (len);
 }
 
-int ft_is_word(char *read_line, int index)
+/* Return 1 if readline token is a word (if no metachracters are found) */
+int ft_is_word(char *line, int index)
 {
-    if (read_line[index] == '<' || read_line[index] == '>'
-        || read_line[index] == '$'|| read_line[index] == ' ' 
-        || read_line[index] == '|' )
+    if (line[index] == '<' || line[index] == '>'
+        || line[index] == '$'|| line[index] == ' ' 
+        || line[index] == '|' )
             return(0);
     return (1);
 }
 
-/*int ft_word_len(char *read_line, int index)
-{
-    int len = 0;
-    while (read_line[index])
-    {
-        if (!ft_is_word(read_line, index))
-            return(len);
-        len++;
-        index++;
-    }
-    printf("word len :%d\n", len);
-    return (len);
-}*/
-
+/* Return word len */
 int ft_word_len(char *read_line, int index)
 {
     int len = 0;
@@ -117,9 +76,6 @@ int ft_word_len(char *read_line, int index)
                 index++;
                 len++;
             }
-            //len += ft_len_inside_quote(read_line, index);
-            //printf("word len :%d\n", len);
-            //return(len + 2);
         }
         if (ft_is_word(read_line, index))
         {
@@ -129,35 +85,5 @@ int ft_word_len(char *read_line, int index)
         len++;
         index++;
     }
-    printf("word len :%d\n", len);
     return (len);
 }
-
-/*int ft_word_len(char *read_line, int index)
-{
-    int len = 0;
-    while (read_line[index] && read_line[index] != '\"' 
-        && !ft_is_word(read_line, index))
-    {
-        index++;
-        len++;
-    }
-    if (read_line[index] == '\"')
-    {
-        len += ft_len_inside_quote(read_line, index);
-        printf("word len :%d\n", len);
-        return(len + 2);
-    }
-    else
-    {
-        while (read_line[index])
-        {
-            if (!ft_is_word(read_line, index))
-                return(len);
-        len++;
-        index++;
-        }
-    }
-    printf("word len :%d\n", len);
-    return (len);
-}*/
