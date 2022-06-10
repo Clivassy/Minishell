@@ -11,19 +11,20 @@ int     ft_is_double_redirect(char *str, int index, char c)
 int ft_check_no_space(char *line, int index, char c)
 {
     int i;
-    int len;
 
-    len = ft_word_len(line, index);
-    i = 0;
-    while(i < len)
+    i = 0;    
+    index++;
+    while (line[index] != c)
     {
-        if (line[index] == c
-            && ft_is_word(line, index - 1) 
-            || ft_is_word(line, index + 1))
-                return (1);
+        index++;
         i++;
     }
-    return(0);
+    if (line[index + 1] == '\0')
+        return (0);
+    if (ft_is_word(line, index + 1))
+        return (1);
+    else 
+        return (0);
 }
 
 /* Return quoted word len*/
@@ -45,7 +46,6 @@ int ft_quote_word_len(char *read_line, int index)
     }
     if (read_line[i] != quote_type)
         ft_lexer_error("quote non close");
-   // printf("len inside quote is :%d\n", len); 
     return (len);
 }
 
@@ -53,8 +53,7 @@ int ft_quote_word_len(char *read_line, int index)
 int ft_is_word(char *line, int index)
 {
     if (line[index] == '<' || line[index] == '>'
-        || line[index] == '$'|| line[index] == ' ' 
-        || line[index] == '|' )
+       || line[index] == ' ' || line[index] == '|' )
             return(0);
     return (1);
 }

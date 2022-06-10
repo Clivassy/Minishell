@@ -51,8 +51,6 @@ int ft_others_separators(t_data *data, char letter, char *sep)
 
     if (letter == '|')
         separator_token = ft_new_token(sep, T_PIPE);
-    if (letter == '$')
-        separator_token = ft_new_token(sep, T_DOLLARS);
     ft_lstadd_back_token(&data->tokens_list, separator_token);
     return (0);
 }
@@ -72,7 +70,7 @@ int ft_get_separators(t_data *data, int index)
             if (ft_is_double_redirect(line, index, line[index]))   
         return (1);
     }      
-    if (line[index] == '$'|| line[index] == '|')
+    if (line[index] == '|')
     {
         separator = ft_substr(line, index, 1);
         ft_add_to_garbage_collector(data, separator);
