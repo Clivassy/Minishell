@@ -30,3 +30,35 @@ structure incorrecte :
 [heredoc][heredoc]
 
 --------------------------------------------------------------------------*/
+int ft_pipe_errors(t_data *data)
+{   
+    t_token *head;
+
+    head = data->tokens_list->next;
+    printf("token = %d\n", head->type);
+    if (head->type == T_PIPE)
+            ft_lexer_error("Error 2");
+    printf("NO PIPE ERRORS\n");
+    return(0);
+}
+
+int ft_parser(t_data *data)
+{
+    int i;
+    printf("OK\n");
+    i = 0;
+    if (data->tokens_list->type == T_PIPE)
+            ft_lexer_error("Error 1");
+    while (data->tokens_list != NULL)
+    {
+        if (data->tokens_list->type == T_PIPE)
+        {
+            ft_pipe_errors(data);
+            printf("INPUT OK\n");
+            return(0);
+        }
+        data->tokens_list++;
+    }
+    printf("OK\n");
+    return (0);
+}

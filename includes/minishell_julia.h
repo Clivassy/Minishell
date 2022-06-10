@@ -22,6 +22,12 @@ int     ft_word_into_quotes(t_data *data, char *read_line, int index, int len);
 int     ft_is_redirect(t_data *data, char *read_line, int index);
 int     ft_is_space(t_data *data, char *read_line, int index);
 
+
+/* PARSER */
+
+int ft_parser(t_data *data);
+int ft_pipe_errors(t_data *data);
+
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
 void    ft_pre_check_input(void);

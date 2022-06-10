@@ -55,7 +55,5 @@ void    ft_minishell(t_data *data)
     // autres checks eventuels
     if (ft_lexer(data) == NULL)
         ft_lexer_error("Error: can't create list");
-       // ft_exit() quitter avec ft_exit
-   // if ()
-    
+    //sft_parser(data);
 }
