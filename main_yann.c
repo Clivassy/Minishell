@@ -21,7 +21,11 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_garbage_collector(&data);
 
 	//test env
-	ft_test_env(&data);
+	//ft_test_env(&data);
+
+	// test expand
+	ft_expand(&data);
+
 
     return(0);
 }
