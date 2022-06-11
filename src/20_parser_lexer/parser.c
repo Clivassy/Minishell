@@ -30,14 +30,28 @@ structure incorrecte :
 [heredoc][heredoc]
 
 --------------------------------------------------------------------------*/
-int ft_pipe_errors(t_data *data)
-{   
-    t_token *head;
+int ft_pipe_errors(t_token *token)
+{
+    t_token *temp; 
 
-    head = data->tokens_list->next;
-    printf("token = %d\n", head->type);
-    if (head->type == T_PIPE)
-            ft_lexer_error("Error 2");
+    temp = token;
+    printf("first token is : %d\n", token->type);
+    while (token != NULL)
+    {
+        if (token->type == T_PIPE)
+        {
+            if (token->type == T_PIPE && !token->next)
+                ft_lexer_error("Error 2 : pipe at the end");
+            token = token->next;
+            while (token->type != T_PIPE)
+            {
+                if (token->type == T_PIPE && token->next->type == T_PIPE)
+                    ft_lexer_error("Error 3 : multiple pipes ");
+                if (token->type == )
+            }
+        } 
+        token = token->next;
+    }
     printf("NO PIPE ERRORS\n");
     return(0);
 }
@@ -45,20 +59,11 @@ int ft_pipe_errors(t_data *data)
 int ft_parser(t_data *data)
 {
     int i;
-    printf("OK\n");
-    i = 0;
-    if (data->tokens_list->type == T_PIPE)
-            ft_lexer_error("Error 1");
-    while (data->tokens_list != NULL)
-    {
-        if (data->tokens_list->type == T_PIPE)
-        {
-            ft_pipe_errors(data);
-            printf("INPUT OK\n");
-            return(0);
-        }
-        data->tokens_list++;
-    }
-    printf("OK\n");
+    t_token *list;
+
+    list = data->tokens_list;
+    if (list->type == T_PIPE)
+        ft_lexer_error("Error 1 : pipe at the begining");
+    ft_pipe_errors(list);
     return (0);
 }

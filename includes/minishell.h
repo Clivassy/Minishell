@@ -3,15 +3,14 @@
 
 /* Define TOKENS */
 # define    T_PIPE 1
-# define    T_DOLLARS 2
-# define    T_REDIRECT_IN 3
-# define    T_REDIRECT_OUT 4
-# define    T_HEREDOC 5
-# define    D_REDIRECT_OUT 6
-# define    S_QUOTE 7
-# define    D_QUOTE 8
-# define    T_SPACE 9
-# define    T_WORD 10
+# define    T_REDIRECT_IN 2
+# define    T_REDIRECT_OUT 3
+# define    T_HEREDOC 4
+# define    D_REDIRECT_OUT 5
+# define    S_QUOTE 6
+# define    D_QUOTE 7
+# define    T_SPACE 8
+# define    T_WORD 9
 
 //Colors
 # define COLOR_NORMAL  "\x1B[0m"

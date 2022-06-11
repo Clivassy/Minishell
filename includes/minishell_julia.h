@@ -26,7 +26,7 @@ int     ft_is_space(t_data *data, char *read_line, int index);
 /* PARSER */
 
 int ft_parser(t_data *data);
-int ft_pipe_errors(t_data *data);
+int ft_pipe_errors(t_token *token);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
