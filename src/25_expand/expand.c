@@ -11,7 +11,10 @@ char	*ft_get_word_for_expand(t_data *data, char *str)
 		ft_exit(data);
 	i = 0;
 	while (i < word_size)
+	{
+		word[i] = str[i];
 		i++;
+	}
 	word[i] = '\0';
 	return (word);
 }
@@ -21,8 +24,7 @@ int	ft_word_size(t_data *data, char *str)
 	int	i;
 
 	i = 0;
-	// revoir cette condition
-	while (str[i] != ' ' && (str[i] != '$' && i != 1) && str[i])
+	while (str[i] != ' ' && str[i] != '$' && str[i])
 		i++;
 	return (i);
 }
@@ -52,6 +54,7 @@ int	ft_word_size_after_expand(t_data *data, char *word)
 	return (len);
 }
 
+// bug a fix : taille avec key dans env pas bonne
 int	ft_size_after_expand(t_data *data, char *str)
 {
 	int	i;
@@ -66,21 +69,34 @@ int	ft_size_after_expand(t_data *data, char *str)
 	{
 		if (str[i] == '$')
 		{
-			word = ft_get_word_for_expand(data, &str[i]);
 			i++;
-			count++;
+			word = ft_get_word_for_expand(data, &str[i]);
+			ft_printf("word: %s \n", word);
 			if (ft_env_key_is_present(data, word))
 			{
-				printf("key trouvee: %s \n", word);
+
+				ft_printf("key trouvee: %s \n", word);
+				ft_printf("len mot: %d \n", ft_strlen(ft_env_get_value(data, word)));
+
 				count += ft_strlen(ft_env_get_value(data, word));
+				i += ft_strlen(ft_env_get_value(data, word));
+				ft_printf("i:%d, str[i] = %c \n",i, str[i]);
+				ft_printf("len: %zu \n", ft_strlen(word));
 			}
 			else
 			{
-				count += 1 + ft_strlen(&str[i]);
+				printf("key non trouvee: %s \n", word);
+				count += 1 + ft_strlen(&str[i]); // 1 pour compter le $
+				i += ft_strlen(word);
+				ft_printf("i:%d, str[i] = %c \n",i, str[i]);
+
 			}
-			in_word = 1;
-			while (str[i] != ' ' && str[i] != '\0')
-				i++;
+			//in_word = 1;
+			//while (str[i] != ' ' && str[i] != '\0')
+			//{
+			//	ft_printf("i:%d, str[i] = %c \n",i, str[i]);
+			//	i++;
+			//}
 		}
 		else if (str[i] == ' ')
 		{

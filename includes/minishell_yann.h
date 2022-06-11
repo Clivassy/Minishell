@@ -29,6 +29,7 @@ void	ft_dup_env(t_data *data, char **envp);
 int ft_env_nb_of_lines(char **envp);
 char *ft_env_get_key_on_line(t_data *data, char *line);
 char *ft_env_get_value_on_line(t_data *data, char *line);
+int ft_max_len(char *str1, char *str2);
 int	ft_env_key_is_present(t_data *data, char *key_searched);
 char *ft_env_get_value(t_data *data, char *key_searched);
 
