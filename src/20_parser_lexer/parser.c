@@ -5,31 +5,49 @@
 3 ) Parsing : lecture analyse des morceaux de phrase stockés dans ma listes chainée de tokens :
 -> on va stocker chaque commande dans un char** de notre liste chainée (data ? ou exec?).
 (chaque potentielle cmd étant délimitée par un pipe)
--> dans 
+
+- parser : chevron obligatoirement succedé d'un mot (> MOT) 
+pipe : nptk apres sauf autre pipe ou rien.
 ----------------------------------------------------------------------*/
 
+int ft_is_redirect_err(t_token *token)
+{
+    if (token->type == T_REDIRECT_IN || token->type == T_REDIRECT_OUT
+       || token->type == D_REDIRECT_OUT)
+        return (1);
+    return(0);
+}
 
-        
-/*--------------------------------------------------------------------------
+int ft_redirect_errors(t_token *token)
+{
+    while (token)
+    {
+        if (ft_is_redirect_err(token))
+        {
+            if (!token->next)
+               ft_lexer_error("Error 6 : no word after last redirect");
+            if (token->next->next->type != T_WORD)
+                ft_lexer_error("Error 7 : no word after redirect");
+            }
+        token = token->next;
+    }
+    return (0);
+}
 
-NB : On part du principe que j'ai extrait le pipe suivant chaque commande 
-une commande == ce qui ce situe avant un pipe 
-structure de commande ok : 
-[heredoc][word][heredoc]
-[word][redirect][word][$][word] 
+int ft_is_empy_pipe(t_token *token)
+{
+    if (!token->next)
+        ft_lexer_error("Error 5 : no word after last pipe");
+    while (token->type != T_PIPE)
+    {
+        if (token->type == T_WORD)
+            return(1);
+        token = token->next;
+    }
+    printf("NO REDIRECT ERRORS\n");
+    return (0);
+}
 
--------------------------------------------------------------------------- 
-
-structure incorrecte :
-
-[pipe][word][redirect]
-[space] [redirect]
-[space]
-[redirect]
-[word] [D_redirect_out] [redirect_in]
-[heredoc][heredoc]
-
---------------------------------------------------------------------------*/
 int ft_pipe_errors(t_token *token)
 {
     t_token *temp; 
@@ -40,16 +58,14 @@ int ft_pipe_errors(t_token *token)
     {
         if (token->type == T_PIPE)
         {
-            if (token->type == T_PIPE && !token->next)
+            if (!token->next)
                 ft_lexer_error("Error 2 : pipe at the end");
+            if (token->next->type == T_PIPE)
+                ft_lexer_error("Error 3 : multiple pipes ");
             token = token->next;
-            while (token->type != T_PIPE)
-            {
-                if (token->type == T_PIPE && token->next->type == T_PIPE)
-                    ft_lexer_error("Error 3 : multiple pipes ");
-                if (token->type == )
-            }
-        } 
+            if (ft_is_empy_pipe(token) == 0 )
+                ft_lexer_error("Error 4: no word found");
+        }
         token = token->next;
     }
     printf("NO PIPE ERRORS\n");
@@ -65,5 +81,6 @@ int ft_parser(t_data *data)
     if (list->type == T_PIPE)
         ft_lexer_error("Error 1 : pipe at the begining");
     ft_pipe_errors(list);
+    ft_redirect_errors(list);
     return (0);
 }
