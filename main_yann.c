@@ -6,7 +6,7 @@ int main(int argc, char **argv, char **envp)
     t_data data;
 	ft_data_initialisation(&data);
 
-    ft_dup_env(&data, envp);
+    //ft_dup_env(&data, envp);
 	//print_env(data.env);
 
     //ft_test_echo();
@@ -23,10 +23,13 @@ int main(int argc, char **argv, char **envp)
 	//test env
 	//ft_test_env(&data);
 
+	// test add to str
+	ft_test_add_to_str(&data);
+
 	// test expand
-	ft_expand(&data);
+	//ft_expand(&data);
 
-
+	ft_free_garbage_collector(&data);
     return(0);
 }
 

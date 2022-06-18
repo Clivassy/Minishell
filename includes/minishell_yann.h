@@ -34,6 +34,8 @@ int	ft_env_key_is_present(t_data *data, char *key_searched);
 char *ft_env_get_value(t_data *data, char *key_searched);
 
 // 60_tools
+// ft_add_to_string.c
+void	ft_add_to_str(t_data *data, char **str, char *to_add, int position);
 // elm_manipulation.c
 t_elm	*ft_elm_ceate_new(t_data *data, char **cmd, int fd_in, int fd_out);
 // lst_manipulation.c
@@ -47,6 +49,7 @@ void	ft_print_color(char *str);
 
 // 70 debug
 void    print_env(char **env);
+void	ft_test_add_to_str(t_data *data);
 void    ft_test_echo();
 void    ft_test_garbage_collector(t_data *data);
 void	ft_test_env(t_data *data);
