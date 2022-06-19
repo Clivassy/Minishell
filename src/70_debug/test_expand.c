@@ -1,16 +1,12 @@
 
 #include "minishell.h"
 
-void	ft_expand(t_data *data)
+void	ft_test_expand_token(t_data *data)
 {
-	int size = ft_size_after_expand(data, "chai");
-	printf("size1: %d\n", size);
+	ft_printf("token avant expand : %s\n", data->tokens_list->value);
+	ft_expand_token(data, data->tokens_list);
+	ft_printf("token apres expand : %s\n", data->tokens_list->value);
 
-	size = ft_size_after_expand(data, "$test");
-	printf("size2: %d\n", size);
-
-	// revoir comptage taille mot et algo
-	// tester mot vide
 
 
 }

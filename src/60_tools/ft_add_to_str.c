@@ -35,10 +35,10 @@ void	ft_add_to_str(t_data *data, char **str, char *to_add, int position)
 
 	new_size = ft_strlen(*str) + ft_strlen(to_add);
 	new_str = ft_malloc(data, sizeof(char) * (new_size + 1));
-	if (position > ft_strlen(*str))
-		position = ft_strlen(*str);
 	if (!new_str)
 		ft_exit(data);
+	if (position > ft_strlen(*str))
+		position = ft_strlen(*str);
 	ft_ats_copy_str(position, str, new_str, to_add);
 	ft_free(data, *str);
 	*str = new_str;
