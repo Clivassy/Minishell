@@ -1,25 +1,6 @@
 #include "minishell.h"
 
-char	*ft_get_word_for_expand(t_data *data, char *str)
-{
-	int	i;
-	int word_size;
-	char *word;
-	word_size = ft_word_size(data, str);
-	word = ft_malloc(data, sizeof(char) * (word_size + 1));
-	if (!word)
-		ft_exit(data);
-	i = 0;
-	while (i < word_size)
-	{
-		word[i] = str[i];
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
-}
-
-int	ft_word_size(t_data *data, char *str)
+int	ft_key_size_for_expand(t_data *data, char *str)
 {
 	int	i;
 
@@ -29,130 +10,112 @@ int	ft_word_size(t_data *data, char *str)
 	return (i);
 }
 
-int	ft_word_size_after_expand(t_data *data, char *word)
+char	*ft_get_key_for_expand(t_data *data, char *str)
 {
-	int	len;
+	//printf("debug\n");
+	//printf("input get key : %s\n", str);
+	int	i;
+	int key_size;
+	char *key;
+	key_size = ft_key_size_for_expand(data, str);
+	//printf("keysize : %d\n", key_size);
 
-	len = 0;
-	if (word[len] != '$')
+	key = ft_malloc(data, sizeof(char) * (key_size + 1));
+	if (!key)
+		ft_exit(data);
+	i = 0;
+	while (i < key_size)
 	{
-		while (word[len])
-			len++;
+		key[i] = str[i];
+		i++;
+	}
+	key[i] = '\0';
+	return (key);
+}
+
+//a completer avec la gestion de expand active
+void	ft_expand_token(t_data *data, t_token *token)
+{
+	int		i;
+	char	*key;
+	int		expand_active;
+
+	//str = token->value;
+	i = 0;
+	expand_active = 1;
+	while (token->value[i])
+	{
+		//printf("lettre lu : %c\n", token->value[i]);
+		if (token->value[i] == '\'')
+			expand_active = 1 - expand_active;
+		if (token->value[i] == '$')
+		{
+
+		key = ft_get_key_for_expand(data, &token->value[i+1]);
+		//printf("key  : %s\n", key);
+
+		if (ft_env_key_is_present(data, key))
+		{
+			//printf("key found\n");
+			ft_rm_from_str(data, &(token->value), strlen(key)+ 1, i);
+			ft_add_to_str(data, &(token->value), ft_env_get_value(data, key), i);
+		}
+		else
+		{
+			//printf("key not found\n");
+			ft_rm_from_str(data, &(token->value), strlen(key)+ 1, i);
+			//ft_rm_from_str(data, &str, strlen(key + 1), i);
+		}
+		}
+
+		i++;
+
+	}
+	//ft_free(data, token->value);
+	//token->value = str;
+			printf("key 3\n");
+
+}
+
+// fct non testee
+static int ft_is_next_word_to_expand(t_token *token)
+{
+	if (token->type == T_PIPE ||
+		token->type == T_REDIRECT_IN ||
+		token->type == T_REDIRECT_OUT ||
+		token->type == D_REDIRECT_OUT ||
+		token->type == D_QUOTE ||
+		token->type == T_WORD)
+	{
+		return (1);
+	}
+	else if (token->type == T_HEREDOC ||
+		token->type == S_QUOTE)
+	{
+		return (0);
 	}
 	else
 	{
-		if (ft_env_key_is_present(data, &word[1]))
-		{
-			len += ft_strlen(ft_env_get_value(data, &word[1]));
-		}
-		else
-		{
-			while (word[len])
-				len++;
-		}
+		ft_printf("erreur dans l'expand, le type du token est invalide\n");
+		return (0);
 	}
-	return (len);
 }
 
-// bug a fix : taille avec key dans env pas bonne
-int	ft_size_after_expand(t_data *data, char *str)
+// fct non testee / a corriger en prenant que les mots qui ne suivent pas un heredoc (meme si on s'en fou au final
+// car les heredoc seront deja faits)
+void	ft_expand(t_data *data)
 {
-	int	i;
-	int	count;
-	int	in_word;
-	char *word;
+	t_token	*token;
+	int		next_word_to_expand;
 
-	i = 0;
-	count = 0;
-	in_word = 0;
-	while(str[i])
+	token = data->tokens_list;
+	next_word_to_expand = 1;
+	while(token)
 	{
-		if (str[i] == '$')
-		{
-			i++;
-			word = ft_get_word_for_expand(data, &str[i]);
-			ft_printf("word: %s \n", word);
-			if (ft_env_key_is_present(data, word))
-			{
-
-				ft_printf("key trouvee: %s \n", word);
-				ft_printf("len mot: %d \n", ft_strlen(ft_env_get_value(data, word)));
-				ft_printf("count avant: %d \n", count);
-				count += ft_strlen(ft_env_get_value(data, word));
-				ft_printf("count apres: %d \n", count);
-				i += ft_strlen(ft_env_get_value(data, word));
-				ft_printf("i:%d, str[i] = %c \n",i, str[i]);
-				ft_printf("len: %zu \n", ft_strlen(word));
-			}
-			else
-			{
-				printf("key non trouvee: %s \n", word);
-				count += 1 + ft_strlen(&str[i]); // 1 pour compter le $
-				i += ft_strlen(word);
-				ft_printf("i:%d, str[i] = %c \n",i, str[i]);
-
-			}
-			//in_word = 1;
-			//while (str[i] != ' ' && str[i] != '\0')
-			//{
-			//	ft_printf("i:%d, str[i] = %c \n",i, str[i]);
-			//	i++;
-			//}
-		}
-		else if (str[i] == ' ')
-		{
-			i++;
-			count++;
-			ft_printf("count add space: str[i]=%c \n", str[i]);
-
-		}
-		else
-		{
-			while (str[i] != ' ' && str[i] != '$' && str[i])
-			{
-				i++;
-				count++;
-				ft_printf("count add trim: str[i]=%c \n", str[i]);
-			}
-		}
-		i++;
+		if (next_word_to_expand && token->type == T_WORD)
+			ft_expand_token(data, token);
+		if (token->type != T_SPACE)
+			next_word_to_expand = ft_is_next_word_to_expand(token);
+		token = token->next;
 	}
-	return (count);
 }
-//int	ft_size_after_expand(t_data *data, char *str)
-//{
-//	int	i;
-//	int	count;
-//	int	in_word;
-//	char *word;
-
-//	i = 0;
-//	count = 0;
-//	in_word = 0;
-//	while(str[i])
-//	{
-//		if (str[i] != '$' && str[i] != '\0' && in_word == 0)
-//		{
-//			i++;
-//			count++;
-//		}
-//		else if (str[i] == '$')
-//		{
-//			i++;
-//			count++;
-//			word = ft_get_word(data, &str[i]);
-//			if (ft_env_key_is_present(data, word))
-//			{
-//				count += ft_strlen(ft_env_get_value(data, word));
-//			}
-//			else
-//			{
-//				//while ()
-//			}
-//			in_word = 1;
-//			while (str[i] != ' ' && str[i] != '\0')
-//				i++;
-
-//		}
-//	}
-//}

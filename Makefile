@@ -43,6 +43,7 @@ re: fclean all
 
 YANNCOMPILE = main_yann.c
 YANNCOMPILE += src/10_initialisation/data_initialisation.c
+YANNCOMPILE += src/20_parser_lexer/manip_tokens.c
 YANNCOMPILE += src/25_expand/expand.c
 YANNCOMPILE += src/30_command_execution/exec_command.c
 YANNCOMPILE += src/40_builtin/echo.c
@@ -50,6 +51,7 @@ YANNCOMPILE += src/40_builtin/cd.c
 YANNCOMPILE += src/45_environment/env_initialisation.c
 YANNCOMPILE += src/45_environment/env_manipulation.c
 YANNCOMPILE += src/50_exit_functions/exit.c
+YANNCOMPILE += src/60_tools/create_token_list.c
 YANNCOMPILE += src/60_tools/ft_add_to_str.c
 YANNCOMPILE += src/60_tools/ft_rm_from_str.c
 YANNCOMPILE += src/60_tools/elm_manipulation.c

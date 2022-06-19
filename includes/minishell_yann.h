@@ -9,10 +9,12 @@ void	ft_data_initialisation(t_data *data);
 
 //25 expand
 // expand.c
-char	*ft_get_word_for_expand(t_data *data, char *str);
-int	ft_word_size(t_data *data, char *str);
-int	ft_word_size_after_expand(t_data *data, char *word);
-int	ft_size_after_expand(t_data *data, char *str);
+void	ft_expand_token(t_data *data, t_token *token);
+// expand_old.c
+//char	*ft_get_word_for_expand(t_data *data, char *str);
+//int	ft_word_size(t_data *data, char *str);
+//int	ft_word_size_after_expand(t_data *data, char *word);
+//int	ft_size_after_expand(t_data *data, char *str);
 
 // exec_command
 void    ft_exec_command(t_data *data);
@@ -34,8 +36,12 @@ int	ft_env_key_is_present(t_data *data, char *key_searched);
 char *ft_env_get_value(t_data *data, char *key_searched);
 
 // 60_tools
-// ft_add_to_string.c
+// create token list
+void	create_token_list_1(t_data *data);
+// ft_add_to_str.c
 void	ft_add_to_str(t_data *data, char **str, char *to_add, int position);
+// ft_rm_from_str.c
+void	ft_rm_from_str(t_data *data, char **s, int rm_len, int position);
 // elm_manipulation.c
 t_elm	*ft_elm_ceate_new(t_data *data, char **cmd, int fd_in, int fd_out);
 // lst_manipulation.c
@@ -50,10 +56,11 @@ void	ft_print_color(char *str);
 // 70 debug
 void    print_env(char **env);
 void	ft_test_add_to_str(t_data *data);
+void	ft_test_rm_from_str(t_data *data);
 void    ft_test_echo();
-void    ft_test_garbage_collector(t_data *data);
 void	ft_test_env(t_data *data);
-void	ft_expand(t_data *data);
+void	ft_test_expand_token(t_data *data);
+void    ft_test_garbage_collector(t_data *data);
 
 
 
