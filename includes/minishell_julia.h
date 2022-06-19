@@ -2,6 +2,7 @@
 #include <string.h>
 
 /* LEXER */
+int ft_check_non_close_quotes(char *line, int i, char quote_type);
 int     ft_is_double_redirect(char *str, int index, char c);
 int     ft_get_mixed_token(t_data *data, char *read_line, int index, int len);
 int     ft_get_separators(t_data *data, int index);

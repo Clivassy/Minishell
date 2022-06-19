@@ -45,6 +45,7 @@ int   ft_word_into_quotes(t_data *data, char *read_line, int index, int len)
     return(0);
 }
 
+int ft_temp(char *line, int i, char quote_type);
 /* Return 0 if no word ae found
 Return index + word_len if a word is found */
 int ft_get_word(t_data *data, int index)
@@ -68,6 +69,8 @@ int ft_get_word(t_data *data, int index)
     }
     if (line[index] >= 33 && line[index] <= 126 && ft_is_word(line, index))
     {
+      //  if (ft_check_non_close_quotes(line, index, line[index]) == 0)
+        ///    ft_lexer_error("Error: quotes no closed");
         word_token = ft_substr(line, index, ft_word_len(line, index));
         ft_fill_new_token(word_token, data, T_WORD);
         return(ft_word_len(line, index));

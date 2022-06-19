@@ -7,6 +7,24 @@ int     ft_is_double_redirect(char *str, int index, char c)
     return (0);
 }
 
+/* check quote_non_ close */
+int ft_check_non_close_quotes(char *line, int i, char quote_type)
+{
+    int nb;
+
+    nb = 0;
+    while (line[i])
+    {
+        if (line[i] == quote_type)
+            nb++;
+        i++;
+    }
+    printf("number : %d\n", nb);
+    if ((nb / 2) * 2  == nb)
+        return(1);
+    return(0);
+}
+
 /* Return 1 if word into quotes is stuck with simple word */
 int ft_check_no_space(char *line, int index, char c)
 {
@@ -14,6 +32,7 @@ int ft_check_no_space(char *line, int index, char c)
 
     i = 0;    
     index++;
+
     while (line[index] != c)
     {
         index++;
@@ -34,18 +53,17 @@ int ft_quote_word_len(char *read_line, int index)
     int i;
     int len;
 
-    if (read_line == NULL || read_line[index] == '\0')
-	    return (0);
+    if (read_line == NULL || read_line[index] == '\0' 
+        || !read_line[index + 1])
+	    ft_lexer_error("ERROR 0");
     quote_type = read_line[index];
     i = index + 1; 
     len = 0;
-    while (read_line[i] && read_line[i] != quote_type)
+    while (read_line[i] != quote_type)
     {
         len++;
         i++;
     }
-    if (read_line[i] != quote_type)
-        ft_lexer_error("quote non close");
     return (len);
 }
 

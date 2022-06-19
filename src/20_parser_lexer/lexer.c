@@ -28,7 +28,10 @@ t_token *ft_fill_tokens_list(t_data *data)
     
     while (data->read_line[index])
     {  
-        ft_printf("index before boucle : %d\n", index);
+        if (ft_check_non_close_quotes(data->read_line, index, '\"') == 0
+            || ft_check_non_close_quotes(data->read_line, index, '\'') == 0)
+            ft_lexer_error("Error: quotes no closed");
+        //ft_printf("index before boucle : %d\n", index);
         index += ft_get_word(data, index);
         index += ft_get_separators(data, index);
         index++;

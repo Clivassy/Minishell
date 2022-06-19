@@ -30,7 +30,7 @@ int main(int ac, char **av)
         {
             ft_printf("minishell> ");
             // ici faire toutes les vérifs de l'input (isatty)
-           data->read_line  = readline(data->read_line);
+            data->read_line  = readline(data->read_line);
             // if PB on quitte proprement
             ft_minishell(data);
         }
