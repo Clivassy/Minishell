@@ -1,53 +1,15 @@
 #include "minishell.h"
 
-int     ft_is_double_redirect(char *str, int index, char c)
+void    ft_fill_new_token(char *content, t_data *data, int type)
 {
-    if (str[index] == c && str[index + 1] == c)
-        return (1);
-    return (0);
-}
+    t_token *new_token;
 
-/* check quote_non_ close */
-int ft_check_non_close_quotes(char *line, int i, char quote_type)
-{
-    int nb;
-
-    nb = 0;
-    while (line[i])
-    {
-        if (line[i] == quote_type)
-            nb++;
-        i++;
-    }
-    printf("number : %d\n", nb);
-    if ((nb / 2) * 2  == nb)
-        return(1);
-    return(0);
-}
-
-/* Return 1 if word into quotes is stuck with simple word */
-int ft_check_no_space(char *line, int index, char c)
-{
-    int i;
-
-    i = 0;    
-    index++;
-
-    while (line[index] != c)
-    {
-        index++;
-        i++;
-    }
-    if (line[index + 1] == '\0')
-        return (0);
-    if (ft_is_word(line, index + 1))
-        return (1);
-    else 
-        return (0);
+    new_token = ft_new_token(content, type);
+    ft_lstadd_back_token(&data->tokens_list, new_token);
 }
 
 /* Return quoted word len*/
-int ft_quote_word_len(char *read_line, int index)
+/*int ft_quote_word_len(char *read_line, int index)
 {
     char quote_type;
     int i;
@@ -65,7 +27,7 @@ int ft_quote_word_len(char *read_line, int index)
         i++;
     }
     return (len);
-}
+}*/
 
 /* Return 1 if readline token is a word (if no metachracters are found) */
 int ft_is_word(char *line, int index)
@@ -76,31 +38,31 @@ int ft_is_word(char *line, int index)
     return (1);
 }
 
-/* Return word len */
-int ft_word_len(char *read_line, int index)
+
+int	ft_check_unclose_quote(char	*line)
 {
-    int len = 0;
-    while (read_line[index])
-    {
-        if (!ft_is_word(read_line, index))
-            return(len);
-        if (read_line[index] == '\"')
-        {
-            index++;
-            len++;
-            while(read_line[index] != '\"')
-            {
-                index++;
-                len++;
-            }
-        }
-        if (ft_is_word(read_line, index))
-        {
-            if (read_line[index] == '\0')
-                return(len);
-        }
-        len++;
-        index++;
-    }
-    return (len);
+	int		i;
+    int quote;
+
+	i = 0;
+	quote = 0;
+	while (line[i])
+	{
+		if (line[i] == '"')
+		{
+			if (quote == 0)
+				quote = D_QUOTE;
+			else if (quote == D_QUOTE)
+				quote = 0;
+		}
+		if (line[i] == '\'')
+		{
+			if (quote == 0)
+				quote = S_QUOTE;
+			else if (quote == S_QUOTE)
+				quote = 0;
+		}
+		i++;
+	}
+	return (quote);
 }

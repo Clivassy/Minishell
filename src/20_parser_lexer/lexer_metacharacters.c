@@ -1,5 +1,12 @@
 #include "minishell.h"
 
+int     ft_is_double_redirect(char *str, int index, char c)
+{
+    if (str[index] == c && str[index + 1] == c)
+        return (1);
+    return (0);
+}
+
 int ft_is_space(t_data *data, char *read_line, int index)
 {
     char *space_token;
@@ -8,9 +15,9 @@ int ft_is_space(t_data *data, char *read_line, int index)
     if (read_line[index] == ' ' && read_line[index -1] != ' ')
     {
         space_token = ft_substr(read_line, index, 1);
-        ft_add_to_garbage_collector(data, space_token);
         if (!space_token)
-            return (-1); // ft_exit 
+            return (-1); // ft_exit
+        ft_add_to_garbage_collector(data, space_token);
         space = ft_new_token(space_token, T_SPACE);
         ft_lstadd_back_token(&data->tokens_list, space);
     }
@@ -20,38 +27,29 @@ int ft_is_space(t_data *data, char *read_line, int index)
 int ft_is_redirect(t_data *data, char *read_line, int index)
 {
     char *separator;
-    t_token *separator_token;
 
     if (ft_is_double_redirect(read_line, index,read_line[index]))
     {
         separator = ft_substr(read_line, index, 2);
+        if (!separator)
+            return (-1); // ft_exit
         ft_add_to_garbage_collector(data, separator);
         if (read_line[index] == '>')
-            separator_token = ft_new_token(separator, D_REDIRECT_OUT);
+            ft_fill_new_token(separator, data, D_REDIRECT_OUT);
         else 
-            separator_token = ft_new_token(separator, T_HEREDOC);
-        ft_lstadd_back_token(&data->tokens_list, separator_token);
+            ft_fill_new_token(separator, data, T_HEREDOC);
     }
     else
     {
         separator = ft_substr(read_line, index, 1);
+        if (!separator)
+            return (-1); // ft_exit
         ft_add_to_garbage_collector(data, separator);
         if (read_line[index] == '<')
-            separator_token = ft_new_token(separator, T_REDIRECT_IN);
+            ft_fill_new_token(separator, data, T_REDIRECT_IN);
         else
-            separator_token = ft_new_token(separator, T_REDIRECT_OUT);
-        ft_lstadd_back_token(&data->tokens_list, separator_token);
+            ft_fill_new_token(separator, data, T_REDIRECT_OUT);
     }
-    return (0);
-}
-
-int ft_others_separators(t_data *data, char letter, char *sep)
-{
-    t_token *separator_token;
-
-    if (letter == '|')
-        separator_token = ft_new_token(sep, T_PIPE);
-    ft_lstadd_back_token(&data->tokens_list, separator_token);
     return (0);
 }
 
@@ -59,7 +57,6 @@ int ft_get_separators(t_data *data, int index)
 {
     char *separator;
     char *line;
-    t_token *separator_token;
 
     line = data->read_line;
     if (line[index] == ' ')
@@ -73,10 +70,10 @@ int ft_get_separators(t_data *data, int index)
     if (line[index] == '|')
     {
         separator = ft_substr(line, index, 1);
-        ft_add_to_garbage_collector(data, separator);
         if (!separator)
-            return (-1);
-        ft_others_separators(data, line[index], separator);
+            return (-1); // ft_exit
+        ft_add_to_garbage_collector(data, separator);
+        ft_fill_new_token(separator, data, T_PIPE);
     }
     return(0);
 }

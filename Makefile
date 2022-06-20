@@ -72,7 +72,6 @@ JULIACOMPILE = main_julia.c
 JULIACOMPILE += src/20_parser_lexer/lexer.c
 JULIACOMPILE += src/20_parser_lexer/parser.c
 JULIACOMPILE += src/20_parser_lexer/lexer_errors.c
-JULIACOMPILE += src/20_parser_lexer/manip_tokens.c
 JULIACOMPILE += src/20_parser_lexer/lexer_utils.c
 JULIACOMPILE += src/20_parser_lexer/lexer_metacharacters.c
 JULIACOMPILE += src/20_parser_lexer/lexer_words.c
@@ -80,6 +79,7 @@ JULIACOMPILE += src/60_tools/garbage_collector_1.c
 JULIACOMPILE += src/60_tools/garbage_collector_2.c
 JULIACOMPILE += src/60_tools/print_color.c
 JULIACOMPILE += src/50_exit_functions/exit.c
+JULIACOMPILE += src/60_tools/tkn_manipulation.c
 
 
 yann: $(HEADER)
