@@ -10,6 +10,7 @@ void	ft_data_initialisation(t_data *data);
 //25 expand
 // expand.c
 void	ft_expand_token(t_data *data, t_token *token);
+void	ft_expand(t_data *data);
 // expand_old.c
 //char	*ft_get_word_for_expand(t_data *data, char *str);
 //int	ft_word_size(t_data *data, char *str);
@@ -60,6 +61,7 @@ void	ft_test_rm_from_str(t_data *data);
 void    ft_test_echo();
 void	ft_test_env(t_data *data);
 void	ft_test_expand_token(t_data *data);
+void	ft_test_expand(t_data *data);
 void    ft_test_garbage_collector(t_data *data);
 
 
