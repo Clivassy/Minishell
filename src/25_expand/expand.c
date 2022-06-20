@@ -17,14 +17,6 @@ char	*ft_get_key_for_expand(t_data *data, char *str)
 	int		key_size;
 	char	*key;
 
-	//if (*str == '?')
-	//{
-	//	key = ft_strdup("?");
-	//	if (!key)
-	//		ft_exit(data);
-	//	ft_add_to_garbage_collector(data, key);
-	//	return (key);
-	//}
 	key_size = ft_key_size_for_expand(data, str);
 	key = ft_malloc(data, sizeof(char) * (key_size + 1));
 	if (!key)
@@ -39,43 +31,62 @@ char	*ft_get_key_for_expand(t_data *data, char *str)
 	return (key);
 }
 
+// extand pour '$?'
+static void	ft_expand_pipeline_exit_status(t_data *data, char **str, int *i)
+{
+	char	*tmp;
+
+	ft_rm_from_str(data, str, 2, *i);
+	tmp = ft_itoa(data->last_pipeline_exit_status);
+	if (!tmp)
+		ft_exit(data);
+	ft_add_to_str(data, str, tmp, *i);
+	*i += strlen(tmp);
+	free(tmp);
+	tmp = NULL;
+}
+
+// i-- utiliser car apres rm on se retrouve sur le char suivant qui sera
+// saute dans la boucle qui appelle cette fonction
+static void	ft_expand_normal_key(t_data *data, char **str, int *i)
+{
+	char	*key;
+
+	key = ft_get_key_for_expand(data, &(*str)[*i + 1]);
+	if (ft_env_key_is_present(data, key))
+	{
+		ft_rm_from_str(data, str, strlen(key) + 1, *i);
+		ft_add_to_str(data, str, ft_env_get_value(data, key), *i);
+		*i += strlen(ft_env_get_value(data, key));
+		(*i)--;
+	}
+	else
+	{
+		ft_rm_from_str(data, str, strlen(key) + 1, *i);
+		(*i)--;
+	}
+	ft_free(data, key);
+}
+
 void	ft_expand_token(t_data *data, t_token *token)
 {
 	int		i;
 	char	*key;
 	int		expand_active;
-	char *tmp;
 
 	i = 0;
 	expand_active = 1;
 	while (token->value[i])
 	{
+		//printf("i:%d token->value[i]:%c\n", i, token->value[i]);
 		if (token->value[i] == '\'')
 			expand_active = 1 - expand_active;
-		if (token->value[i] == '$')
+		if (token->value[i] == '$' && expand_active)
 		{
-			key = ft_get_key_for_expand(data, &token->value[i + 1]);
-			if (token->value[i+1] == '?' && expand_active)
-			{
-				ft_rm_from_str(data, &(token->value), 2, i);
-				tmp = ft_itoa(data->last_pipeline_exit_status);
-				if (!tmp)
-					ft_exit(data);
-				ft_add_to_str(data, &(token->value),tmp, i);
-				i += strlen(tmp);
-				free(tmp);
-				tmp = NULL;
-			}
-			else if (ft_env_key_is_present(data, key) && expand_active)
-			{
-				ft_rm_from_str(data, &(token->value), strlen(key) + 1, i);
-				ft_add_to_str(data, &(token->value),
-					ft_env_get_value(data, key), i);
-				i += strlen(ft_env_get_value(data, key));
-			}
-			else if (expand_active)
-				ft_rm_from_str(data, &(token->value), strlen(key) + 1, i);
-			ft_free(data, key);
+			if (token->value[i + 1] == '?')
+				ft_expand_pipeline_exit_status(data, &token->value, &i);
+			else
+				ft_expand_normal_key(data, &token->value, &i);
 		}
 		i++;
 	}
@@ -105,8 +116,8 @@ static int	ft_is_next_word_to_expand(t_token *token)
 	}
 }
 
-// possible d'enlever la prise en compte des here doc ?
-// car ils sont fait avant cette etape
+// possible d'enlever la prise en compte des here doc
+// si ils sont fait avant cette etape ?
 void	ft_expand(t_data *data)
 {
 	t_token	*token;

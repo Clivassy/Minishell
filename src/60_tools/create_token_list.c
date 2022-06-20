@@ -26,7 +26,7 @@ void	create_token_list_1(t_data *data)
 	token1->next = token2;
 
 	token2->type = T_WORD;
-	token2->value = ft_strdup("mot1 $SHELL $SHELL suite $SHELL");
+	token2->value = ft_strdup("mot1 $SHELL$SHELL suite $SHELL");
 	ft_add_to_garbage_collector(data, token2->value);
 	token2->next = token3;
 
