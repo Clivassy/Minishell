@@ -28,9 +28,7 @@ int ft_redirect_errors(t_token *token)
         {   
             if (!token->next || !token->next->next)
                 ft_lexer_error("Error 6: nothing after redirect");
-            if (token->next->next->type != T_WORD
-                && token->next->next->type != S_QUOTE
-                && token->next->next->type != D_QUOTE)
+            if (token->next->next->type != T_WORD)
                 ft_lexer_error("Error 7: no word after redirect");
             }
         token = token->next;
@@ -45,8 +43,7 @@ int ft_is_empy_pipe(t_token *token)
         ft_lexer_error("Error 5 : no word after last pipe");
     while (token->type != T_PIPE)
     {
-        if (token->type == T_WORD || token->type == S_QUOTE
-            || token->type == D_QUOTE)
+        if (token->type == T_WORD)
             return(1);
         token = token->next;
     }
@@ -55,9 +52,6 @@ int ft_is_empy_pipe(t_token *token)
 
 int ft_pipe_errors(t_token *token)
 {
-    t_token *temp; 
-
-    temp = token;
     printf("first token is : %d\n", token->type);
     while (token != NULL)
     {
@@ -79,7 +73,6 @@ int ft_pipe_errors(t_token *token)
 
 int ft_parser(t_data *data)
 {
-    int i;
     t_token *list;
 
     list = data->tokens_list;
@@ -87,6 +80,7 @@ int ft_parser(t_data *data)
         ft_lexer_error("Error 1 : pipe at the begining");
     ft_pipe_errors(list);
     ft_redirect_errors(list);
-    // heredoc here 
+   // ft_read_heredoc(data);
+    // heredoc here ? 
     return (0);
 }

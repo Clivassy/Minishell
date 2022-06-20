@@ -75,6 +75,7 @@ JULIACOMPILE += src/20_parser_lexer/lexer_errors.c
 JULIACOMPILE += src/20_parser_lexer/lexer_utils.c
 JULIACOMPILE += src/20_parser_lexer/lexer_metacharacters.c
 JULIACOMPILE += src/20_parser_lexer/lexer_words.c
+JULIACOMPILE += src/20_parser_lexer/heredoc.c
 JULIACOMPILE += src/60_tools/garbage_collector_1.c
 JULIACOMPILE += src/60_tools/garbage_collector_2.c
 JULIACOMPILE += src/60_tools/print_color.c

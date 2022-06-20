@@ -28,6 +28,9 @@ int     ft_is_word(char *line, int index);
 int ft_parser(t_data *data);
 int ft_pipe_errors(t_token *token);
 
+/******** heredoc.c ************/
+int ft_read_heredoc(t_data *data);
+
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
 

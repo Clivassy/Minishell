@@ -26,10 +26,8 @@ t_token *ft_fill_tokens_list(t_data *data)
     int statut;
 
     index = 0;
-    statut = ft_check_unclose_quote(data->read_line);
+     statut = ft_check_unclose_quote(data->read_line);
     
-    if (statut == 0)
-        printf("OK : Quotes are closed\n");
     if (statut > 0)
         ft_lexer_error("Error: quotes non closed");
     while (data->read_line[index])
@@ -62,4 +60,5 @@ void    ft_minishell(t_data *data)
     if (ft_lexer(data) == NULL)
         ft_lexer_error("Error: can't create list");
     ft_parser(data);
+   // ft_read_heredoc(data);
 }
