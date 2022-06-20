@@ -49,12 +49,13 @@ typedef struct s_elm
 
 typedef struct s_data
 {
-	int exit_asked;
-    char *read_line;
-    char **env;
+	int		exit_asked;
+    char	*read_line;
+    char	**env;
+	int		last_pipeline_exit_status;
    // char **command_list;
-    t_token *tokens_list;
-    t_elm   *exec_list;
+    t_token	*tokens_list;
+    t_elm	*exec_list;
 	t_list	*garbage_collector;
 }	t_data;
 
