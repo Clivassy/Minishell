@@ -22,15 +22,15 @@ Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
 
 t_token *ft_fill_tokens_list(t_data *data)
 {
-    int index ;
+    int index;
     int statut;
 
-    index = 0;
-     statut = ft_check_unclose_quote(data->read_line);
     
+    statut = ft_check_unclose_quote(data->read_line);
     if (statut > 0)
         ft_lexer_error("Error: quotes non closed");
-    while (data->read_line[index])
+    index = 0;
+    while (index < ft_strlen(data->read_line))
     { 
         //ft_printf("index before boucle : %d\n", index);
         index += ft_get_word(data, index);

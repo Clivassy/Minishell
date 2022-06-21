@@ -15,6 +15,7 @@ void    ft_init_struct(t_data *data)
 {
     data->read_line = NULL;
     data->exit_asked = 1;
+    data->garbage_collector = NULL;
     // ++ 
 }
 
