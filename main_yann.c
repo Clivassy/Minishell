@@ -6,10 +6,6 @@ int main(int argc, char **argv, char **envp)
     t_data data;
 	ft_data_initialisation(&data);
 
-	// creation et affichage token list
-	create_token_list_1(&data);
-    //ft_print_token_list(data.tokens_list);
-
 	// creation env
     ft_dup_env(&data, envp);
 	//print_env(data.env);
@@ -34,11 +30,15 @@ int main(int argc, char **argv, char **envp)
 	//test rm from str
 	//ft_test_rm_from_str(&data);
 
-	// test expand token
-	//ft_test_expand_token(&data);
-
 	// test expand
-	ft_test_expand(&data);
+	//create_token_list_1(&data);
+	//ft_test_expand_token(&data);
+	//ft_test_expand(&data);
+
+	// test rm quotes from token
+	create_token_list_2(&data);
+	ft_test_rm_quotes_in_token(&data);
+
 
 	ft_free_garbage_collector(&data);
     return(0);
