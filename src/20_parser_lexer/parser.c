@@ -26,20 +26,24 @@ int ft_redirect_errors(t_token *token)
     {
         if (ft_is_redirect_err(token))
         {   
-            if (!token->next || !token->next->next)
-                ft_lexer_error("Error 6: nothing after redirect");
+            if (!token->next)
+                ft_lexer_error("Error 5: nothing after redirect");
+            if (token->next->type == T_WORD)
+                return(0);
+            if (!token->next->next && token->next->type != T_WORD)
+                ft_lexer_error("Error 6: no word after redirect");
             if (token->next->next->type != T_WORD)
-                ft_lexer_error("Error 7: no word after redirect");
+                ft_lexer_error("Error 7: multiples redirect");
             }
         token = token->next;
     }
-    printf("NO REDIRECT ERRORS\n");
+   // printf("NO REDIRECT ERRORS\n");
     return (0);
 }
 
 int ft_is_empy_pipe(t_token *token)
 {
-    if (!token->next)
+    if (!token->next && token->type != T_WORD)
         ft_lexer_error("Error 5 : no word after last pipe");
     while (token->type != T_PIPE)
     {
@@ -52,7 +56,7 @@ int ft_is_empy_pipe(t_token *token)
 
 int ft_pipe_errors(t_token *token)
 {
-    printf("first token is : %d\n", token->type);
+    //printf("first token is : %d\n", token->type);
     while (token)
     {
         if (token->type == T_PIPE)
@@ -67,7 +71,7 @@ int ft_pipe_errors(t_token *token)
         }
         token = token->next;
     }
-    printf("NO PIPE ERRORS\n");
+   // printf("NO PIPE ERRORS\n");
     return(0);
 }
 
