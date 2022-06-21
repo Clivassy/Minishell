@@ -38,7 +38,8 @@ int ft_read_heredoc(t_data *data)
                 str = readline(NULL);
                 if (strcmp(str, here_tag) == 0)
                 {
-                    if (!list->next->next)
+                    if (list->next->next->type != T_WORD ||
+                        list->next->type != T_WORD)
                         ft_lexer_error("Error: no delimiter after heredoc");
                     return(0);
                 }
