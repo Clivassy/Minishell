@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	ft_key_size_for_expand(t_data *data, char *str)
+static int	ft_key_size_for_expand(t_data *data, char *str)
 {
 	int	i;
 
@@ -11,7 +11,7 @@ int	ft_key_size_for_expand(t_data *data, char *str)
 	return (i);
 }
 
-char	*ft_get_key_for_expand(t_data *data, char *str)
+static char	*ft_get_key_for_expand(t_data *data, char *str)
 {
 	int		i;
 	int		key_size;
@@ -68,30 +68,6 @@ static void	ft_expand_normal_key(t_data *data, char **str, int *i)
 	ft_free(data, key);
 }
 
-void	ft_expand_token(t_data *data, t_token *token)
-{
-	int		i;
-	char	*key;
-	int		expand_active;
-
-	i = 0;
-	expand_active = 1;
-	while (token->value[i])
-	{
-		//printf("i:%d token->value[i]:%c\n", i, token->value[i]);
-		if (token->value[i] == '\'')
-			expand_active = 1 - expand_active;
-		if (token->value[i] == '$' && expand_active)
-		{
-			if (token->value[i + 1] == '?')
-				ft_expand_pipeline_exit_status(data, &token->value, &i);
-			else
-				ft_expand_normal_key(data, &token->value, &i);
-		}
-		i++;
-	}
-}
-
 // fct non testee
 static int	ft_is_next_word_to_expand(t_token *token)
 {
@@ -113,6 +89,30 @@ static int	ft_is_next_word_to_expand(t_token *token)
 	{
 		ft_printf("erreur dans l'expand, le type du token est invalide\n");
 		return (0);
+	}
+}
+
+void	ft_expand_token(t_data *data, t_token *token)
+{
+	int		i;
+	char	*key;
+	int		expand_active;
+
+	i = 0;
+	expand_active = 1;
+	while (token->value[i])
+	{
+		//printf("i:%d token->value[i]:%c\n", i, token->value[i]);
+		if (token->value[i] == '\'')
+			expand_active = 1 - expand_active;
+		if (token->value[i] == '$' && expand_active)
+		{
+			if (token->value[i + 1] == '?')
+				ft_expand_pipeline_exit_status(data, &token->value, &i);
+			else
+				ft_expand_normal_key(data, &token->value, &i);
+		}
+		i++;
 	}
 }
 

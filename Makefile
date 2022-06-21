@@ -43,7 +43,6 @@ re: fclean all
 
 YANNCOMPILE = main_yann.c
 YANNCOMPILE += src/10_initialisation/data_initialisation.c
-YANNCOMPILE += src/20_parser_lexer/manip_tokens.c
 YANNCOMPILE += src/25_expand/expand.c
 YANNCOMPILE += src/30_command_execution/exec_command.c
 YANNCOMPILE += src/40_builtin/echo.c
@@ -59,6 +58,7 @@ YANNCOMPILE += src/60_tools/lst_manipulation.c
 YANNCOMPILE += src/60_tools/garbage_collector_1.c
 YANNCOMPILE += src/60_tools/garbage_collector_2.c
 YANNCOMPILE += src/60_tools/print_color.c
+YANNCOMPILE += src/60_tools/tkn_manipulation.c
 YANNCOMPILE += src/70_debug/test_add_to_str.c
 YANNCOMPILE += src/70_debug/test_echo.c
 YANNCOMPILE += src/70_debug/print_env.c
@@ -69,6 +69,7 @@ YANNCOMPILE += src/70_debug/test_rm_from_str.c
 
 
 JULIACOMPILE = main_julia.c
+JULIACOMPILE += src/10_initialisation/data_initialisation.c
 JULIACOMPILE += src/20_parser_lexer/lexer.c
 JULIACOMPILE += src/20_parser_lexer/parser.c
 JULIACOMPILE += src/20_parser_lexer/lexer_errors.c
