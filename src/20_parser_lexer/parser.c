@@ -53,7 +53,7 @@ int ft_is_empy_pipe(t_token *token)
 int ft_pipe_errors(t_token *token)
 {
     printf("first token is : %d\n", token->type);
-    while (token != NULL)
+    while (token)
     {
         if (token->type == T_PIPE)
         {
@@ -80,7 +80,5 @@ int ft_parser(t_data *data)
         ft_lexer_error("Error 1 : pipe at the begining");
     ft_pipe_errors(list);
     ft_redirect_errors(list);
-   // ft_read_heredoc(data);
-    // heredoc here ? 
     return (0);
 }

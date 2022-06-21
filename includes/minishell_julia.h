@@ -34,7 +34,12 @@ int ft_read_heredoc(t_data *data);
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
 
-/* LIST TOKENS*/
+/*----------------------------------------
+            LIST TOKENS
+-----------------------------------------*/
+
+// 60_tools // 
+/******** tkn_manipulation.c ************/
 void    ft_lstadd_back_token(t_token **alst, t_token *new);
 t_token *ft_new_token(char *value, int type);
 t_token *ft_lstlast_token(t_token *lst);

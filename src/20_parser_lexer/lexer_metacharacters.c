@@ -16,7 +16,7 @@ int ft_is_space(t_data *data, char *read_line, int index)
     {
         space_token = ft_substr(read_line, index, 1);
         if (!space_token)
-            return (-1); // ft_exit
+            ft_exit(data);
         ft_add_to_garbage_collector(data, space_token);
         space = ft_new_token(space_token, T_SPACE);
         ft_lstadd_back_token(&data->tokens_list, space);
@@ -32,7 +32,7 @@ int ft_is_redirect(t_data *data, char *read_line, int index)
     {
         separator = ft_substr(read_line, index, 2);
         if (!separator)
-            return (-1); // ft_exit
+            ft_exit(data);
         ft_add_to_garbage_collector(data, separator);
         if (read_line[index] == '>')
             ft_fill_new_token(separator, data, D_REDIRECT_OUT);
@@ -43,7 +43,7 @@ int ft_is_redirect(t_data *data, char *read_line, int index)
     {
         separator = ft_substr(read_line, index, 1);
         if (!separator)
-            return (-1); // ft_exit
+            ft_exit(data);
         ft_add_to_garbage_collector(data, separator);
         if (read_line[index] == '<')
             ft_fill_new_token(separator, data, T_REDIRECT_IN);
@@ -71,7 +71,7 @@ int ft_get_separators(t_data *data, int index)
     {
         separator = ft_substr(line, index, 1);
         if (!separator)
-            return (-1); // ft_exit
+            ft_exit(data);
         ft_add_to_garbage_collector(data, separator);
         ft_fill_new_token(separator, data, T_PIPE);
     }

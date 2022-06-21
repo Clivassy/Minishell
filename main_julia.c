@@ -13,9 +13,9 @@ void    ft_pre_check_input(void)
 
 void    ft_init_struct(t_data *data)
 {
+    ft_data_initialisation(data);
     data->read_line = NULL;
     data->exit_asked = 1;
-    data->garbage_collector = NULL;
     // ++ 
 }
 

@@ -12,22 +12,21 @@ int ft_read_heredoc(t_data *data)
     t_token *list;
     int i;
     char *str;
-
+    
+    str = NULL;
     i = 0; 
     list = data->tokens_list;
     while(list)
     {
         if (list->type == T_HEREDOC)
         {
+            // tant qu'on arrive pas au delimiteur
             printf("FOUND HEREDOC\n");
-            while (i < 4)
-            {
-                ft_printf("> ");
-                str = readline(str);
-                i++;
-            }
+            ft_printf("> ");
+            str = readline(str);
         }
         list = list->next;
     }
+    printf("STRING = %s\n", str);
     return (0);
 }

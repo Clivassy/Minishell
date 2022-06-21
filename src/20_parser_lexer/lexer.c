@@ -32,7 +32,6 @@ t_token *ft_fill_tokens_list(t_data *data)
     index = 0;
     while (index < ft_strlen(data->read_line))
     { 
-        //ft_printf("index before boucle : %d\n", index);
         index += ft_get_word(data, index);
         index += ft_get_separators(data, index);
         index++;
@@ -47,18 +46,18 @@ t_token *ft_lexer(t_data *data)
     data->tokens_list = ft_fill_tokens_list(data);
     if (data->tokens_list == NULL)
         return (NULL);
-    // une fois la listes chainées remplie avec les tokens
-    // Checker ici les erreurs de syntaxe
-    // autres check ??
+    // TEMP // 
     ft_print_token_list(data->tokens_list);
     return (data->tokens_list);
 }
 
 void    ft_minishell(t_data *data)
 {
-    // autres checks eventuels
+    // code d'erreur retour a modifier
     if (ft_lexer(data) == NULL)
         ft_lexer_error("Error: can't create list");
-    ft_parser(data);
-   // ft_read_heredoc(data);
+    if (ft_parser(data) == -1)
+        ft_lexer_error("Error: can't create list");
+    if (ft_read_heredoc(data) == -1)
+        ft_lexer_error("Error: can't create list");
 }
