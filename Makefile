@@ -44,7 +44,8 @@ re: fclean all
 YANNCOMPILE = main_yann.c
 YANNCOMPILE += src/10_initialisation/data_initialisation.c
 YANNCOMPILE += src/25_expand/expand.c
-YANNCOMPILE += src/27_rm_quotes/rm_quotes_in_tokens.c
+YANNCOMPILE += src/27_rm_quotes/rm_quotes_in_token.c
+YANNCOMPILE += src/27_rm_quotes/rm_quotes_in_token_list.c
 YANNCOMPILE += src/30_command_execution/exec_command.c
 YANNCOMPILE += src/40_builtin/echo.c
 YANNCOMPILE += src/40_builtin/cd.c

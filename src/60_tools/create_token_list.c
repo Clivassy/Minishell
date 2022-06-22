@@ -62,9 +62,9 @@ void	create_token_list_2(t_data *data)
 	data->tokens_list = NULL;
 
 	token1 = ft_malloc(data, sizeof(t_token));
-	//token2 = ft_malloc(data, sizeof(t_token));
-	//token3 = ft_malloc(data, sizeof(t_token));
-	//token4 = ft_malloc(data, sizeof(t_token));
+	token2 = ft_malloc(data, sizeof(t_token));
+	token3 = ft_malloc(data, sizeof(t_token));
+	token4 = ft_malloc(data, sizeof(t_token));
 	//token5 = ft_malloc(data, sizeof(t_token));
 	//token6 = ft_malloc(data, sizeof(t_token));
 
@@ -74,24 +74,24 @@ void	create_token_list_2(t_data *data)
 	token1->value = ft_strdup("\"in double 'in double'\"'in simple\"in\"'outside");
 	// pour test dans bash : echo "in double 'in double'"'in simple"in"'outside
 	ft_add_to_garbage_collector(data, token1->value);
-	//token1->next = token2;
-	token1->next = NULL;
+	token1->next = token2;
 
-//.
-//	token2->type = T_WORD;
-//	token2->value = ft_strdup("mot1 $SHELL$SHELL suite $SHELL");
-//	ft_add_to_garbage_collector(data, token2->value);
-//	token2->next = token3;
+	token2->type = T_WORD;
+	token2->value = ft_strdup("");
+	ft_add_to_garbage_collector(data, token2->value);
+	token2->next = token3;
 
-//	token3->type = T_WORD;
-//	token3->value = ft_strdup("\"mot1 $SHELL suite mot1\"");
-//	ft_add_to_garbage_collector(data, token3->value);
-//	token3->next = token4;
+	token3->type = T_WORD;
+	token3->value = ft_strdup("''");
+	ft_add_to_garbage_collector(data, token3->value);
+	token3->next = token4;
 
-//	token4->type = T_WORD;
-//	token4->value = ft_strdup("\'mot1 $SHELL suite mot1\'");
-//	ft_add_to_garbage_collector(data, token4->value);
-//	token4->next = token5;
+	token4->type = T_WORD;
+	token4->value = ft_strdup("\"\"");
+	ft_add_to_garbage_collector(data, token4->value);
+	//token4->next = token5;
+	token4->next = NULL;
+
 
 //	token5->type = T_WORD;
 //	token5->value = ft_strdup("lastpipelinestatus $?motcolle $SHELL quote \' $? $SHELL\'");

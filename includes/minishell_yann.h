@@ -69,6 +69,7 @@ void	ft_test_expand_token(t_data *data);
 void	ft_test_expand(t_data *data);
 void    ft_test_garbage_collector(t_data *data);
 void	ft_test_rm_quotes_in_token(t_data *data);
+void	ft_test_rm_quotes_in_token_list(t_data *data);
 
 
 
