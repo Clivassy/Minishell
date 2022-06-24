@@ -29,9 +29,9 @@ int main(int ac, char **av)
     {
         while (data->exit_asked == 1)
         {
-            ft_printf("minishell> ");
+           // ft_printf("minishell> ");
             // ici faire toutes les vérifs de l'input (isatty)
-            data->read_line  = readline(NULL);
+            data->read_line  = readline("minishell> ");
             // if PB on quitte proprement
             ft_minishell(data);
         }

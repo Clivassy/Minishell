@@ -7,48 +7,91 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
 - ?? 
 ----------------------------------------------------------------------*/
 
-/*
-int ft_search_here_tag(t_data *data)
+
+// ++ft_strcmp
+
+char   *ft_found_heretag(t_data *data, t_token *list)
 {
+    char *here_tag;
+    int detector;
+
+    if (list->type == T_HEREDOC)
+    {
+        detector = 1;
+        if (detector == 1)
+        {
+            if (list->next->type == T_SPACE)
+                here_tag = list->next->next->value;
+            else
+                here_tag = list->next->value;
+            detector = 0;
+        }
+    }
+    return(here_tag);
+}
+
+/*char *ft_stock_here_doc(t_data *data, int pipe)
+{
+    char *temp_buff;
+
+
 
 }*/
+
+void ft_test(int file[2])
+{
+    enum{BUF = 4096};
+    char buf[BUF];
+    char *read_p;
+
+    read_p = read(file[0], buf, BUF);
+    printf("BUFF = %s\n", buf);
+}
 
 int ft_read_heredoc(t_data *data)
 {
     t_token *list;
+    int file[2];
+    int detector;
     char *str;
-    int i = 1;
-    char *here_tag = malloc(sizeof(char*) * 100);
+    char *temp;
+    char *here_tag;
     
-    str = 0;
+    if (pipe(file) == -1)
+        return (-1);
+    temp = ft_strdup("");
+    str = "";
     list = data->tokens_list;
     while(list)
     {
         if (list->type == T_HEREDOC)
         {
-            if (i == 1)
+            detector = 1;
+            if (detector == 1)
             {
-                here_tag = list->next->next->value;
-                i = 0;
+                if (list->next->type == T_SPACE)
+                   here_tag = list->next->next->value;
+                else
+                    here_tag = list->next->value;
+                detector = 0;
             }
-           printf("VALUE = %s\n", list->next->next->value);
             while (1)
             {
-                ft_printf("> ");
-                str = readline(NULL);
+                //ici joindre les strings recuperes dans un buffer
+                str = readline("> ");
                 if (strcmp(str, here_tag) == 0)
                 {
-                    if (list->next->next->type != T_WORD ||
-                        list->next->type != T_WORD)
-                        ft_lexer_error("Error: no delimiter after heredoc");
-                    return(0);
+                  /* if (list->next->next->type != T_WORD && list->next->type == T_WORD
+                        || list->next->type != T_WORD)
+                        ft_lexer_error("Error: no delimiter after heredoc");*/
+                    break;
                 }
-
-            // tant qu'on arrive pas au delimiteur
+                temp = ft_strjoin(temp, str);
             }
         }
         list = list->next;
     }
- //   printf("STRING = %s\n", str);
+    write(file[1], temp, ft_strlen(temp)+ 1);
+    ft_test(file);
     return (0);
 }
