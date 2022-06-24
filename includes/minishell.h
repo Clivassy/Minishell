@@ -53,6 +53,7 @@ typedef struct s_data
     char	*read_line;
     char	**env;
 	int		last_pipeline_exit_status;
+	int		nb_of_pipe;
    // char **command_list;
     t_token	*tokens_list;
     t_elm	*exec_list;

@@ -36,9 +36,12 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_expand(&data);
 
 	// test rm quotes from token
-	create_token_list_2(&data);
+	//create_token_list_2(&data);
 	//ft_test_rm_quotes_in_token(&data);
-	ft_test_rm_quotes_in_token_list(&data);
+	//ft_test_rm_quotes_in_token_list(&data);
+
+	//test exec_list_creation
+	ft_test_exec_list_creation(&data);
 
 
 
