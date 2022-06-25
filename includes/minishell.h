@@ -38,14 +38,14 @@ typedef struct s_token
 
 }   t_token;
 
-typedef struct s_elm
+typedef struct s_exec_elm
 {
     char **cmd;
     int fd_in;
     int fd_out;
-    struct s_elm *next;
+    struct s_exec_elm *next;
 
-}   t_elm;
+}   t_exec_elm;
 
 typedef struct s_data
 {
@@ -53,10 +53,10 @@ typedef struct s_data
     char	*read_line;
     char	**env;
 	int		last_pipeline_exit_status;
-	int		nb_of_pipe;
+	int		nb_of_process;
    // char **command_list;
     t_token	*tokens_list;
-    t_elm	*exec_list;
+    t_exec_elm	*exec_list;
 	t_list	*garbage_collector;
 }	t_data;
 

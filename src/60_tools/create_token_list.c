@@ -142,3 +142,51 @@ void	create_token_list_3(t_data *data)
 	ft_add_to_garbage_collector(data, token6->value);
 	token6->next = NULL;
 }
+
+void	create_token_list_empty(t_data *data)
+{
+	data->tokens_list = NULL;
+}
+
+void	create_token_list_1_elm(t_data *data)
+{
+	t_token *token1;
+
+	data->tokens_list = NULL;
+	token1 = ft_malloc(data, sizeof(t_token));
+	data->tokens_list = token1;
+
+	token1->type = T_WORD;
+	token1->value = ft_strdup("mot1");
+	ft_add_to_garbage_collector(data, token1->value);
+	token1->next = NULL;
+}
+
+void	create_token_list_3elm_avec_pipe(t_data *data)
+{
+	t_token *token1;
+	t_token *token2;
+	t_token *token3;
+	data->tokens_list = NULL;
+
+	token1 = ft_malloc(data, sizeof(t_token));
+	token2 = ft_malloc(data, sizeof(t_token));
+	token3 = ft_malloc(data, sizeof(t_token));
+
+	data->tokens_list = token1;
+
+	token1->type = T_WORD;
+	token1->value = ft_strdup("mot1");
+	ft_add_to_garbage_collector(data, token1->value);
+	token1->next = token2;
+
+	token2->type = T_PIPE;
+	token2->value = ft_strdup("|");
+	ft_add_to_garbage_collector(data, token2->value);
+	token2->next = token3;
+
+	token3->type = T_WORD;
+	token3->value = ft_strdup("mot2");
+	ft_add_to_garbage_collector(data, token3->value);
+	token3->next = NULL;
+}
