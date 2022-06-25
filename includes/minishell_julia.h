@@ -29,7 +29,9 @@ int ft_parser(t_data *data);
 int ft_pipe_errors(t_token *token);
 
 /******** heredoc.c ************/
-int ft_read_heredoc(t_data *data);
+
+int ft_heredoc(t_data *data);
+char *ft_read_heredoc(t_token *elem, char *str);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);

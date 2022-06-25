@@ -51,14 +51,15 @@ t_token *ft_lexer(t_data *data)
 
 void    ft_minishell(t_data *data)
 {
+  
     // code d'erreur retour a modifier
     if (ft_lexer(data) == NULL)
-        ft_lexer_error("Error: can't create list");
+        ft_lexer_error("Error: lexer");
     if (ft_parser(data) == -1)
-        ft_lexer_error("Error: can't create list");
-        //
-    if (ft_read_heredoc(data) == -1)
-        ft_lexer_error("Error: can't create list");
-        // TEMP //
+        ft_lexer_error("Error: parser");
+    
+    // TEMP //
+   /* if (ft_heredoc(data) == -1)
+        ft_lexer_error("Error: hereodoc");*/
     ft_print_token_list(data->tokens_list);
 }
