@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void    ft_lst_print(t_elm *elm)
+void    ft_exec_elm_lst_print(t_exec_elm *elm)
 {
 	int i;
 	int	j;
@@ -15,13 +15,18 @@ void    ft_lst_print(t_elm *elm)
 	{
 		ft_printf("----------------------------\n");
 		ft_printf("| element %d : %p\n", i, elm);
-		ft_printf("| cmd =");
+		ft_printf("| cmd = ");
 		j = 0;
-		while ((elm->cmd)[j])
+		if (elm->cmd)
 		{
-			ft_printf(" %s", elm->cmd[j]);
-			j++;
+			while ((elm->cmd)[j])
+			{
+				ft_printf(" %s", elm->cmd[j]);
+				j++;
+			}
 		}
+		else
+			ft_printf("NULL");
 		ft_printf("\n| fd_in = %d\n", elm->fd_in);
 		ft_printf("| fd_out = %d\n", elm->fd_out);
 		ft_printf("| next element = %p\n", elm->next);
@@ -31,29 +36,4 @@ void    ft_lst_print(t_elm *elm)
 		elm = elm->next;
 		i++;
 	}
-}   
-
-void    ft_lst_add(t_elm **elm_list, t_elm *new_elm)
-{
-	t_elm	*last;
-
-	if (*elm_list == NULL)
-	{
-		*elm_list = new_elm;
-		return ;
-	}
-	if (new_elm != 0)
-	{
-		last = ft_lst_get_last_elm(*elm_list);
-		last->next = new_elm;
-	}
-}
-
-t_elm	*ft_lst_get_last_elm(t_elm *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
 }

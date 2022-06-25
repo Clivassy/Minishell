@@ -19,6 +19,6 @@ void    ft_dup_env(t_data *data, char **envp)
 		ft_add_to_garbage_collector(data, data->env[i]);
         i++;
     }
-    //print_env(data->env);
+    //ft_print_env(data->env);
 }
 
