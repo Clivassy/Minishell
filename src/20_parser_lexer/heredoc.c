@@ -1,4 +1,4 @@
-#include "minishell.h"
+
 /*----------------------------- PARSER ------------------------------
 Gestion des heredocs + erreurs de syntaxe de heredocs 
 // realine pour recuperer tout ce qui vient jusqu'au EOF  
