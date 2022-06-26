@@ -24,7 +24,7 @@ int ft_is_space(t_data *data, char *read_line, int index)
     return (0);
 }
 
-int ft_is_redirect(t_data *data, char *read_line, int index)
+static int ft_is_redirect(t_data *data, char *read_line, int index)
 {
     char *separator;
 

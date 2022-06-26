@@ -55,11 +55,14 @@ void    ft_minishell(t_data *data)
     // code d'erreur retour a modifier
     if (ft_lexer(data) == NULL)
         ft_lexer_error("Error: lexer");
-    if (ft_parser(data) == -1)
+    if (ft_parser(data) == ERROR)
         ft_lexer_error("Error: parser");
-    
-    // TEMP //
+    if (ft_group_tokens(data) == ERROR)
+        ft_lexer_error("Error: create group tokens list");
    /* ft_heredoc(data);*/
-    ft_gp_tokens(data);
-    //ft_print_token_list(data->tokens_list);
+      //  ft_print_token_list(data->gp_tokens_list);
+    ft_print_token_list(data->tokens_list);
 }
+
+// attention segfault avec la fonction group tokens lorque la commande termine par un SPACE
+// NON GERE : les tab et newlines a considérer comme des tokens T_SPACE.
