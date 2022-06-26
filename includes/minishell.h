@@ -27,9 +27,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stddef.h>
-# include "libft.h"
+# include <sys/wait.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "libft.h"
 
 typedef struct s_token
 {

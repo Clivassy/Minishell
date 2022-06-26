@@ -27,7 +27,6 @@ static void	ft_ats_copy_str(int position, char **s, char *new_s, char *to_add)
 	new_s[i] = '\0';
 }
 
-// ajoute
 void	ft_add_to_str(t_data *data, char **str, char *to_add, int position)
 {
 	int		new_size;
@@ -39,6 +38,22 @@ void	ft_add_to_str(t_data *data, char **str, char *to_add, int position)
 		ft_exit(data);
 	if (position > ft_strlen(*str))
 		position = ft_strlen(*str);
+	ft_ats_copy_str(position, str, new_str, to_add);
+	ft_free(data, *str);
+	*str = new_str;
+}
+// fct non testee
+void	ft_add_to_str_end(t_data *data, char **str, char *to_add)
+{
+	int		new_size;
+	char	*new_str;
+	int		position;
+
+	new_size = ft_strlen(*str) + ft_strlen(to_add);
+	new_str = ft_malloc(data, sizeof(char) * (new_size + 1));
+	if (!new_str)
+		ft_exit(data);
+	position = ft_strlen(*str);
 	ft_ats_copy_str(position, str, new_str, to_add);
 	ft_free(data, *str);
 	*str = new_str;

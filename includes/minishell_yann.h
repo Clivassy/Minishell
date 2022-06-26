@@ -34,7 +34,13 @@ int	ft_count_pipe(t_data *data, t_token *token_list);
 void	ft_create_exec_elm_list(t_data *data);
 
 //-----------------------------------------
-//          30_command_execution
+//    30_read_gp_token_to_fill_exec_list
+//-----------------------------------------
+void	ft_fill_exec_list(t_data *data);
+
+
+//-----------------------------------------
+//          36_command_execution
 //-----------------------------------------
 //exec_command.c
 void    ft_exec_command(t_data *data);
@@ -69,6 +75,7 @@ void	create_token_list_3(t_data *data);
 void	create_token_list_empty(t_data *data);
 void	create_token_list_1_elm(t_data *data);
 void	create_token_list_3elm_avec_pipe(t_data *data);
+void	create_gp_token_list_1(t_data *data);
 
 
 // exec_elm_manipulation.c
@@ -77,9 +84,9 @@ void    ft_add_exec_elm(t_exec_elm **elm_list, t_exec_elm *new_elm);
 t_exec_elm	*ft_create_empty_exec_elm_list(t_data *data, int nb_elm);
 t_exec_elm	*ft_get_last_exec_elm(t_exec_elm *lst);
 t_exec_elm	*ft_get_exec_elm(t_exec_elm *lst, int index);
-
 // ft_add_to_str.c
 void	ft_add_to_str(t_data *data, char **str, char *to_add, int position);
+void	ft_add_to_str_end(t_data *data, char **str, char *to_add);
 // ft_rm_from_str.c
 void	ft_rm_from_str(t_data *data, char **s, int rm_len, int position);
 // lst_manipulation.c
@@ -104,6 +111,8 @@ void	ft_test_expand(t_data *data);
 void    ft_test_garbage_collector(t_data *data);
 void	ft_test_rm_quotes_in_token(t_data *data);
 void	ft_test_rm_quotes_in_token_list(t_data *data);
+void	ft_test_ft_set_exec_t_redirect_in(t_data *data);
+
 
 
 

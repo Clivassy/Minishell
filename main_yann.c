@@ -41,7 +41,11 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_rm_quotes_in_token_list(&data);
 
 	//test exec_list_creation
-	ft_test_exec_list_creation(&data);
+	//ft_test_exec_list_creation(&data);
+
+	//test read_gp_token_to_fill_exec_list
+	ft_test_ft_set_exec_t_redirect_in(&data);
+
 
 
 
