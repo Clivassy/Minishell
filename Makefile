@@ -85,6 +85,7 @@ JULIACOMPILE += src/20_parser_lexer/heredoc.c
 JULIACOMPILE += src/60_tools/tkn_manipulation.c
 JULIACOMPILE += src/23_gp_tokens_list/gp_tokens.c
 JULIACOMPILE += src/60_tools/garbage_collector_1.c
+JULIACOMPILE += src/60_tools/garbage_collector_2.c
 JULIACOMPILE += src/60_tools/print_color.c
 JULIACOMPILE += src/50_exit_functions/exit.c
 

@@ -60,6 +60,6 @@ void    ft_minishell(t_data *data)
     
     // TEMP //
    /* ft_heredoc(data);*/
-  //  ft_gp_tokens(data);
-    ft_print_token_list(data->tokens_list);
+    ft_gp_tokens(data);
+    //ft_print_token_list(data->tokens_list);
 }

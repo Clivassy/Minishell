@@ -11,6 +11,7 @@
 # define    D_QUOTE 7
 # define    T_SPACE 8
 # define    T_WORD 9
+# define    T_CMD 10
 
 //Colors
 # define COLOR_NORMAL  "\x1B[0m"
@@ -56,6 +57,7 @@ typedef struct s_data
 	int		nb_of_process;
    // char **command_list;
     t_token	*tokens_list;
+    t_token *gp_tokens_list;
     t_exec_elm	*exec_list;
 	t_list	*garbage_collector;
 }	t_data;
