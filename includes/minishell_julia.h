@@ -1,6 +1,7 @@
 #include <errno.h>
 #include <string.h>
 
+# define    T_CMD 10
 /*----------------------------------------
                 LEXER
 -----------------------------------------*/
@@ -39,7 +40,16 @@ void    ft_lexer_error(char *msg);
 /*----------------------------------------
             LIST TOKENS
 -----------------------------------------*/
+typedef struct s_gp_token
+{
+    int type;
+    char *value;
+    struct s_gp_token *next;
 
+}   t_gp_token;
+
+
+int ft_gp_tokens(t_data *data);
 // 60_tools // 
 /******** tkn_manipulation.c ************/
 void    ft_lstadd_back_token(t_token **alst, t_token *new);

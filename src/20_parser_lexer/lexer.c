@@ -59,7 +59,7 @@ void    ft_minishell(t_data *data)
         ft_lexer_error("Error: parser");
     
     // TEMP //
-   /* if (ft_heredoc(data) == -1)
-        ft_lexer_error("Error: hereodoc");*/
+   /* ft_heredoc(data);*/
+  //  ft_gp_tokens(data);
     ft_print_token_list(data->tokens_list);
 }
