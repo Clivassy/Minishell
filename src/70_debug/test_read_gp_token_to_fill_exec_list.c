@@ -12,7 +12,7 @@ void	ft_test_ft_set_exec_t_redirect_in(t_data *data)
 
 	ft_create_exec_elm_list(data);
 
-	//ft_fill_exec_list(data);
+	ft_fill_exec_list(data);
 
 	ft_printf("###### list des token apres expand ######\n");
 	ft_print_color(COLOR_GREEN);
