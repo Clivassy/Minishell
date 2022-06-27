@@ -12,7 +12,8 @@ int ft_is_space(t_data *data, char *read_line, int index)
     char *space_token;
     t_token *space;
 
-    if (read_line[index] == ' ' && read_line[index -1] != ' ')
+    if (!ft_is_space_sep(read_line[index]) 
+        && ft_is_space_sep(read_line[index -1]))
     {
         space_token = ft_substr(read_line, index, 1);
         if (!space_token)
@@ -59,7 +60,7 @@ int ft_get_separators(t_data *data, int index)
     char *line;
 
     line = data->read_line;
-    if (line[index] == ' ')
+    if (ft_is_space_sep(line[index]) == 0)
         ft_is_space(data, line, index);
     if (line[index] == '<' || line[index] == '>')
     {

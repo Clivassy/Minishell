@@ -38,7 +38,7 @@ char *ft_read_heredoc(t_token *elem, char *str);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
-
+void ft_is_empty_list(t_token *list);
 /*----------------------------------------
             LIST TOKENS
 -----------------------------------------*/
