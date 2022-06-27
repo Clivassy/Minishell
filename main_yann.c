@@ -25,8 +25,8 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_env(&data);
 
 	// test add to str
-	ft_test_add_to_str(&data);
-	ft_test_add_to_str_end(&data);
+	//ft_test_add_to_str(&data);
+	//ft_test_add_to_str_end(&data);
 
 	//test rm from str
 	//ft_test_rm_from_str(&data);
