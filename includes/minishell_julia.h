@@ -1,6 +1,8 @@
 #include <errno.h>
 #include <string.h>
 
+# define    ERROR -1
+# define    ERROR_EMPTY_LST -2
 /*----------------------------------------
                 LEXER
 -----------------------------------------*/
@@ -11,6 +13,7 @@ t_token *ft_lexer(t_data *data);
 
 /******** lexer_metacharacters.c ************/
 int     ft_get_separators(t_data *data, int index);
+int	ft_is_space_sep(char c);
 
 /******** lexer_words.c ************/
 int     ft_get_word(t_data *data, int index);
@@ -35,12 +38,12 @@ char *ft_read_heredoc(t_token *elem, char *str);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
-
+void ft_is_empty_list(t_token *list);
 /*----------------------------------------
             LIST TOKENS
 -----------------------------------------*/
 
-int ft_gp_tokens(t_data *data);
+int ft_group_tokens(t_data *data);
 // 60_tools // 
 /******** tkn_manipulation.c ************/
 void    ft_lstadd_back_token(t_token **alst, t_token *new);

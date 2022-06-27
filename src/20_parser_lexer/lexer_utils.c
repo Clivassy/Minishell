@@ -1,5 +1,15 @@
 #include "minishell.h"
 
+int	ft_is_space_sep(char c)
+{
+	if (c == '\t' || c == '\v' 
+    || c == '\n' ||c == '\r'
+    || c == '\f' || c  == '\r'
+	|| c == ' ')
+		return(0);
+	return(1);
+}
+
 void    ft_fill_new_token(char *content, t_data *data, int type)
 {
     t_token *new_token;
@@ -12,7 +22,8 @@ void    ft_fill_new_token(char *content, t_data *data, int type)
 int ft_is_word(char *line, int index)
 {
     if (line[index] == '<' || line[index] == '>'
-       || line[index] == ' ' || line[index] == '|' )
+       	|| line[index] == '|' 
+		|| ft_is_space_sep(line[index]) == 0)
             return(0);
     return (1);
 }
