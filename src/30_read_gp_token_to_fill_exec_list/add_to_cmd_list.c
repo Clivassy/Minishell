@@ -26,5 +26,6 @@ void	ft_add_to_command_list(t_data *data, char ***cmd_lst, char *to_add)
 		new_command[i] = (*cmd_lst)[i];
 		i++;
 	}
-	
+	new_command[i]
+
 }
