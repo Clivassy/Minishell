@@ -44,6 +44,11 @@ int   ft_get_redirect_token(t_data *data, char *content, int type)
     return (0);
 }
 
+/*int ft_fill_new_redirect_tkn(t_data *data, t_token *list, int type)
+{
+    if ()
+}*/
+
 int ft_group_tokens(t_data *data)
 {
     t_token *new_list;
@@ -60,11 +65,15 @@ int ft_group_tokens(t_data *data)
         {
             if (last_list->next->type != T_SPACE)
             {
+                if (!last_list->next)
+                    return(0);
                 ft_get_redirect_token(data, last_list->next->value, last_list->type);
                 last_list = last_list->next;
             }
             else if (last_list->next->type == T_SPACE)
             {
+                if (!last_list->next->next)
+                    return(0);
                 ft_get_redirect_token(data, last_list->next->next->value, last_list->type);
                 last_list = last_list->next->next;
             }
