@@ -77,19 +77,20 @@ YANNCOMPILE += src/70_debug/test_rm_quotes.c
 
 JULIACOMPILE = main_julia.c
 JULIACOMPILE += src/10_initialisation/data_initialisation.c
-JULIACOMPILE += src/20_parser_lexer/lexer.c
-JULIACOMPILE += src/20_parser_lexer/parser.c
-JULIACOMPILE += src/20_parser_lexer/lexer_errors.c
-JULIACOMPILE += src/20_parser_lexer/lexer_utils.c
-JULIACOMPILE += src/20_parser_lexer/lexer_metacharacters.c
-JULIACOMPILE += src/20_parser_lexer/lexer_words.c
-JULIACOMPILE += src/20_parser_lexer/heredoc.c
+JULIACOMPILE += src/20_lexer/lexer.c
+JULIACOMPILE += src/20_lexer/lexer_errors.c
+JULIACOMPILE += src/20_lexer/lexer_utils.c
+JULIACOMPILE += src/20_lexer/lexer_metacharacters.c
+JULIACOMPILE += src/20_lexer/lexer_words.c
+JULIACOMPILE += src/21_parser/parser.c
+JULIACOMPILE += src/22_gp_tkn_lst/gp_tokens.c
+JULIACOMPILE += src/23_heredoc/heredoc.c
+JULIACOMPILE += src/50_exit_functions/exit.c
 JULIACOMPILE += src/60_tools/tkn_manipulation.c
-JULIACOMPILE += src/23_gp_tokens_list/gp_tokens.c
 JULIACOMPILE += src/60_tools/garbage_collector_1.c
 JULIACOMPILE += src/60_tools/garbage_collector_2.c
 JULIACOMPILE += src/60_tools/print_color.c
-JULIACOMPILE += src/50_exit_functions/exit.c
+
 
 yann: $(HEADER)
 	rm -f $(NAME)

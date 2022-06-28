@@ -28,12 +28,12 @@ void ft_test(int file[2])
 }
 
 // ++ft_strcmp
-
-int ft_heredoc(t_data *data)
+*//*
+int ft_heredoc(t_data *data, t_token *heredoc_tkn)
 {
     t_token *heretag;
-    heretage = ft_simulation_token(heretag);*/
-   /* char *str;
+    heretage = ft_simulation_token(heretag);
+    char *str;
     int fd[2];
 
     pipe(fd);
@@ -41,8 +41,8 @@ int ft_heredoc(t_data *data)
     write(fd[1], str, ft_strlen(str)+ 1);
     ft_test(fd);
     return (fd[0]);
-}
-
+}*/
+/*
 char   *ft_found_heretag(t_token *list, int detector, char *here_tag)
 {
     detector = 1;

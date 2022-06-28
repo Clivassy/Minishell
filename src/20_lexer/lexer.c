@@ -62,7 +62,7 @@ void    ft_minishell(t_data *data)
         ft_lexer_error("Error: create group tokens list");
    /* ft_heredoc(data);*/
     ft_print_token_list(data->gp_tokens_list);
-   // ft_print_token_list(data->tokens_list);
+    //ft_print_token_list(data->tokens_list);
 }
 
 // attention segfault avec la fonction group tokens lorque la commande termine par un SPACE 

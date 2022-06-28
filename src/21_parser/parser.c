@@ -25,11 +25,41 @@ int ft_redirect_errors(t_token *token)
     while (token)
     {
         if (ft_is_redirect_err(token))
-        {   
+        {
+            if (!token->next)
+                ft_lexer_error("Error: nothing after redirect");
+            if (token->next->type == T_SPACE)
+            {
+                if (!token->next->next)
+                    ft_lexer_error("ERROR 3");
+                if (token->next->next->type != T_WORD)
+                    ft_lexer_error("ERROR 2");
+            }
+            if (token->next->type != T_SPACE)
+            {
+                if(token->next->type != T_WORD)
+                    ft_lexer_error("ERROR 4");
+            }
+        }
+        token = token->next;
+    }
+   // printf("NO REDIRECT ERRORS\n");*/
+    return (0);
+}
+
+/*int ft_redirect_errors(t_token *token)
+{
+    while (token)
+    {
+        if (ft_is_redirect_err(token))
+        {
             if (!token->next)
                 ft_lexer_error("Error 5: nothing after redirect");
             if (token->next->type == T_WORD)
-                return(0);
+            {
+                if (!token->next->next)
+                    return(0);
+            }
             if (!token->next->next && token->next->type != T_WORD)
                 ft_lexer_error("Error 6: no word after redirect");
             if (token->next->next->type != T_WORD)
@@ -39,7 +69,7 @@ int ft_redirect_errors(t_token *token)
     }
    // printf("NO REDIRECT ERRORS\n");
     return (0);
-}
+}*/
 
 int ft_is_empy_pipe(t_token *token)
 {
@@ -63,6 +93,12 @@ int ft_pipe_errors(t_token *token)
         {
             if (!token->next)
                 ft_lexer_error("Error 2 : pipe at the end");
+            if (token->next->type != T_WORD && token->next->type != T_SPACE
+                && token->next->next->type == T_SPACE)
+                {
+                    if (!token->next->next->next)
+                        ft_lexer_error("Error : space and nothing after last redirect");
+                }
             if (token->next->type == T_PIPE)
                 ft_lexer_error("Error 3 : multiple pipes ");
             token = token->next;
