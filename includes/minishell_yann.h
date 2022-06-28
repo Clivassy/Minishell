@@ -102,6 +102,7 @@ void	ft_print_color(char *str);
 void    ft_print_env(char **env);
 void    ft_exec_elm_lst_print(t_exec_elm *elm);
 void	ft_test_add_to_str(t_data *data);
+void	ft_test_add_to_str_end(t_data *data);
 void	ft_test_rm_from_str(t_data *data);
 void    ft_test_echo();
 void	ft_test_env(t_data *data);
