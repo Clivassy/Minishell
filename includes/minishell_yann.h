@@ -36,6 +36,10 @@ void	ft_create_exec_elm_list(t_data *data);
 //-----------------------------------------
 //    30_read_gp_token_to_fill_exec_list
 //-----------------------------------------
+// add_to_cmd_list.c
+void	ft_set_exec_with_t_cmd_token(t_data *data, t_token *token, int process);
+void	ft_add_to_command_list(t_data *data, char ***cmd_lst, char *to_add);
+// read_gp_token.c
 void	ft_fill_exec_list(t_data *data);
 
 

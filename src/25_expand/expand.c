@@ -92,6 +92,7 @@ static int	ft_is_next_word_to_expand(t_token *token)
 	}
 }
 
+// plus utilisee ?
 void	ft_expand_token(t_data *data, t_token *token)
 {
 	int		i;
@@ -116,22 +117,46 @@ void	ft_expand_token(t_data *data, t_token *token)
 	}
 }
 
+// void	ft_expand_word(t_data *data, char *word)
+// {
+// 	int		i;
+// 	char	*key;
+// 	int		expand_active;
+
+// 	i = 0;
+// 	expand_active = 1;
+// 	while (word[i])
+// 	{
+// 		//printf("i:%d token->value[i]:%c\n", i, token->value[i]);
+// 		if (word[i] == '\'')
+// 			expand_active = 1 - expand_active;
+// 		if (word[i] == '$' && expand_active)
+// 		{
+// 			if (word[i + 1] == '?')
+// 				ft_expand_pipeline_exit_status(data, &word, &i);
+// 			else
+// 				ft_expand_normal_key(data, &word, &i);
+// 		}
+// 		i++;
+// 	}
+// }
+
 // fonction qui va expand les token autres que heredoc
 // mais fonction codee avant ajout de la liste gp_token
 // ne pas l'utiliser comme ca
-//void	ft_expand(t_data *data)
-//{
-//	t_token	*token;
-//	int		next_word_to_expand;
+void	ft_expand(t_data *data)
+{
+	t_token	*token;
+	int		next_word_to_expand;
 
-//	token = data->tokens_list;
-//	next_word_to_expand = 1;
-//	while (token)
-//	{
-//		if (next_word_to_expand && token->type == T_WORD)
-//			ft_expand_token(data, token);
-//		if (token->type != T_SPACE)
-//			next_word_to_expand = ft_is_next_word_to_expand(token);
-//		token = token->next;
-//	}
-//}
+	token = data->tokens_list;
+	next_word_to_expand = 1;
+	while (token)
+	{
+		if (next_word_to_expand && token->type == T_WORD)
+			ft_expand_token(data, token);
+		if (token->type != T_SPACE)
+			next_word_to_expand = ft_is_next_word_to_expand(token);
+		token = token->next;
+	}
+}

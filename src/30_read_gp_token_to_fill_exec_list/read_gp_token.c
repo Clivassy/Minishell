@@ -1,11 +1,5 @@
 #include "minishell.h"
 
-// fonctions en cours et non fonctionnelles
-
-void	ft_set_exec_with_t_cmd_token(t_data *data, int process)
-{
-
-}
 
 //check pas fermetrue stdin
 void	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
@@ -20,7 +14,7 @@ void	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 		ft_exit(data); // erreur a gerer pour revenir dans boucle minishell
 	if (ft_get_exec_elm(data->exec_list, process)->fd_in != 0)
 		close(ft_get_exec_elm(data->exec_list, process)->fd_in);
-	ft_get_exec_elm(data->exec_list, process)->fd_in  = fd_infile;
+	ft_get_exec_elm(data->exec_list, process)->fd_in = fd_infile;
 }
 
 // ajouter check pour pas fermer stdout
@@ -66,27 +60,26 @@ void	ft_fill_exec_list(t_data *data)
 	pt_token = data->gp_tokens_list;
 	while (pt_token)
 	{
-		ft_printf("lecture sur process %d\n", process);
+		ft_printf("lecture sur process %d - token type %d \n", process, pt_token->type);
 		if (pt_token->type == T_PIPE)
 			process++;
 		if (pt_token->type == T_CMD)
 		{
-			//pt_token->value = NULL;
-
+			ft_set_exec_with_t_cmd_token(data, pt_token, process);
 		}
 		else if (pt_token->type == T_REDIRECT_IN)
 		{
 			ft_set_exec_t_redirect_in(data, pt_token, process);
 
 		}
-		else if (pt_token->type == T_REDIRECT_OUT)
-		{
-			ft_set_exec_t_redirect_out(data, pt_token, process);
-		}
-		else if (pt_token->type == D_REDIRECT_OUT)
-		{
+		// else if (pt_token->type == T_REDIRECT_OUT)
+		// {
+		// 	ft_set_exec_t_redirect_out(data, pt_token, process);
+		// }
+		// else if (pt_token->type == D_REDIRECT_OUT)
+		// {
 
-		}
+		// }
 		pt_token = pt_token->next;
 	}
 }

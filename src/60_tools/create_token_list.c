@@ -236,7 +236,7 @@ void	create_gp_token_list_1(t_data *data)
 	token5->next = token6;
 
 	token6->type = T_CMD;
-	token6->value = ft_strdup("ls");
+	token6->value = ft_strdup("checkexpand-$PWD");
 	ft_add_to_garbage_collector(data, token6->value);
 	token6->next = NULL;
 }

@@ -21,12 +21,13 @@ void    ft_exec_elm_lst_print(t_exec_elm *elm)
 		{
 			while ((elm->cmd)[j])
 			{
-				ft_printf(" %s", elm->cmd[j]);
+				ft_printf(" '%s'", elm->cmd[j]);
 				j++;
 			}
+			ft_printf(" '%s'", elm->cmd[j]);
 		}
 		else
-			ft_printf("NULL");
+			ft_printf("char** = NULL");
 		ft_printf("\n| fd_in = %d\n", elm->fd_in);
 		ft_printf("| fd_out = %d\n", elm->fd_out);
 		ft_printf("| next element = %p\n", elm->next);
