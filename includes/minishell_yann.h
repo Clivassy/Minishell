@@ -13,11 +13,6 @@ void	ft_data_initialisation(t_data *data);
 // expand.c
 void	ft_expand_token(t_data *data, t_token *token);
 void	ft_expand(t_data *data);
-// expand_old.c
-//char	*ft_get_word_for_expand(t_data *data, char *str);
-//int	ft_word_size(t_data *data, char *str);
-//int	ft_word_size_after_expand(t_data *data, char *word);
-//int	ft_size_after_expand(t_data *data, char *str);
 
 //----------------------------------------
 //              27_rm_quotes
@@ -36,12 +31,18 @@ void	ft_create_exec_elm_list(t_data *data);
 //-----------------------------------------
 //    30_read_gp_token_to_fill_exec_list
 //-----------------------------------------
-// add_to_cmd_list.c
+
+// read_gp_token_list.c
+void	ft_fill_exec_list(t_data *data);
+// read_redirection_token.c
+void	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process);
+void	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process);
+void	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process);
+// read_token_cmd.c
 void	ft_set_exec_with_t_cmd_token(t_data *data, t_token *token, int process);
 void	ft_add_to_command_list(t_data *data, char ***cmd_lst, char *to_add);
-// read_gp_token.c
-void	ft_fill_exec_list(t_data *data);
-
+// read_token_heredoc
+void	ft_set_exec_with_t_heredoc(t_data *data, t_token *token, int process);
 
 //-----------------------------------------
 //          36_command_execution
