@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-
 static int	ft_cmd_len(char **cmd)
 {
 	int	i;
@@ -22,6 +21,7 @@ void	ft_set_exec_with_t_cmd_token(t_data *data, t_token *token, int process)
 	int			i;
 
 	ft_expand_token(data, token);
+	ft_rm_quotes_in_token(data, token);
 	current_exec_elm = ft_get_exec_elm(data->exec_list, process);
 	cmd_lst = ft_get_exec_elm(data->exec_list, process)->cmd;
 	new_command = ft_malloc(data, sizeof(char*) * (ft_cmd_len(cmd_lst) + 2));
@@ -43,7 +43,7 @@ void	ft_set_exec_with_t_cmd_token(t_data *data, t_token *token, int process)
 // 	t_exec_elm *current_exec_elm;
 // 	char	**cmd_lst;
 // 	char	*to_add;
-	
+
 // 	current_exec_elm = ft_get_exec_elm(data->exec_list, process);
 // 	to_add = token->value;
 // 	ft_add_to_command_list(data, &(current_exec_elm->cmd), to_add);
