@@ -72,10 +72,10 @@ void	ft_fill_exec_list(t_data *data)
 			ft_set_exec_t_redirect_in(data, pt_token, process);
 
 		}
-		// else if (pt_token->type == T_REDIRECT_OUT)
-		// {
-		// 	ft_set_exec_t_redirect_out(data, pt_token, process);
-		// }
+		else if (pt_token->type == T_REDIRECT_OUT)
+		{
+			ft_set_exec_t_redirect_out(data, pt_token, process);
+		}
 		// else if (pt_token->type == D_REDIRECT_OUT)
 		// {
 

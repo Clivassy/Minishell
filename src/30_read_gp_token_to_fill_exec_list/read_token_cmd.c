@@ -33,7 +33,7 @@ void	ft_set_exec_with_t_cmd_token(t_data *data, t_token *token, int process)
 	}
 	new_command[i] = token->value;
 	new_command[i + 1] = NULL;
-	// ft_free(data, cmd_lst);
+	ft_free(data, cmd_lst);
 	ft_get_exec_elm(data->exec_list, process)->cmd = new_command;
 }
 
