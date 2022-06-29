@@ -7,7 +7,10 @@ t_exec_elm	*ft_create_new_exec_elm(t_data *data)
     new_elm = ft_malloc(data, sizeof(t_exec_elm));
 	if (!new_elm)
 		ft_exit(data);
-    new_elm->cmd = NULL;
+    new_elm->cmd = ft_malloc(data, sizeof(char*) * 1);
+	if (!new_elm->cmd)
+		ft_exit(data);
+	(new_elm->cmd)[0] = NULL;
     new_elm->fd_in = -1;
     new_elm->fd_out = -1;
     new_elm->next = NULL;

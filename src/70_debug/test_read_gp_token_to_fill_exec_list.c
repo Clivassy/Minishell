@@ -11,6 +11,7 @@ void	ft_test_ft_set_exec_t_redirect_in(t_data *data)
 	ft_print_color(COLOR_NORMAL);
 
 	ft_create_exec_elm_list(data);
+	ft_exec_elm_lst_print(data->exec_list);
 
 	ft_fill_exec_list(data);
 
