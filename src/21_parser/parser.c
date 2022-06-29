@@ -31,14 +31,14 @@ int ft_redirect_errors(t_token *token)
             if (token->next->type == T_SPACE)
             {
                 if (!token->next->next)
-                    ft_lexer_error("ERROR 3");
+                    ft_lexer_error("ERROR REDIECT 1");
                 if (token->next->next->type != T_WORD)
-                    ft_lexer_error("ERROR 2");
+                    ft_lexer_error("ERROR REDIRECT 2");
             }
             if (token->next->type != T_SPACE)
             {
                 if(token->next->type != T_WORD)
-                    ft_lexer_error("ERROR 4");
+                    ft_lexer_error("ERROR REDIRECT 3");
             }
         }
         token = token->next;
@@ -47,17 +47,54 @@ int ft_redirect_errors(t_token *token)
     return (0);
 }
 
+int ft_search_next_pipe(t_token *list)
+{
+    
+    while(list)
+    {
+        printf("LIST : %s\n", list->value);
+        if (list->type == T_PIPE)
+        {
+            printf("still pipes\n");
+            return(1);
+        }
+        list = list->next;
+    }
+    return (0);
+}
+/*
 int ft_is_empy_pipe(t_token *token)
 {
     if (!token->next && token->type != T_WORD)
         ft_lexer_error("Error 5 : no word after last pipe");
-    while (token->type != T_PIPE)
+    if (ft_search_next_pipe(token))
     {
-        if (token->type == T_WORD)
-            return(1);
+        while (token->type != T_PIPE)
+        {
+            if (token->type == T_WORD)
+                return(1);
         token = token->next;
+        }
     }
     return (0);
+}*/
+
+void ft_is_empy_pipe(t_token *token)
+{
+    t_token *tmp;
+
+    int statut = 0;
+    tmp = token;
+    if (!tmp->next && tmp->type != T_WORD)
+        ft_lexer_error("Error 5 : no word after last pipe");
+    while (tmp)
+    {
+        if (tmp->type == T_WORD)
+            statut = 1;
+        if (tmp->type == T_PIPE && statut < 1)
+            ft_lexer_error("error pipe 6");
+        tmp = tmp->next;
+    }
 }
 
 int ft_pipe_errors(t_token *token)
@@ -71,18 +108,8 @@ int ft_pipe_errors(t_token *token)
                 ft_lexer_error("Error 2 : pipe at the end");
             if (token->next->type == T_PIPE)
                 ft_lexer_error("Error 3 : multiple pipes ");
-            if (token->next->type != T_WORD)
-            {
-                if (token->next->type != T_SPACE)
-            } 
-                && token->next->next->type == T_SPACE)
-                {
-                    if (!token->next->next->next)
-                        ft_lexer_error("Error : space and nothing after last redirect");
-                }
             token = token->next;
-            if (ft_is_empy_pipe(token) == 0 )
-                ft_lexer_error("Error 4: no word found");
+            ft_is_empy_pipe(token);
         }
         token = token->next;
     }
@@ -97,43 +124,12 @@ int ft_parser(t_data *data)
     list = data->tokens_list;
     if (list->type == T_PIPE)
         ft_lexer_error("Error 1 : pipe at the begining");
-    ft_pipe_errors(list);
-    ft_redirect_errors(list);
+   ft_pipe_errors(list);
+   ft_redirect_errors(list);
     return (0);
-}
+}    
 
-
-
-/* SAVE 
-
-int ft_pipe_errors(t_token *token)
-{
-    //printf("first token is : %d\n", token->type);
-    while (token)
-    {
-        if (token->type == T_PIPE)
-        {
-            if (!token->next)
-                ft_lexer_error("Error 2 : pipe at the end");
-            if (token->next->type != T_WORD && token->next->type != T_SPACE
-                && token->next->next->type == T_SPACE)
-                {
-                    if (!token->next->next->next)
-                        ft_lexer_error("Error : space and nothing after last redirect");
-                }
-            if (token->next->type == T_PIPE)
-                ft_lexer_error("Error 3 : multiple pipes ");
-            token = token->next;
-            if (ft_is_empy_pipe(token) == 0 )
-                ft_lexer_error("Error 4: no word found");
-        }
-        token = token->next;
-    }
-   // printf("NO PIPE ERRORS\n");
-    return(0);
-}
-
-int ft_redirect_errors(t_token *token)
+/*int ft_redirect_errors(t_token *token)
 {
     while (token)
     {
