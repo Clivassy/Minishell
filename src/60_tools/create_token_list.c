@@ -211,7 +211,7 @@ void	create_gp_token_list_1(t_data *data)
 	data->gp_tokens_list = token1;
 
 	token1->type = T_CMD;
-	token1->value = ft_strdup("ls");
+	token1->value = ft_strdup("cat");
 	ft_add_to_garbage_collector(data, token1->value);
 	token1->next = token2;
 
@@ -232,12 +232,12 @@ void	create_gp_token_list_1(t_data *data)
 	token4->next = token5;
 
 	token5->type = T_CMD;
-	token5->value = ft_strdup("echo");
+	token5->value = ft_strdup("cat");
 	ft_add_to_garbage_collector(data, token5->value);
 	token5->next = token6;
 
-	token6->type = T_CMD;
-	token6->value = ft_strdup("checkexpand-$PWD");
+	token6->type = T_REDIRECT_OUT;
+	token6->value = ft_strdup("file3");
 	ft_add_to_garbage_collector(data, token6->value);
 	token6->next = NULL;
 }
