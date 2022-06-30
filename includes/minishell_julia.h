@@ -46,10 +46,8 @@ void ft_is_empty_list(t_token *list);
 -----------------------------------------*/
 
 int ft_group_tokens(t_data *data);
-// 60_tools // 
+// 60_tools //
 /******** tkn_manipulation.c ************/
 void    ft_lstadd_back_token(t_token **alst, t_token *new);
 t_token *ft_new_token(char *value, int type);
 t_token *ft_lstlast_token(t_token *lst);
-void    ft_print_token_list(t_token *elm);
-
