@@ -1,4 +1,4 @@
-
+#include "minishell.h"
 /*----------------------------- PARSER ------------------------------
 Gestion des heredocs + erreurs de syntaxe de heredocs 
 // realine pour recuperer tout ce qui vient jusqu'au EOF  
@@ -6,102 +6,53 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
 - j'expand ce qui est a l'intérieur si jamais il y a des variables d'emvironnement
 - ?? 
 ----------------------------------------------------------------------*/
-/*
-t_token    *ft_simulation_token(t_token *heretag)
-{
-    heretag = malloc(sizeof(t_token));
-    heretag->type = T_WORD;
-    heretag->value = "end";
 
-    printf("TOKEN VALUE : %s\n", heretag->value);
-    printf("TOKEN TYPE : %d\n", heretag->type);
-}
-
-void ft_test(int file[2])
-{
-    enum{BUF = 4096};
-    char buf[BUF];
-    char *read_p;
-
-    read_p = read(file[0], buf, BUF);
-    printf("BUFF = %s\n", buf);
-}
-
-// ++ft_strcmp
-*//*
-int ft_heredoc(t_data *data, t_token *heredoc_tkn)
-{
-    t_token *heretag;
-    heretage = ft_simulation_token(heretag);
-    char *str;
-    int fd[2];
-
-    pipe(fd);
-    str = ft_read_heredoc(heretag, str);
-    write(fd[1], str, ft_strlen(str)+ 1);
-    ft_test(fd);
-    return (fd[0]);
-}*/
-/*
-char   *ft_found_heretag(t_token *list, int detector, char *here_tag)
-{
-    detector = 1;
-    if (detector == 1)
-    {
-        if (list->next->type == T_SPACE)
-            here_tag = list->next->next->value;
-        else
-            here_tag = list->next->value;
-        detector = 0;
-    }
-    return(here_tag);
-}
-
-char *ft_stock_here_doc(char *str, char *temp, char *here_tag)
+char *ft_stock_here_doc(t_data *data, char *str, char *temp, char *heretag)
 {
     while (1)
     {
         str = readline("> ");
-        temp = ft_strjoin(temp, "\n");
-        if (strcmp(str, here_tag) == 0)
+        if (!str)
+            ft_exit(data);
+        if (ft_strcmp(str, heretag) != 0)
+            temp = ft_strjoin(temp, "\n");
+        if (ft_strcmp(str, heretag) == 0)
             break;
         else
             temp = ft_strjoin(temp, str);
     }
     return(temp);
-}*/
+}
 
-/*char *ft_read_heredoc(t_token *elem, char *str)
-{
-    t_token *list;
-    int detector;
-    char *temp;
-    char *here_tag;
-
-    temp = ft_strdup("");
-    list = data->tokens_list;
-    while(list)
-    {
-        if (list->type == T_HEREDOC)
-        {
-            here_tag = ft_found_heretag(list, detector, here_tag);
-            temp = ft_stock_here_doc(list, str, temp, here_tag);
-        }
-        list = list->next;
-    }
-    return (temp);
-}*/
-/*
-char *ft_read_heredoc(t_token *elem, char *str)
+char *ft_read_heredoc(t_data *data, char *str, char *heretag)
 {
     char *temp;
-    char *here_tag;
-    
-    here_tag = elem->value;
-    printf("ELEM : %s\n", here_tag);
+
+    // je l'add pas au garbage car je vais la libérer directement ds ma fct.
     temp = ft_strdup("");
-    temp = ft_stock_here_doc(str, temp, here_tag);
-
+    // expand 
+    temp = ft_stock_here_doc(data, str, temp, heretag);
     return (temp);
-} */
+}
 
+int ft_heredoc(t_data *data, t_token *heredoc_tkn)
+{
+    char *str;
+    char *here_tag;
+    int len;
+    int file[2];
+
+    len = ft_strlen(heredoc_tkn->value);
+    // voir avec yann pr ft_malloc OU malloc
+    here_tag = malloc(sizeof(char*) * len + 1);
+    if (!here_tag)
+        ft_exit(data);
+    here_tag = heredoc_tkn->value;
+    pipe(file);
+    str = ft_read_heredoc(data, str, here_tag);
+    write(file[1], str, ft_strlen(str)+ 1);
+    ft_test(file);
+    free(str);
+    free(here_tag);
+    return (file[0]);
+}

@@ -33,8 +33,10 @@ int ft_pipe_errors(t_token *token);
 
 /******** heredoc.c ************/
 
-int ft_heredoc(t_data *data);
-char *ft_read_heredoc(t_token *elem, char *str);
+int ft_heredoc(t_data *data, t_token *heredoc_tkn);
+int	ft_strcmp(char *s1, char *s2);
+char *ft_read_heredoc(t_data *data, char *str, char *heretag);
+void ft_test(int file[2]);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
