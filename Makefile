@@ -68,6 +68,7 @@ YANNCOMPILE += src/60_tools/print_color.c
 YANNCOMPILE += src/60_tools/tkn_manipulation.c
 YANNCOMPILE += src/70_debug/print_env.c
 YANNCOMPILE += src/70_debug/print_exec_elm_list.c
+YANNCOMPILE += src/70_debug/print_token_list.c
 YANNCOMPILE += src/70_debug/test_add_to_str.c
 YANNCOMPILE += src/70_debug/test_echo.c
 YANNCOMPILE += src/70_debug/test_env.c
@@ -95,7 +96,7 @@ JULIACOMPILE += src/60_tools/tkn_manipulation.c
 JULIACOMPILE += src/60_tools/garbage_collector_1.c
 JULIACOMPILE += src/60_tools/garbage_collector_2.c
 JULIACOMPILE += src/60_tools/print_color.c
-
+JULIACOMPILE += src/70_debug/print_token_list.c
 
 yann: $(HEADER)
 	rm -f $(NAME)
