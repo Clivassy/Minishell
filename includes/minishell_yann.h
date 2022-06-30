@@ -48,8 +48,8 @@ void	ft_set_exec_with_t_heredoc(t_data *data, t_token *token, int process);
 //          36_command_execution
 //-----------------------------------------
 //exec_command.c
+void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm);
 void    ft_exec_command(t_data *data);
-void    ft_launch_processus(t_data *data, int index);
 
 //-----------------------------------------
 //               40 builtin
@@ -73,6 +73,8 @@ char *ft_env_get_value(t_data *data, char *key_searched);
 //-----------------------------------------
 //                60_tools
 //-----------------------------------------
+// create_exec_list.c
+void	create_exec_list_1(t_data *data);
 // create token list
 void	create_token_list_1(t_data *data);
 void	create_token_list_2(t_data *data);
@@ -108,6 +110,7 @@ void    ft_print_token_list(t_token *token_list);
 void	ft_test_add_to_str(t_data *data);
 void	ft_test_add_to_str_end(t_data *data);
 void	ft_test_rm_from_str(t_data *data);
+void	ft_test_command_execution(t_data *data);
 void    ft_test_echo();
 void	ft_test_env(t_data *data);
 void	ft_test_exec_list_creation(t_data *data);

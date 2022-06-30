@@ -13,6 +13,8 @@ t_exec_elm	*ft_create_new_exec_elm(t_data *data)
 	(new_elm->cmd)[0] = NULL;
     new_elm->fd_in = -1;
     new_elm->fd_out = -1;
+    new_elm->index = -1;
+    new_elm->pid = -1;
     new_elm->next = NULL;
     return (new_elm);
 }
@@ -37,12 +39,15 @@ t_exec_elm	*ft_create_empty_exec_elm_list(t_data *data, int nb_elm)
 {
 	int	i;
 	t_exec_elm	*list;
+	t_exec_elm	*new_exec_elm;
 
 	i = 0;
 	list = NULL;
 	while (i < nb_elm)
 	{
-		ft_add_exec_elm(&list, ft_create_new_exec_elm(data));
+		new_exec_elm = ft_create_new_exec_elm(data);
+		new_exec_elm->index = i;
+		ft_add_exec_elm(&list, new_exec_elm);
 		i++;
 	}
 	return (list);
