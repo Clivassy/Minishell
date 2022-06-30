@@ -25,7 +25,6 @@ t_token *ft_fill_tokens_list(t_data *data)
     int index;
     int statut;
 
-
     statut = ft_check_unclose_quote(data->read_line);
     if (statut > 0)
         ft_lexer_error("Error: quotes non closed");
@@ -77,7 +76,7 @@ t_token    *ft_simulation_token_3(t_token *heretag)
 {
     heretag = malloc(sizeof(t_token));
     heretag->type = T_CMD;
-    heretag->value = "$PATH";
+    heretag->value = "hello ca va";
 
     printf("TOKEN VALUE : %s\n", heretag->value);
     printf("TOKEN TYPE : %d\n", heretag->type);

@@ -7,62 +7,66 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
 - ?? 
 ----------------------------------------------------------------------*/
 
-int ft_expand_heredoc(t_data *data, char *heretag)
+int ft_expand_heredoc(t_data *data, char **str)
 {
-    if (ft_strchr(heretag, '$'))
-        printf("expand needed\n");
+    printf("---PROCEED EXPAND-----\n");
+    // call yann fct that will expand the char *
     return(0);
 }
 
-char *ft_stock_here_doc(t_data *data, char *str, char *temp, char *heretag)
+char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 {
+    char *str; 
+
+    str = NULL;
     while (1)
     {
         str = readline("> ");
         if (!str)
             ft_exit(data);
         if (ft_strcmp(str, heretag) != 0)
-            temp = ft_strjoin(temp, "\n");
+            tmp = ft_strjoin(tmp, "\n");
         if (ft_strcmp(str, heretag) == 0)
             break;
-        else
-            temp = ft_strjoin(temp, str);
+        if (exp > 0 && ft_is_expand_required(str))
+            ft_expand_heredoc(data, &str);
+        tmp = ft_strjoin(tmp, str);
     }
-    return(temp);
+    return(tmp);
 }
 
-char *ft_read_heredoc(t_data *data, char *str, char *heretag)
+char *ft_read_heredoc(t_data *data, char *heretag)
 {
-    char *temp;
+    char *tmp;
+    int expand;
 
+    expand = 0;
     // je l'add pas au garbage car je vais la libérer directement ds ma fct.
-    temp = ft_strdup("");
-    // expand 
-    printf("HERETAG : %s\n", heretag);
-    if (!ft_strchr(heretag, '\'') && !ft_strchr(heretag, '\"'))
-        ft_expand_heredoc(data, heretag);
-    temp = ft_stock_here_doc(data, str, temp, heretag);
-    return (temp);
+    tmp = ft_strdup("");
+    if (ft_is_quoted(heretag))
+        expand = 1;
+    tmp = ft_stock_heredoc(expand, data, tmp, heretag);
+    return (tmp);
 }
 
 int ft_heredoc(t_data *data, t_token *heredoc_tkn)
 {
     char *str;
     char *here_tag;
-    int len;
     int file[2];
 
-    len = ft_strlen(heredoc_tkn->value);
-    // voir avec yann pr ft_malloc OU malloc
-    here_tag = malloc(sizeof(char*) * len + 1);
     if (!here_tag)
         ft_exit(data);
     here_tag = heredoc_tkn->value;
-    pipe(file);
-    str = ft_read_heredoc(data, str, here_tag);
+    if (pipe(file) == -1)
+        ft_exit(data);
+    str = ft_read_heredoc(data, here_tag);
+    if (!str)
+        ft_exit(data);
     write(file[1], str, ft_strlen(str)+ 1);
+    free(str);
+    ///// TMP ///////
     ft_test(file);
-    //free(str);
-    //free(here_tag);
+    ////// TMP //////
     return (file[0]);
 }

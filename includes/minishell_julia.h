@@ -35,8 +35,11 @@ int ft_pipe_errors(t_token *token);
 
 int ft_heredoc(t_data *data, t_token *heredoc_tkn);
 int	ft_strcmp(char *s1, char *s2);
-char *ft_read_heredoc(t_data *data, char *str, char *heretag);
+char *ft_read_heredoc(t_data *data, char *heretag);
 void ft_test(int file[2]);
+int ft_is_quoted(char *heretag);
+int ft_expand_heredoc(t_data *data, char **str);
+int ft_is_expand_required(char *heretag);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
