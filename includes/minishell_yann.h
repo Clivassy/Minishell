@@ -50,6 +50,10 @@ void	ft_set_exec_with_t_heredoc(t_data *data, t_token *token, int process);
 //exec_command.c
 void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm);
 void    ft_exec_command(t_data *data);
+// find_command_path.c
+void	ft_launch_command(char **cmd, char **envp);
+char	*ft_find_command(char *cmd, char **envp);
+char	*ft_check_path_command(char **paths, char *cmd);
 
 //-----------------------------------------
 //               40 builtin
