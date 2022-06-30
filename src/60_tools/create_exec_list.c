@@ -3,14 +3,8 @@
 void	create_exec_list_1(t_data *data)
 {
 	create_gp_token_list_1(data);
-	ft_fill_exec_list_cmd__and_redirect(data);
-	ft_printf("###### exec list testee ######\n");
-	ft_print_color(COLOR_CYAN);
-    ft_exec_elm_lst_print(data->exec_list);
-	ft_print_color(COLOR_NORMAL);
 
-
-
+	ft_fill_exec_list(data);
 }
 
 

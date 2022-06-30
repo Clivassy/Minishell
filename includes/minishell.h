@@ -47,6 +47,8 @@ typedef struct s_exec_elm
     char **cmd;
     int fd_in;
     int fd_out;
+	int index;
+	pid_t pid;
     struct s_exec_elm *next;
 
 }   t_exec_elm;

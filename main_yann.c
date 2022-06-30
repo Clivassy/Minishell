@@ -45,9 +45,10 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_exec_list_creation(&data);
 
 	//test read_gp_token_to_fill_exec_list
-	ft_test_ft_set_exec_t_redirect_in(&data);
+	//ft_test_ft_set_exec_t_redirect_in(&data);
 
-
+	//test command execution
+	ft_test_command_execution(&data);
 
 
 	ft_free_garbage_collector(&data);

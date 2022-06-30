@@ -9,7 +9,6 @@ static int	ft_cmd_len(char **cmd)
 	{
 		i++;
 	}
-	ft_printf("cmd len %d\n", i);
 	return (i);
 }
 
