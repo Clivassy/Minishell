@@ -36,7 +36,6 @@ int ft_pipe_errors(t_token *token);
 int ft_heredoc(t_data *data, t_token *heredoc_tkn);
 int	ft_strcmp(char *s1, char *s2);
 char *ft_read_heredoc(t_data *data, char *heretag);
-void ft_test(int file[2]);
 int ft_is_quoted(char *heretag);
 int ft_expand_heredoc(t_data *data, char **str);
 int ft_is_expand_required(char *heretag);
@@ -44,13 +43,24 @@ int ft_is_expand_required(char *heretag);
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
 void ft_is_empty_list(t_token *list);
+
 /*----------------------------------------
             LIST TOKENS
 -----------------------------------------*/
-
 int ft_group_tokens(t_data *data);
+t_token *ft_fill_redir_tkn(t_data *data, t_token *list);
+int   ft_get_redir_tkn(t_data *data, char *content, int type);
+void ft_is_empty_list(t_token *list);
+void    ft_fill_new_token_2(char *content, t_data *data, int type);
+
 // 60_tools //
 /******** tkn_manipulation.c ************/
 void    ft_lstadd_back_token(t_token **alst, t_token *new);
 t_token *ft_new_token(char *value, int type);
 t_token *ft_lstlast_token(t_token *lst);
+
+/* TEST */
+void ft_test(int file[2]);
+t_token    *ft_simulation_token_1(t_token *heretag);
+t_token    *ft_simulation_token_2(t_token *heretag);
+t_token    *ft_simulation_token_3(t_token *heretag);

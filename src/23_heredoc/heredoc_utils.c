@@ -5,7 +5,6 @@ int ft_is_quoted(char *heretag)
     if (!ft_strchr(heretag, '\'') && !ft_strchr(heretag, '\"'))
         return(1);
     return(0);
-
 }
 
 int ft_is_expand_required(char *heretag)
