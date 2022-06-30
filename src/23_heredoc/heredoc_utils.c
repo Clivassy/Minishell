@@ -5,6 +5,7 @@ int ft_is_quoted(char *heretag)
     if (!ft_strchr(heretag, '\'') && !ft_strchr(heretag, '\"'))
         return(1);
     return(0);
+
 }
 
 int ft_is_expand_required(char *heretag)
@@ -20,11 +21,10 @@ int ft_is_expand_required(char *heretag)
 
 void ft_test(int file[2])
 {
-    enum{BUF = 4096};
-    char buf[BUF];
+    char buf[4096];
     char *read_p;
 
-    read_p = read(file[0], buf, BUF);
+    read_p = read(file[0], buf, 4096);
     printf("BUFF = %s\n", buf);
 }
 
