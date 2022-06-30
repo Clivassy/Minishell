@@ -7,6 +7,13 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
 - ?? 
 ----------------------------------------------------------------------*/
 
+int ft_expand_heredoc(t_data *data, char *heretag)
+{
+    if (ft_strchr(heretag, '$'))
+        printf("expand needed\n");
+    return(0);
+}
+
 char *ft_stock_here_doc(t_data *data, char *str, char *temp, char *heretag)
 {
     while (1)
@@ -31,6 +38,9 @@ char *ft_read_heredoc(t_data *data, char *str, char *heretag)
     // je l'add pas au garbage car je vais la libérer directement ds ma fct.
     temp = ft_strdup("");
     // expand 
+    printf("HERETAG : %s\n", heretag);
+    if (!ft_strchr(heretag, '\'') && !ft_strchr(heretag, '\"'))
+        ft_expand_heredoc(data, heretag);
     temp = ft_stock_here_doc(data, str, temp, heretag);
     return (temp);
 }
@@ -52,7 +62,7 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     str = ft_read_heredoc(data, str, here_tag);
     write(file[1], str, ft_strlen(str)+ 1);
     ft_test(file);
-    free(str);
-    free(here_tag);
+    //free(str);
+    //free(here_tag);
     return (file[0]);
 }

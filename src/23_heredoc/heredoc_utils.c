@@ -1,5 +1,9 @@
 #include "minishell.h"
 
+int ft_is_expand_required(char *heretag)
+{
+    
+}
 void ft_test(int file[2])
 {
     enum{BUF = 4096};
