@@ -92,7 +92,7 @@ static int	ft_is_next_word_to_expand(t_token *token)
 	}
 }
 
-// plus utilisee ?
+// a changer par une fonction qui prend un char *
 void	ft_expand_token(t_data *data, t_token *token)
 {
 	int		i;

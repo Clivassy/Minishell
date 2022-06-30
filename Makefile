@@ -53,6 +53,7 @@ YANNCOMPILE += src/30_read_gp_token_to_fill_exec_list/read_redirection_token.c
 YANNCOMPILE += src/30_read_gp_token_to_fill_exec_list/read_token_cmd.c
 YANNCOMPILE += src/30_read_gp_token_to_fill_exec_list/read_token_heredoc.c
 YANNCOMPILE += src/36_command_execution/exec_command.c
+YANNCOMPILE += src/36_command_execution/find_command_path.c
 YANNCOMPILE += src/40_builtin/echo.c
 YANNCOMPILE += src/40_builtin/cd.c
 YANNCOMPILE += src/45_environment/env_initialisation.c

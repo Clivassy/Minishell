@@ -4,6 +4,8 @@
 void	ft_close_fd_exept_current(t_data *data, int current_index)
 {
 	t_exec_elm *exec_elm;
+
+	exec_elm = data->exec_list;
 	while(exec_elm)
 	{
 		if (exec_elm->index != current_index)
@@ -18,8 +20,9 @@ void	ft_close_fd_exept_current(t_data *data, int current_index)
 void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm)
 {
 	ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
-    pid_t id;
-    id = fork();
+	ft_launch_command(exec_elm->cmd, data->env);
+
+	sleep(3);
 
 	exit(0); // voir comment exit le processus quand on saura pour les codes erreur
 
@@ -41,22 +44,35 @@ void    ft_exec_command(t_data *data)
     // wait de tous les processus lances
     // exit
 
-	int index;
+	int curent_index;
 	t_exec_elm *exec_elm;
 	pid_t id;
 
-	index = 0;
+	curent_index = 0;
 	exec_elm = data->exec_list;
 	while(exec_elm)
 	{
-		id = fork();
+		id = fork(); // ajouter protection fork
 		if (id == 0)
 		{
-			ft_close_fd_exept_current(data, index);
+			ft_close_fd_exept_current(data, curent_index);
 			ft_launch_processus(data, exec_elm);
 		}
+		else
+			exec_elm->pid = id;
+		sleep(1);
 		exec_elm = exec_elm->next;
 	}
+	ft_close_fd_exept_current(data, -1);
+
+	exec_elm = data->exec_list;
+	while(exec_elm)
+	{
+		ft_printf("attente fin processus: %d\n", exec_elm->index);
+		waitpid(exec_elm->pid, NULL, 0); // remplacer NULL pour avoir l'id status
+		exec_elm = exec_elm->next;
+	}
+
 	//fork();
 }
 
