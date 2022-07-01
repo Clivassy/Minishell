@@ -4,7 +4,7 @@ int main(int argc, char **argv, char **envp)
 {
 	ft_printf(" ################## DEBUT PROGRAM  ##########################\n");
     t_data data;
-	ft_data_initialisation(&data);
+	ft_initialisation(&data);
 
 	// creation env
     ft_dup_env(&data, envp);
@@ -89,6 +89,6 @@ int main_exec()
     //// ft_lst_print(pt_data->exec_list);
 
     //// ------------------ lancement command -----------------------
-    //ft_exec_command(pt_data);
+    //ft_exec_cmd(pt_data);
     return (0);
 }

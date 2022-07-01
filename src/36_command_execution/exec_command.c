@@ -49,7 +49,7 @@ void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm)
 
 }
 
-void    ft_exec_command(t_data *data)
+void    ft_exec_cmd(t_data *data)
 {
     // boucle sur la list chainee des commandes a executer exec_list
     //      fork()

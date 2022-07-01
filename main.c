@@ -1,9 +1,22 @@
-/*#include "minishell.h"
+#include "minishell.h"
 
-int main_tmp(int argc, char **argv, char **envp)
+int main(int argc, char **argv, char **envp)
 {
-    // initialisation (structure, parsing envp..)
-// lancement du minishell (minishell_loop)
-    // free et exit
+	int	error_status;
+	t_data	data;
+	if (!isatty(0)) // check if the standar input is from a terminal
+	{
+		// message erreur + sortie
+	}
+	if (argc != 1)
+    {
+		// message erreur + sortie
+	}
 
-}*/
+
+	ft_initialisation(&data);
+	// initialisation signaux
+	ft_minishell_loop(&data);
+    ft_free_garbage_collector(&data);
+	return (0);
+}

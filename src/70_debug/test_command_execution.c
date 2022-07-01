@@ -9,7 +9,7 @@ void	ft_test_command_execution(t_data *data)
 	ft_print_token_list(data->gp_tokens_list);
 	ft_print_color(COLOR_NORMAL);
 
-	ft_exec_command(data);
+	ft_exec_cmd(data);
 
 	ft_print_color(COLOR_CYAN);
 	ft_printf("###### exec list testee ######\n");

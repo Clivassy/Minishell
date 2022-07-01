@@ -73,7 +73,9 @@ void    ft_minishell_loop(t_data *env);
 // exit
 void    ft_exit(t_data *data);
 
-// 60_tools
+//-----------------------------------------
+//           60_tools
+//-----------------------------------------
 // garbage collector 1
 void	ft_init_garbage_collector(t_data *data);
 void	*ft_malloc(t_data *data, size_t size);

@@ -31,6 +31,9 @@ static void	ft_create_pipe_between_process(t_data *data)
 
 void	ft_create_exec_elm_list(t_data *data)
 {
+	// initialiser list avec pipes vierges
+	// ajouter un flag sur l'exec elm si un file n'est pas ouvert pour ne pas executer
+	// et voir ou reinitialisesr le flag a 0 si besoin ?
 	data->nb_of_process = ft_count_pipe(data, data->gp_tokens_list) + 1;
 	data->exec_list = ft_create_empty_exec_elm_list(data, data->nb_of_process);
 	ft_create_pipe_between_process(data);

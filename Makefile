@@ -3,7 +3,63 @@
 NAME = minishell
 
 # Sources
-SRCS += src/main.c
+
+
+SRCS += main.c
+SRCS += src/10_initialisation/data_initialisation.c
+SRCS += src/15_minishell_loop/minishell_loop.c
+SRCS += src/17_error_management/print_error.c
+SRCS += src/20_lexer/lexer.c
+SRCS += src/20_lexer/lexer_errors.c
+SRCS += src/20_lexer/lexer_utils.c
+SRCS += src/20_lexer/lexer_metacharacters.c
+SRCS += src/20_lexer/lexer_words.c
+SRCS += src/21_parser/parser.c
+SRCS += src/22_gp_tkn_lst/gp_tokens.c
+SRCS += src/22_gp_tkn_lst/gp_tokens_utils.c
+SRCS += src/23_heredoc/heredoc.c
+SRCS += src/23_heredoc/heredoc_utils.c
+SRCS += src/23_heredoc/test_heredoc.c
+SRCS += src/24_signals/signals.c
+SRCS += src/25_expand/expand.c
+SRCS += src/27_rm_quotes/rm_quotes_in_token.c
+SRCS += src/27_rm_quotes/rm_quotes_in_token_list.c
+SRCS += src/28_exec_list_creation/count_pipes.c
+SRCS += src/28_exec_list_creation/create_exec_elm_list.c
+SRCS += src/30_read_gp_token_to_fill_exec_list/read_gp_token_list.c
+SRCS += src/30_read_gp_token_to_fill_exec_list/read_redirection_token.c
+SRCS += src/30_read_gp_token_to_fill_exec_list/read_token_cmd.c
+SRCS += src/30_read_gp_token_to_fill_exec_list/read_token_heredoc.c
+SRCS += src/36_command_execution/exec_command.c
+SRCS += src/36_command_execution/find_command_path.c
+SRCS += src/40_builtin/echo.c
+SRCS += src/40_builtin/cd.c
+SRCS += src/45_environment/env_initialisation.c
+SRCS += src/45_environment/env_manipulation.c
+SRCS += src/50_exit_functions/exit.c
+SRCS += src/60_tools/create_exec_list.c
+SRCS += src/60_tools/create_token_list.c
+SRCS += src/60_tools/exec_elm_manipulation.c
+SRCS += src/60_tools/ft_add_to_str.c
+SRCS += src/60_tools/ft_rm_from_str.c
+SRCS += src/60_tools/garbage_collector_1.c
+SRCS += src/60_tools/garbage_collector_2.c
+SRCS += src/60_tools/print_color.c
+SRCS += src/60_tools/tkn_manipulation.c
+SRCS += src/70_debug/print_env.c
+SRCS += src/70_debug/print_exec_elm_list.c
+SRCS += src/70_debug/print_token_list.c
+SRCS += src/70_debug/test_command_execution.c
+SRCS += src/70_debug/test_add_to_str.c
+SRCS += src/70_debug/test_echo.c
+SRCS += src/70_debug/test_env.c
+SRCS += src/70_debug/test_exec_list_creation.c
+SRCS += src/70_debug/test_expand.c
+SRCS += src/70_debug/test_garbage_collector.c
+SRCS += src/70_debug/test_read_gp_token_to_fill_exec_list.c
+SRCS += src/70_debug/test_rm_from_str.c
+SRCS += src/70_debug/test_rm_quotes.c
+
 
 OBJS = ${SRCS:.c=.o}
 
@@ -20,11 +76,13 @@ CFLAGS = -g
 #CFLAGS = -Wall -Wextra -Werror
 
 ##########   RULES   ##########
+
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADER)
 	make -C ./libft all
-	${CC} ${OBJS} -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+	${CC} ${SRCS} -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
 
 %.o: %.c $(HEADER)
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES_DIR)
@@ -40,6 +98,9 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
 
 YANNCOMPILE = main_yann.c
 YANNCOMPILE += src/10_initialisation/data_initialisation.c

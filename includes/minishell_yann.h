@@ -5,7 +5,19 @@
 //-----------------------------------------
 // 10_initialisation
 // data initialisation
-void	ft_data_initialisation(t_data *data);
+void	ft_initialisation(t_data *data);
+
+//-----------------------------------------
+//           15_initialisation
+//-----------------------------------------
+// minishell_loop
+int	ft_get_cmd(t_data *data);
+void	ft_minishell_loop(t_data *data);
+
+//-----------------------------------------
+//           17_error_management
+//-----------------------------------------
+void	ft_print_error(t_data *data, int error_status);
 
 //-----------------------------------------
 //               25 expand
@@ -49,7 +61,7 @@ void	ft_set_exec_with_t_heredoc(t_data *data, t_token *token, int process);
 //-----------------------------------------
 //exec_command.c
 void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm);
-void    ft_exec_command(t_data *data);
+void    ft_exec_cmd(t_data *data);
 // find_command_path.c
 void	ft_launch_command(char **cmd, char **envp);
 char	*ft_find_command(char *cmd, char **envp);

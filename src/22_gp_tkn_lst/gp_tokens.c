@@ -10,6 +10,7 @@ static int ft_is_redirect(t_token *curr)
 
 int ft_group_tokens(t_data *data)
 {
+	// possible de return un void
     t_token *new_list;
     t_token *list;
 

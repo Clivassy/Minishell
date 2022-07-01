@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	ft_data_initialisation(t_data *data)
+void	ft_initialisation(t_data *data)
 {
 	data->exit_asked = 0;
     data->env = NULL;

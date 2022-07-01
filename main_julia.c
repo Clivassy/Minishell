@@ -1,8 +1,8 @@
 #include "minishell.h"
 
 /*******************************************************************
-Return error if : 
-Standard input is NOT from the terminal 
+Return error if :
+Standard input is NOT from the terminal
 
 *******************************************************************/
 void    ft_pre_check_input(void)
@@ -13,11 +13,11 @@ void    ft_pre_check_input(void)
 
 void    ft_init_struct(t_data *data)
 {
-    ft_data_initialisation(data);
+    ft_initialisation(data);
     data->read_line = NULL;
     data->exit_asked = 1;
     data->gp_tokens_list = NULL;
-    // ++ 
+    // ++
 }
 
 int main(int ac, char **av)
@@ -37,9 +37,9 @@ int main(int ac, char **av)
             ft_minishell(data);
         }
     }
-    else 
+    else
         ft_lexer_error("Error: invalid number of args");
     ft_free_garbage_collector(data);
     return (0);
- // boucle infinie : lance le script   
+ // boucle infinie : lance le script
 }
