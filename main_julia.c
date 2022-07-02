@@ -13,7 +13,8 @@ void    ft_pre_check_input(void)
 
 void    ft_init_struct(t_data *data)
 {
-    ft_initialisation(data);
+    //ft_initialisation(data);
+    data->tokens_list = NULL;
     data->read_line = NULL;
     data->exit_asked = 1;
     data->gp_tokens_list = NULL;

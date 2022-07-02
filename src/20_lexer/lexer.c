@@ -63,7 +63,7 @@ void    ft_minishell(t_data *data)
     ft_is_empty_list(data->tokens_list);
     if (ft_group_tokens(data) == ERROR)
         ft_lexer_error("Error: create group tokens list");
-    ft_heredoc(data, heretag);
+   // ft_heredoc(data, heretag);
     ft_print_token_list(data->gp_tokens_list);
     //ft_print_token_list(data->tokens_list);
 }

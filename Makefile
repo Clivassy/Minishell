@@ -144,13 +144,13 @@ YANNCOMPILE += src/70_debug/test_rm_from_str.c
 YANNCOMPILE += src/70_debug/test_rm_quotes.c
 
 JULIACOMPILE = main_julia.c
-JULIACOMPILE += src/10_initialisation/data_initialisation.c
 JULIACOMPILE += src/20_lexer/lexer.c
 JULIACOMPILE += src/20_lexer/lexer_errors.c
 JULIACOMPILE += src/20_lexer/lexer_utils.c
 JULIACOMPILE += src/20_lexer/lexer_metacharacters.c
 JULIACOMPILE += src/20_lexer/lexer_words.c
 JULIACOMPILE += src/21_parser/parser.c
+JULIACOMPILE += src/21_parser/tmp_parser.c
 JULIACOMPILE += src/22_gp_tkn_lst/gp_tokens.c
 JULIACOMPILE += src/22_gp_tkn_lst/gp_tokens_utils.c
 JULIACOMPILE += src/23_heredoc/heredoc.c

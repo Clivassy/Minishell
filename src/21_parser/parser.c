@@ -11,7 +11,7 @@ pipe : nptk apres sauf autre pipe ou rien.
 
 - Gestions des doubles redirect
 ----------------------------------------------------------------------*/
-
+/*
 int ft_is_redirect_err(t_token *token)
 {
     if (token->type == T_REDIRECT_IN || token->type == T_REDIRECT_OUT
@@ -43,7 +43,7 @@ int ft_redirect_errors(t_token *token)
         }
         token = token->next;
     }
-   // printf("NO REDIRECT ERRORS\n");*/
+   // printf("NO REDIRECT ERRORS\n");
     return (0);
 }
 
@@ -62,7 +62,7 @@ int ft_search_next_pipe(t_token *list)
     }
     return (0);
 }
-/*
+
 int ft_is_empy_pipe(t_token *token)
 {
     if (!token->next && token->type != T_WORD)
@@ -77,7 +77,7 @@ int ft_is_empy_pipe(t_token *token)
         }
     }
     return (0);
-}*/
+}
 
 void ft_is_empy_pipe(t_token *token)
 {
@@ -129,7 +129,7 @@ int ft_parser(t_data *data)
     return (0);
 }    
 
-/*int ft_redirect_errors(t_token *token)
+int ft_redirect_errors(t_token *token)
 {
     while (token)
     {
