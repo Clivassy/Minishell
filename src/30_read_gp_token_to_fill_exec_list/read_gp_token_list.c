@@ -52,7 +52,7 @@ void	ft_fill_exec_list_cmd__and_redirect(t_data *data)
 	}
 }
 
-void	ft_fill_exec_list(t_data *data)
+void	ft_build_exec_list(t_data *data)
 {
 	ft_create_exec_elm_list(data);
 	ft_fill_exec_list_heredoc(data);

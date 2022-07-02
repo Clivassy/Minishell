@@ -5,10 +5,11 @@
 //-----------------------------------------
 // 10_initialisation
 // data initialisation
-void	ft_initialisation(t_data *data);
+void	ft_initialisation(t_data *data, char **envp);
+void	ft_reinitialisation_read_data(t_data *data);
 
 //-----------------------------------------
-//           15_initialisation
+//           15_minishel_loop
 //-----------------------------------------
 // minishell_loop
 int	ft_get_cmd(t_data *data);
@@ -45,7 +46,7 @@ void	ft_create_exec_elm_list(t_data *data);
 //-----------------------------------------
 
 // read_gp_token_list.c
-void	ft_fill_exec_list(t_data *data);
+void	ft_build_exec_list(t_data *data);
 // read_redirection_token.c
 void	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process);
 void	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process);

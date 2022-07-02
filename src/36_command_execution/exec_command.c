@@ -12,12 +12,12 @@ void	ft_close_fd_exept_current(t_data *data, int current_index)
 			{
 				if (exec_elm->fd_in != STDIN_FILENO)
 				{
-					ft_printf("index:%d, close fd: %d\n", current_index, exec_elm->fd_in);
+					//ft_printf("index:%d, close fd: %d\n", current_index, exec_elm->fd_in);
 					close(exec_elm->fd_in); // ajouter protection fct
 				}
 				if (exec_elm->fd_out != STDOUT_FILENO)
 				{
-					ft_printf("index:%d, close fd: %d\n", current_index, exec_elm->fd_out);
+					//ft_printf("index:%d, close fd: %d\n", current_index, exec_elm->fd_out);
 
 					close(exec_elm->fd_out); // ajouter protection fct
 				}
@@ -28,8 +28,8 @@ void	ft_close_fd_exept_current(t_data *data, int current_index)
 
 void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm)
 {
-	ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
-	ft_printf("fd_in: %d, fd_out: %d\n", exec_elm->fd_in, exec_elm->fd_out);
+	//ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
+	//ft_printf("fd_in: %d, fd_out: %d\n", exec_elm->fd_in, exec_elm->fd_out);
 
 	if (exec_elm->fd_in != STDIN_FILENO)
 	{
@@ -81,7 +81,7 @@ void    ft_exec_cmd(t_data *data)
 		}
 		else
 			exec_elm->pid = id;
-		sleep(1);
+		//sleep(1);
 		curent_index++;
 		exec_elm = exec_elm->next;
 	}
@@ -90,7 +90,7 @@ void    ft_exec_cmd(t_data *data)
 	exec_elm = data->exec_list;
 	while(exec_elm)
 	{
-		ft_printf("attente fin processus: %d\n", exec_elm->index);
+		//ft_printf("attente fin processus: %d\n", exec_elm->index);
 		waitpid(exec_elm->pid, NULL, 0); // remplacer NULL pour avoir l'id status
 		exec_elm = exec_elm->next;
 	}

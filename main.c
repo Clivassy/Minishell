@@ -12,9 +12,7 @@ int main(int argc, char **argv, char **envp)
     {
 		// message erreur + sortie
 	}
-
-
-	ft_initialisation(&data);
+	ft_initialisation(&data, envp);
 	// initialisation signaux
 	ft_minishell_loop(&data);
     ft_free_garbage_collector(&data);
