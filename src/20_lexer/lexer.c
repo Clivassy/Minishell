@@ -50,20 +50,18 @@ t_token *ft_lexer(t_data *data)
 
 void    ft_minishell(t_data *data)
 {
-    ////////////////////////////////////////
+    /*///////////////////////////////////////
     t_token *heretag;
     heretag = ft_simulation_token_3(heretag);
-    //////////////////////////////////////
+    /////////////////////////////////////*/
     
     /* code d'erreur retour a modifier */
     if (ft_lexer(data) == NULL)
         ft_lexer_error("Error: lexer");
     if (ft_parser(data) == ERROR)
         ft_lexer_error("Error: parser");
-    ft_is_empty_list(data->tokens_list);
     if (ft_group_tokens(data) == ERROR)
         ft_lexer_error("Error: create group tokens list");
-   // ft_heredoc(data, heretag);
-    ft_print_token_list(data->gp_tokens_list);
-    //ft_print_token_list(data->tokens_list);
+    //ft_print_token_list(data->gp_tokens_list);
+    ft_print_token_list(data->tokens_list);
 }

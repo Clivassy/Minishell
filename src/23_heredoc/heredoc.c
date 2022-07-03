@@ -55,8 +55,11 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     char *here_tag;
     int file[2];
 
-    if (!here_tag)
+   /* if (!here_tag)
+    {
+        printf("NO HERETAG\n");
         ft_exit(data);
+    }*/
     here_tag = heredoc_tkn->value;
     if (pipe(file) == -1)
         ft_exit(data);
@@ -68,5 +71,6 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     ///// TMP ///////
     ft_test(file);
     ////// TMP //////
+    close(file[1]);
     return (file[0]);
 }
