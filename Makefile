@@ -146,6 +146,7 @@ YANNCOMPILE += src/70_debug/test_rm_from_str.c
 YANNCOMPILE += src/70_debug/test_rm_quotes.c
 
 JULIACOMPILE = main_julia.c
+JULIACOMPILE += src/17_error_management/print_error.c
 JULIACOMPILE += src/20_lexer/lexer.c
 JULIACOMPILE += src/20_lexer/lexer_errors.c
 JULIACOMPILE += src/20_lexer/lexer_utils.c

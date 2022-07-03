@@ -32,7 +32,9 @@ int ft_parser(t_data *data);
 int ft_pipe_errors(t_token *token);
 
 /******** parser_utils.c ************/
+int ft_pre_parser(t_data *data, t_token *list);
 int ft_is_redirect_err(t_token *token);
+int ft_is_empty_list(t_token *list);
 void ft_is_empty_pipe(t_token *token);
 
 /******** heredoc.c ************/
@@ -45,7 +47,7 @@ int ft_is_expand_required(char *heretag);
 
 /* ----------- ERRORS ------------*/
 void    ft_lexer_error(char *msg);
-void ft_is_empty_list(t_token *list);
+int ft_is_empty_list(t_token *list);
 
 /*----------------------------------------
             LIST TOKENS
@@ -53,7 +55,6 @@ void ft_is_empty_list(t_token *list);
 int ft_group_tokens(t_data *data);
 t_token *ft_fill_redir_tkn(t_data *data, t_token *list);
 int   ft_get_redir_tkn(t_data *data, char *content, int type);
-void ft_is_empty_list(t_token *list);
 void    ft_fill_new_token_2(char *content, t_data *data, int type);
 
 // 60_tools

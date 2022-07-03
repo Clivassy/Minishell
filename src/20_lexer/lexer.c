@@ -53,10 +53,9 @@ void    ft_minishell(t_data *data)
     error_status = 0;
     ft_lexer(data);
     error_status = ft_parser(data);
-	if (error_status!= 0)
-        ft_lexer_error("error");
-		//ft_print_error(data, error_status);
-    ft_group_tokens(data);
-    ft_print_token_list(data->gp_tokens_list);
+    if (error_status!= 0)
+        ft_print_error(data, error_status);
+    //ft_group_tokens(data);
+    //ft_print_token_list(data->gp_tokens_list);
     //ft_print_token_list(data->tokens_list);
 }
