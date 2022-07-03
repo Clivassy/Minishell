@@ -28,7 +28,7 @@ void	ft_close_fd_exept_current(t_data *data, int current_index)
 
 void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm)
 {
-	//ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
+	ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
 	//ft_printf("fd_in: %d, fd_out: %d\n", exec_elm->fd_in, exec_elm->fd_out);
 
 	if (exec_elm->fd_in != STDIN_FILENO)
@@ -39,9 +39,9 @@ void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm)
 	if (exec_elm->fd_out != STDOUT_FILENO)
 	{
 		if (dup2(exec_elm->fd_out, STDOUT_FILENO) == -1)
-						ft_exit(data); // revoir gestion erreur
+			ft_exit(data); // revoir gestion erreur
 	}
-	ft_launch_command(exec_elm->cmd, data->env);
+	ft_launch_command(data, exec_elm->cmd, data->env);
 
 	//sleep(3);
 

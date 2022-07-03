@@ -17,6 +17,7 @@ void	ft_free(t_data *data, void *address)
 		if (elm->content == address)
 		{
 			free(elm->content);
+			elm->content = NULL;
 			if (previous == NULL)
 				data->garbage_collector = next;
 			else
