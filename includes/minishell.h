@@ -33,6 +33,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft.h"
+# include "error_message.h"
 
 typedef struct s_token
 {

@@ -3,8 +3,9 @@
 int main(int argc, char **argv, char **envp)
 {
 	ft_printf(" ################## DEBUT PROGRAM  ##########################\n");
+
     t_data data;
-	ft_initialisation(&data);
+	ft_initialisation(&data, envp);
 
 	// creation env
     ft_dup_env(&data, envp);
@@ -49,7 +50,9 @@ int main(int argc, char **argv, char **envp)
 
 	//test command execution
 	ft_test_command_execution(&data);
-
+	
+	//test print error
+	ft_print_error(&data, SYNTAX_ERR_PIPE);
 
 	ft_free_garbage_collector(&data);
     return(0);

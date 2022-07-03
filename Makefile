@@ -63,6 +63,7 @@ SRCS += src/70_debug/test_rm_quotes.c
 
 OBJS = ${SRCS:.c=.o}
 
+HEADER += includes/error_message.h
 HEADER += includes/minishell.h
 HEADER += libft/libft.h
 
@@ -104,6 +105,7 @@ re: fclean all
 
 YANNCOMPILE = main_yann.c
 YANNCOMPILE += src/10_initialisation/data_initialisation.c
+YANNCOMPILE += src/17_error_management/print_error.c
 YANNCOMPILE += src/25_expand/expand.c
 YANNCOMPILE += src/27_rm_quotes/rm_quotes_in_token.c
 YANNCOMPILE += src/27_rm_quotes/rm_quotes_in_token_list.c

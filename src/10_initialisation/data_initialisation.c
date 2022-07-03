@@ -20,6 +20,7 @@ void	ft_initialisation(t_data *data, char **envp)
 void	ft_reinitialisation_read_data(t_data *data)
 {
 	// ajouter free dans aciennes allocations
+	// free fd + liste chainee fd
     data->read_line = NULL;
 	data->nb_of_process = 0;
     data->tokens_list = NULL;
