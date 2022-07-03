@@ -43,28 +43,25 @@ void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm)
 	}
 	ft_launch_command(exec_elm->cmd, data->env);
 
-	sleep(3);
+	//sleep(3);
 
 	exit(0); // voir comment exit le processus quand on saura pour les codes erreur
 
 }
 
+void	ft_exec_cmd_with_one_processus(t_data *data)
+{
+
+}
+
+void	ft_exec_cmd_with_many_processus(t_data *data)
+{
+
+}
+
+
 void    ft_exec_cmd(t_data *data)
 {
-    // boucle sur la list chainee des commandes a executer exec_list
-    //      fork()
-    //      fermer les pipe de toutes les autre commands
-    //      si la command est possible (check dans buildin et dans chemin du path)
-    //          lancer commande
-    //          fermeture pipes ouverts ?
-    //          exit du fork par la commande (automatique)
-    //      sinon
-    //          fermeture pipe
-    //          exit processus
-    // fermeture de tous les pipes dans le main
-    // wait de tous les processus lances
-    // exit
-
 	int curent_index;
 	t_exec_elm *exec_elm;
 	pid_t id;

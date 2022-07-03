@@ -26,12 +26,15 @@ void	ft_print_error(t_data *data, int error_status);
 // expand.c
 void	ft_expand_token(t_data *data, t_token *token);
 void	ft_expand(t_data *data);
+void	ft_expand_str(t_data *data, char **str);
 
 //----------------------------------------
 //              27_rm_quotes
 //-----------------------------------------
 void	ft_rm_quotes_in_tokens_list(t_data *data);
 void	ft_rm_quotes_in_token(t_data *data, t_token *token);
+void	ft_rm_quotes_in_str(t_data *data, char **str);
+
 
 //-----------------------------------------
 //          28_exec_list_creation
@@ -131,9 +134,11 @@ void	ft_test_command_execution(t_data *data);
 void    ft_test_echo();
 void	ft_test_env(t_data *data);
 void	ft_test_exec_list_creation(t_data *data);
+void	ft_test_expand_str(t_data *data);
 void	ft_test_expand_token(t_data *data);
 void	ft_test_expand(t_data *data);
 void    ft_test_garbage_collector(t_data *data);
+void	ft_test_rm_quotes_in_str(t_data *data);
 void	ft_test_rm_quotes_in_token(t_data *data);
 void	ft_test_rm_quotes_in_token_list(t_data *data);
 void	ft_test_ft_set_exec_t_redirect_in(t_data *data);

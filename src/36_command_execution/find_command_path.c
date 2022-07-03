@@ -58,7 +58,7 @@ char	*ft_find_command(char *cmd, char **envp)
 		if (ft_strnstr(envp[i], "PATH", 4))
 		{
 			paths = ft_split(envp[i] + 5, ':');
-			//if (!paths)
+			if (!paths)
 			//	ft_error("error with ft_split");
 			full_path = ft_check_path_command(paths, cmd);
 			if (full_path)
@@ -66,6 +66,7 @@ char	*ft_find_command(char *cmd, char **envp)
 				ft_free_pointer_array(paths);
 				return (full_path);
 			}
+			// check que path soit bien free a tous les coups ?
 		}
 		i++;
 	}
