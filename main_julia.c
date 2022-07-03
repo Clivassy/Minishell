@@ -18,6 +18,7 @@ void    ft_init_struct(t_data *data)
     data->read_line = NULL;
     data->exit_asked = 1;
     data->gp_tokens_list = NULL;
+    data->fd_lst = NULL;
     // ++
 }
 

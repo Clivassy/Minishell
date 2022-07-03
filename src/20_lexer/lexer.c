@@ -20,13 +20,14 @@ Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
 
 -----------------------------------------------------------------------*/
 
-t_token *ft_fill_tokens_list(t_data *data)
+void    ft_fill_tokens_list(t_data *data)
 {
     int index;
     int statut;
 
     statut = ft_check_unclose_quote(data->read_line);
     if (statut > 0)
+        // return CODE ERROR
         ft_lexer_error("Error: quotes non closed");
     index = 0;
     while (index < ft_strlen(data->read_line))
@@ -35,33 +36,27 @@ t_token *ft_fill_tokens_list(t_data *data)
         index += ft_get_separators(data, index);
         index++;
     }
-    return (data->tokens_list);
 }
 
-t_token *ft_lexer(t_data *data)
+void    ft_lexer(t_data *data)
 {
-
-    data->tokens_list = NULL;
-    data->tokens_list = ft_fill_tokens_list(data);
-    if (data->tokens_list == NULL)
-        return (NULL);
-    return (data->tokens_list);
+    ft_fill_tokens_list(data);
+    if (!data->tokens_list)
+        ft_exit(data);
 }
 
+// add error management : to Makefile
 void    ft_minishell(t_data *data)
 {
-    /*///////////////////////////////////////
-    t_token *heretag;
-    heretag = ft_simulation_token_3(heretag);
-    /////////////////////////////////////*/
-    
-    /* code d'erreur retour a modifier */
-    if (ft_lexer(data) == NULL)
-        ft_lexer_error("Error: lexer");
-    if (ft_parser(data) == ERROR)
-        ft_lexer_error("Error: parser");
-    if (ft_group_tokens(data) == ERROR)
-        ft_lexer_error("Error: create group tokens list");
-    //ft_print_token_list(data->gp_tokens_list);
-    ft_print_token_list(data->tokens_list);
+    int	error_status;
+
+    error_status = 0;
+    ft_lexer(data);
+    error_status = ft_parser(data);
+	if (error_status!= 0)
+        ft_lexer_error("error");
+		//ft_print_error(data, error_status);
+    ft_group_tokens(data);
+    ft_print_token_list(data->gp_tokens_list);
+    //ft_print_token_list(data->tokens_list);
 }

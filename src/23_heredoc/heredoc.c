@@ -49,17 +49,17 @@ char *ft_read_heredoc(t_data *data, char *heretag)
     return (tmp);
 }
 
-int ft_heredoc(t_data *data, t_token *heredoc_tkn)
+//int ft_heredoc(t_data *data, t_token *heredoc_tkn)
+void ft_heredoc(t_data *data, t_token *heredoc_tkn)
 {
     char *str;
     char *here_tag;
     int file[2];
+    t_fd_heredoc *fd_list;
 
-   /* if (!here_tag)
-    {
-        printf("NO HERETAG\n");
+    fd_list = ft_malloc(data, sizeof(t_fd_heredoc));
+    if (!fd_list)
         ft_exit(data);
-    }*/
     here_tag = heredoc_tkn->value;
     if (pipe(file) == -1)
         ft_exit(data);
@@ -72,5 +72,5 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     ft_test(file);
     ////// TMP //////
     close(file[1]);
-    return (file[0]);
+    fd_list->fd = file[0];
 }

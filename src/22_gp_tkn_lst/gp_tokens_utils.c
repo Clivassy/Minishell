@@ -1,16 +1,5 @@
 #include "minishell.h"
 
-void ft_is_empty_list(t_token *list)
-{
-    while (list)
-    {
-        if (list->type != T_SPACE)
-            return;
-        list = list->next;
-    }
-    ft_lexer_error("Error: only space, tab or newlines");
-}
-
 void    ft_fill_new_token_2(char *content, t_data *data, int type)
 {
     t_token *new_token;

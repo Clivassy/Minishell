@@ -43,6 +43,13 @@ typedef struct s_token
 
 }   t_token;
 
+typedef struct s_fd_heredoc
+{
+    int fd;
+    struct s_fd_heredoc *next;
+
+}   t_fd_heredoc;
+
 typedef struct s_exec_elm
 {
     char **cmd;
@@ -65,6 +72,7 @@ typedef struct s_data
     t_token	*tokens_list;
     t_token *gp_tokens_list;
     t_exec_elm	*exec_list;
+    t_fd_heredoc  *fd_lst;
 	t_list	*garbage_collector;
 }	t_data;
 

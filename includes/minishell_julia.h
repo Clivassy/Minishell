@@ -9,7 +9,7 @@
 
 /******** lexer.c ************/
 void    ft_minishell(t_data *data);
-t_token *ft_lexer(t_data *data);
+void    ft_lexer(t_data *data);
 
 /******** lexer_metacharacters.c ************/
 int     ft_get_separators(t_data *data, int index);
@@ -31,9 +31,12 @@ int     ft_is_word(char *line, int index);
 int ft_parser(t_data *data);
 int ft_pipe_errors(t_token *token);
 
-/******** heredoc.c ************/
+/******** parser_utils.c ************/
+int ft_is_redirect_err(t_token *token);
+void ft_is_empty_pipe(t_token *token);
 
-int ft_heredoc(t_data *data, t_token *heredoc_tkn);
+/******** heredoc.c ************/
+void ft_heredoc(t_data *data, t_token *heredoc_tkn);
 int	ft_strcmp(char *s1, char *s2);
 char *ft_read_heredoc(t_data *data, char *heretag);
 int ft_is_quoted(char *heretag);
@@ -53,7 +56,7 @@ int   ft_get_redir_tkn(t_data *data, char *content, int type);
 void ft_is_empty_list(t_token *list);
 void    ft_fill_new_token_2(char *content, t_data *data, int type);
 
-// 60_tools //
+// 60_tools
 /******** tkn_manipulation.c ************/
 void    ft_lstadd_back_token(t_token **alst, t_token *new);
 t_token *ft_new_token(char *value, int type);
@@ -64,3 +67,5 @@ void ft_test(int file[2]);
 t_token    *ft_simulation_token_1(t_token *heretag);
 t_token    *ft_simulation_token_2(t_token *heretag);
 t_token    *ft_simulation_token_3(t_token *heretag);
+
+
