@@ -1,5 +1,17 @@
 #include "minishell.h"
 
+void	ft_test_rm_quotes_in_str(t_data *data)
+
+{
+	char *str = ft_strdup("\"in double 'in double'\"'in simple\"in\"'outside");
+	// pour test dans bash : echo "in double 'in double'"'in simple"in"'outside
+	ft_add_to_garbage_collector(data, str);
+
+	ft_printf("str avant expand : %s\n",str);
+	ft_rm_quotes_in_str(data, &str);
+	ft_printf("str apres expand : %s\n", str);
+}
+
 void	ft_test_rm_quotes_in_token(t_data *data)
 {
 	ft_printf("token avant expand : %s\n", data->tokens_list->value);

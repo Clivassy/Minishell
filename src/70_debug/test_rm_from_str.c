@@ -30,12 +30,4 @@ void	ft_test_rm_from_str(t_data *data)
 	ft_rm_from_str(data, &str, 0, 0);
 	ft_rm_from_str(data, &str, 0, 2);
 	ft_rm_from_str(data, &str, 0, 8);
-
-
-
-
-
-
-
-
 }

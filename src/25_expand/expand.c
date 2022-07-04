@@ -92,7 +92,7 @@ static int	ft_is_next_word_to_expand(t_token *token)
 	}
 }
 
-// a changer par une fonction qui prend un char *
+// fait expand sur la value d'un token
 void	ft_expand_token(t_data *data, t_token *token)
 {
 	int		i;
@@ -158,5 +158,25 @@ void	ft_expand(t_data *data)
 		if (token->type != T_SPACE)
 			next_word_to_expand = ft_is_next_word_to_expand(token);
 		token = token->next;
+	}
+}
+
+// fait expand sur str
+void	ft_expand_str(t_data *data, char **str)
+{
+	int	i;
+
+	i = 0;
+	while ((*str)[i])
+	{
+		if ((*str)[i] == '$')
+		{
+			printf("check %c\n",(*str)[i]);
+			if ((*str)[i + 1] == '?')
+				ft_expand_pipeline_exit_status(data, str, &i);
+			else
+				ft_expand_normal_key(data, str, &i);
+		}
+		i++;
 	}
 }

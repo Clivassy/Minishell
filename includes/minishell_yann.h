@@ -26,12 +26,15 @@ void	ft_print_error(t_data *data, int error_status);
 // expand.c
 void	ft_expand_token(t_data *data, t_token *token);
 void	ft_expand(t_data *data);
+void	ft_expand_str(t_data *data, char **str);
 
 //----------------------------------------
 //              27_rm_quotes
 //-----------------------------------------
 void	ft_rm_quotes_in_tokens_list(t_data *data);
 void	ft_rm_quotes_in_token(t_data *data, t_token *token);
+void	ft_rm_quotes_in_str(t_data *data, char **str);
+
 
 //-----------------------------------------
 //          28_exec_list_creation
@@ -64,9 +67,9 @@ void	ft_set_exec_with_t_heredoc(t_data *data, t_token *token, int process);
 void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm);
 void    ft_exec_cmd(t_data *data);
 // find_command_path.c
-void	ft_launch_command(char **cmd, char **envp);
-char	*ft_find_command(char *cmd, char **envp);
-char	*ft_check_path_command(char **paths, char *cmd);
+char	*ft_check_path_command(t_data *data, char **paths, char *cmd);
+char	*ft_find_command(t_data *data, char *cmd, char **envp);
+void	ft_launch_command(t_data *data, char **cmd, char **envp);
 
 //-----------------------------------------
 //               40 builtin
@@ -131,9 +134,11 @@ void	ft_test_command_execution(t_data *data);
 void    ft_test_echo();
 void	ft_test_env(t_data *data);
 void	ft_test_exec_list_creation(t_data *data);
+void	ft_test_expand_str(t_data *data);
 void	ft_test_expand_token(t_data *data);
 void	ft_test_expand(t_data *data);
 void    ft_test_garbage_collector(t_data *data);
+void	ft_test_rm_quotes_in_str(t_data *data);
 void	ft_test_rm_quotes_in_token(t_data *data);
 void	ft_test_rm_quotes_in_token_list(t_data *data);
 void	ft_test_ft_set_exec_t_redirect_in(t_data *data);

@@ -33,11 +33,12 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_rm_from_str(&data);
 
 	// test expand
-	//create_token_list_1(&data);
+	//ft_test_expand_str(&data);
 	//ft_test_expand_token(&data);
 	//ft_test_expand(&data);
 
 	// test rm quotes from token
+	ft_test_rm_quotes_in_str(&data);
 	//create_token_list_2(&data);
 	//ft_test_rm_quotes_in_token(&data);
 	//ft_test_rm_quotes_in_token_list(&data);
@@ -48,11 +49,13 @@ int main(int argc, char **argv, char **envp)
 	//test read_gp_token_to_fill_exec_list
 	//ft_test_ft_set_exec_t_redirect_in(&data);
 
-	//test command execution
-	ft_test_command_execution(&data);
-	
 	//test print error
-	ft_print_error(&data, SYNTAX_ERR_PIPE);
+	//ft_print_error(&data, SYNTAX_ERR_PIPE);
+
+	//test
+
+	//test command execution
+	//ft_test_command_execution(&data);
 
 	ft_free_garbage_collector(&data);
     return(0);
