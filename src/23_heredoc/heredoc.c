@@ -10,7 +10,7 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
 int ft_expand_heredoc(t_data *data, char **str)
 {
     printf("---PROCEED EXPAND-----\n");
-    //ft_expand_str(data, str);
+    ft_expand_str(data, &str);
     // call yann fct that will expand the char *
     return(0);
 }
@@ -30,7 +30,7 @@ char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
         if (ft_strcmp(str, heretag) == 0)
             break;
         if (exp > 0 && ft_is_expand_required(str))
-            ft_expand_heredoc(data, &str);
+            ft_expand_str(data, &str);
         tmp = ft_strjoin(tmp, str);
     }
     return(tmp);
@@ -62,6 +62,7 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     fd_list = malloc(sizeof(t_fd_heredoc));
     here_tag = heredoc_tkn->value;
     ft_rm_quotes_in_str(data, &here_tag);
+    //printf("heretag = %s\n", here_tag);
     if (pipe(file) == -1)
         ft_exit(data);
     str = ft_read_heredoc(data, here_tag);
@@ -73,5 +74,5 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     ft_test(file);
     ////// TMP /////
     fd_list->fd = file[0];
-    //close(file[1]);
+    close(file[1]);
 }

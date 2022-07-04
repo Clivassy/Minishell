@@ -37,6 +37,7 @@ static int	ft_is_in_garbage_collector(t_data *data, void *address)
 		}
 		elm = elm->next;
 	}
+	return(0);
 }
 
 // cree un maillon a la fin du garbage_collector et definie le
