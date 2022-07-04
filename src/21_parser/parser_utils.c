@@ -1,5 +1,32 @@
 #include "minishell.h"
 
+int ft_next_isnt_space(int type)
+{
+    if(type == T_PIPE)
+        return(SYNTAX_ERR_PIPE);
+    if (type == T_REDIRECT_IN)
+        return(SYNTAX_ERR_REDIRECT_IN);
+    if (type == T_REDIRECT_OUT)
+        return(SYNTAX_ERR_REDIRECT_OUT);
+    if (type == D_REDIRECT_OUT)
+        return(SYNTAX_ERR_D_REDIRECT_OUT);
+    return (0);
+}
+
+/* error: redirect followed by space and no word */
+int ft_next_is_space(int type)
+{
+    if (type == T_PIPE)
+        return(SYNTAX_ERR_PIPE);
+    if (type == T_REDIRECT_IN)
+        return(SYNTAX_ERR_REDIRECT_IN);
+    if (type == T_REDIRECT_OUT)
+        return(SYNTAX_ERR_REDIRECT_OUT);
+    if (type == D_REDIRECT_OUT)
+        return(SYNTAX_ERR_D_REDIRECT_OUT);
+    return (0);
+}
+
 /* check les listes avec seulement espaces ou tab 
 + pipe at the begining
 + space suivi d'un pipe at the beggining*/ 
@@ -40,20 +67,23 @@ int ft_is_redirect_err(t_token *token)
     return(0);
 }
 
-void ft_is_empty_pipe(t_token *token)
+int ft_is_empty_pipe(t_token *token)
 {
     t_token *tmp;
 
     int statut = 0;
     tmp = token;
     if (!tmp->next && tmp->type != T_WORD)
-        ft_lexer_error("Error 5 : no word after last pipe");
+        return(SYNTAX_ERR_PIPE);
+        //ft_lexer_error("Error 5 : no word after last pipe");
     while (tmp)
     {
         if (tmp->type == T_WORD)
             statut = 1;
         if (tmp->type == T_PIPE && statut < 1)
-            ft_lexer_error("error; no word between pipe");
+            return(SYNTAX_ERR_PIPE);
+            //ft_lexer_error("error; no word between pipe");
         tmp = tmp->next;
     }
+    return(0);
 }

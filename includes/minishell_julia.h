@@ -35,7 +35,9 @@ int ft_pipe_errors(t_token *token);
 int ft_pre_parser(t_data *data, t_token *list);
 int ft_is_redirect_err(t_token *token);
 int ft_is_empty_list(t_token *list);
-void ft_is_empty_pipe(t_token *token);
+int ft_is_empty_pipe(t_token *token);
+int ft_next_is_space(int type);
+int ft_next_isnt_space(int type);
 
 /******** heredoc.c ************/
 void ft_heredoc(t_data *data, t_token *heredoc_tkn);
