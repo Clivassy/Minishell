@@ -20,15 +20,15 @@ Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
 
 -----------------------------------------------------------------------*/
 
-void    ft_fill_tokens_list(t_data *data)
+int    ft_fill_tokens_list(t_data *data)
 {
     int index;
     int statut;
 
     statut = ft_check_unclose_quote(data->read_line);
     if (statut > 0)
-        // return CODE ERROR
-        ft_lexer_error("Error: quotes non closed");
+        return(UNCLOSED_QUOTES_ERR);
+        // ft_lexer_error("Error: quotes non closed");
     index = 0;
     while (index < ft_strlen(data->read_line))
     {
@@ -36,13 +36,16 @@ void    ft_fill_tokens_list(t_data *data)
         index += ft_get_separators(data, index);
         index++;
     }
+    return(0);
 }
 
-void    ft_lexer(t_data *data)
+int    ft_lexer(t_data *data)
 {
-    ft_fill_tokens_list(data);
+    if (ft_fill_tokens_list(data) != 0)
+        return(UNCLOSED_QUOTES_ERR);
     if (!data->tokens_list)
         ft_exit(data);
+    return (0);
 }
 
 // add error management : to Makefile
@@ -55,7 +58,7 @@ void    ft_minishell(t_data *data)
     error_status = ft_parser(data);
     if (error_status!= 0)
         ft_print_error(data, error_status);
-    //ft_group_tokens(data);
-    //ft_print_token_list(data->gp_tokens_list);
+    ft_group_tokens(data);
+    ft_print_token_list(data->gp_tokens_list);
     //ft_print_token_list(data->tokens_list);
 }

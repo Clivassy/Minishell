@@ -18,10 +18,9 @@ int ft_redirect_errors(t_token *token)
 {
     if (ft_is_redirect_err(token))
     {
-        printf("token type is : %s\n", token->value);
+        //printf("token type is : %s\n", token->value);
         if (!token->next)
-            return(SYNTAX_ERR_NEWLINE);
-            //ft_lexer_error("Error: nothing after redirect");
+            return(SYNTAX_ERR_NEWLINE);//ft_lexer_error("Error: nothing after redirect");
         if (token->next->type == T_SPACE)
         {
             if (!token->next->next)
@@ -29,33 +28,12 @@ int ft_redirect_errors(t_token *token)
             if (ft_next_is_space(token->next->next->type)
                 != 0)
                 return(ft_next_is_space(token->next->next->type));
-                //ft_lexer_error("error: redirect followed by space and nothing");
-           /* if (token->next->next->type == T_PIPE)
-                return(SYNTAX_ERR_PIPE);
-                //ft_lexer_error("error: redirect followed by space and no word");
-            if (token->next->next->type == T_REDIRECT_IN)
-                return(SYNTAX_ERR_REDIRECT_IN);
-            if (token->next->next->type == T_REDIRECT_OUT)
-                return(SYNTAX_ERR_REDIRECT_OUT);
-            if (token->next->next->type == D_REDIRECT_OUT)
-                return(SYNTAX_ERR_D_REDIRECT_OUT);*/
         }
         if (token->next->type != T_SPACE)
         {
             if (ft_next_isnt_space(token->next->type)
                 != 0)
                 return(ft_next_isnt_space(token->next->type));
-            /*
-            if(token->next->type == T_PIPE)
-                return(SYNTAX_ERR_PIPE);
-            if (token->next->type == T_REDIRECT_IN)
-                return(SYNTAX_ERR_REDIRECT_IN);
-            if (token->next->type == T_REDIRECT_OUT)
-                return(SYNTAX_ERR_REDIRECT_OUT);
-            if (token->next->type == D_REDIRECT_OUT)
-                return(SYNTAX_ERR_D_REDIRECT_OUT);
-            if(token->next->type != T_WORD)
-                ft_lexer_error("error: redirect is not followed by word");*/
         }
     }
     return (0);
@@ -101,8 +79,7 @@ int ft_parser(t_data *data)
         if (list->type == T_HEREDOC)
         {
             if (!list->next)
-                return(SYNTAX_ERR_NEWLINE);
-                //ft_lexer_error("Error 0: Nothing after heredoc");
+                return(SYNTAX_ERR_NEWLINE);//ft_lexer_error("Error 0: Nothing after heredoc");
             error_status = ft_is_heredoc(data, list);
         }
         if (list->type == T_PIPE)

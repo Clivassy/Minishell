@@ -17,7 +17,7 @@ int ft_group_tokens(t_data *data)
     list = data->tokens_list;
     while (list)
     {
-        if (!list->next)
+        if (!list->next && list->type != T_WORD)
            return(0);
         if (list->type == T_SPACE)
             list = list->next;

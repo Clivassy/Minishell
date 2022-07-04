@@ -7,5 +7,6 @@
 # define SYNTAX_ERR_D_REDIRECT_OUT 4
 # define SYNTAX_ERR_NEWLINE 5
 # define SYNTAX_ERR_HEREDOC 6
+# define UNCLOSED_QUOTES_ERR 7
 
 #endif

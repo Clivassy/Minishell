@@ -9,7 +9,8 @@
 
 /******** lexer.c ************/
 void    ft_minishell(t_data *data);
-void    ft_lexer(t_data *data);
+void    ft_fill_new_token(char *content, t_data *data, int type);
+int    ft_lexer(t_data *data);
 
 /******** lexer_metacharacters.c ************/
 int     ft_get_separators(t_data *data, int index);
@@ -17,7 +18,7 @@ int	ft_is_space_sep(char c);
 
 /******** lexer_words.c ************/
 int     ft_get_word(t_data *data, int index);
-void    ft_fill_new_token(char *content, t_data *data, int type);
+int    ft_fill_tokens_list(t_data *data);
 
 /******** lexer_utils.c ************/
 int     ft_check_unclose_quote(char	*line);
