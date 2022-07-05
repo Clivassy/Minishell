@@ -15,6 +15,7 @@ SRCS += src/20_lexer/lexer_utils.c
 SRCS += src/20_lexer/lexer_metacharacters.c
 SRCS += src/20_lexer/lexer_words.c
 SRCS += src/21_parser/parser.c
+SRCS += src/21_parser/parser_utils.c
 SRCS += src/22_gp_tkn_lst/gp_tokens.c
 SRCS += src/22_gp_tkn_lst/gp_tokens_utils.c
 SRCS += src/23_heredoc/heredoc.c
