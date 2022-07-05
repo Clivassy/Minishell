@@ -6,23 +6,24 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
 - j'expand ce qui est a l'intérieur si jamais il y a des variables d'emvironnement
 - ?? 
 ----------------------------------------------------------------------*/
-
+/*
 int ft_expand_heredoc(t_data *data, char **str)
 {
     printf("---PROCEED EXPAND-----\n");
     ft_expand_str(data, &str);
     // call yann fct that will expand the char *
     return(0);
-}
+}*/
 
 char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 {
     char *str; 
 
-    str = NULL;
+    //str = NULL;
     while (1)
     {
         str = readline("> ");
+        // add to garbage 
         if (!str)
             ft_exit(data);
         if (ft_strcmp(str, heretag) != 0)
@@ -59,6 +60,7 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     int file[2];
     t_fd_heredoc *fd_list;
 
+// voir mettre a null 
     fd_list = malloc(sizeof(t_fd_heredoc));
     here_tag = heredoc_tkn->value;
     ft_rm_quotes_in_str(data, &here_tag);
