@@ -139,6 +139,7 @@ JULIACOMPILE += src/30_read_gp_token_to_fill_exec_list/read_token_cmd.c
 JULIACOMPILE += src/30_read_gp_token_to_fill_exec_list/read_token_heredoc.c
 JULIACOMPILE += src/36_command_execution/exec_command.c
 JULIACOMPILE += src/36_command_execution/find_command_path.c
+JULIACOMPILE += src/36_command_execution/launch_command.c
 JULIACOMPILE += src/40_builtin/echo.c
 JULIACOMPILE += src/40_builtin/cd.c
 JULIACOMPILE += src/45_environment/env_initialisation.c

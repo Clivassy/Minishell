@@ -8,5 +8,6 @@
 # define SYNTAX_ERR_NEWLINE 5
 # define SYNTAX_ERR_HEREDOC 6
 # define UNCLOSED_QUOTES_ERR 7
+# define TAB_OR_SPC_ERR 8
 
 #endif
