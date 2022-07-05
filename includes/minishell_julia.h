@@ -63,8 +63,17 @@ void    ft_fill_new_token_2(char *content, t_data *data, int type);
 // 60_tools
 /******** tkn_manipulation.c ************/
 void    ft_lstadd_back_token(t_token **alst, t_token *new);
-t_token *ft_new_token(char *value, int type);
+t_token	*ft_new_token(t_data *data, char *value, int type);
 t_token *ft_lstlast_token(t_token *lst);
+
+/*----------------------------------------
+            LIST FD HEREDOC
+-----------------------------------------*/
+/******** heredoc_manipulation.c ************/
+t_fd_heredoc	*ft_new_fd(t_data *data, int fd);
+void	ft_lstadd_back_fd(t_fd_heredoc **alst, t_fd_heredoc *new);
+void    ft_print_fds_list(t_fd_heredoc *fd_list);
+t_fd_heredoc	*ft_lstlast_fd(t_fd_heredoc*lst);
 
 /* TEST */
 void ft_test(int file[2]);

@@ -3,13 +3,13 @@
 Fonctions qui vont permettre de manipuler la liste chainée de tokens:
 ----------------------------------------------------------------------*/
 
-t_token	*ft_new_token(char *value, int type)
+t_token	*ft_new_token(t_data *data, char *value, int type)
 {
 	t_token	*new;
 
-	new = (t_token*)malloc(sizeof(t_token));
+	new = (t_token*)ft_malloc(data, sizeof(t_token));
 	if (!new)
-		return (NULL);
+		ft_exit(data);
 	new->value = value;
 	new->type = type;
 	new->next = NULL;
@@ -40,8 +40,3 @@ void	ft_lstadd_back_token(t_token **alst, t_token *new)
 		last->next = new;
 	}
 }
-
-
-
-// fct pour libérer toute la liste (free du premier maillon jusqu'au dernier) : lstclear
-// a adapter aux tokens.

@@ -4,7 +4,7 @@ void    ft_fill_new_token_2(char *content, t_data *data, int type)
 {
     t_token *new_token;
 
-    new_token = ft_new_token(content, type);
+    new_token = ft_new_token(data, content, type);
     ft_lstadd_back_token(&data->gp_tokens_list, new_token);
 }
 

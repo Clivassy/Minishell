@@ -19,20 +19,24 @@ char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 {
     char *str; 
 
-    //str = NULL;
+    str = NULL;
     while (1)
     {
         str = readline("> ");
-        // add to garbage 
+        ft_add_to_garbage_collector(data, str); 
         if (!str)
             ft_exit(data);
         if (ft_strcmp(str, heretag) != 0)
+        {
             tmp = ft_strjoin(tmp, "\n");
+            ft_add_to_garbage_collector(data, tmp);
+        }
         if (ft_strcmp(str, heretag) == 0)
             break;
         if (exp > 0 && ft_is_expand_required(str))
             ft_expand_str(data, &str);
         tmp = ft_strjoin(tmp, str);
+        ft_add_to_garbage_collector(data, tmp);
     }
     return(tmp);
 }
@@ -43,16 +47,14 @@ char *ft_read_heredoc(t_data *data, char *heretag)
     int expand;
 
     expand = 0;
-    // je l'add pas au garbage car je vais la libérer directement ds ma fct.
     tmp = ft_strdup("");
+    ft_add_to_garbage_collector(data, tmp);
     if (ft_is_quoted(heretag))
         expand = 1;
     tmp = ft_stock_heredoc(expand, data, tmp, heretag);
     return (tmp);
 }
 
-void	ft_rm_quotes_in_str(t_data *data, char **str);
-//int ft_heredoc(t_data *data, t_token *heredoc_tkn)
 void ft_heredoc(t_data *data, t_token *heredoc_tkn)
 {
     char *str;
@@ -60,11 +62,9 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     int file[2];
     t_fd_heredoc *fd_list;
 
-// voir mettre a null 
-    fd_list = malloc(sizeof(t_fd_heredoc));
+    fd_list = NULL;
     here_tag = heredoc_tkn->value;
     ft_rm_quotes_in_str(data, &here_tag);
-    //printf("heretag = %s\n", here_tag);
     if (pipe(file) == -1)
         ft_exit(data);
     str = ft_read_heredoc(data, here_tag);
@@ -75,6 +75,7 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     ///// TMP ///////
     ft_test(file);
     ////// TMP /////
-    fd_list->fd = file[0];
+    fd_list = ft_new_fd(data, file[0]);
+    ft_lstadd_back_fd(&data->fd_lst, fd_list);
     close(file[1]);
 }
