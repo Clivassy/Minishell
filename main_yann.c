@@ -38,7 +38,7 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_expand(&data);
 
 	// test rm quotes from token
-	ft_test_rm_quotes_in_str(&data);
+	//ft_test_rm_quotes_in_str(&data);
 	//create_token_list_2(&data);
 	//ft_test_rm_quotes_in_token(&data);
 	//ft_test_rm_quotes_in_token_list(&data);
@@ -52,10 +52,13 @@ int main(int argc, char **argv, char **envp)
 	//test print error
 	//ft_print_error(&data, SYNTAX_ERR_PIPE);
 
-	//test
+	//test split
+	ft_test_split_garbage_collector(&data);
 
 	//test command execution
 	//ft_test_command_execution(&data);
+
+
 
 	ft_free_garbage_collector(&data);
     return(0);

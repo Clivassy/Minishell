@@ -48,6 +48,7 @@ void	ft_fill_exec_list_cmd__and_redirect(t_data *data)
 		{
 			ft_set_exec_d_redirect_out(data, pt_token, process);
 		}
+		// ajouter HEREDOC ICI avec lecture liste chainee Julia
 		pt_token = pt_token->next;
 	}
 }

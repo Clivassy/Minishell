@@ -114,10 +114,12 @@ void	ft_add_to_str(t_data *data, char **str, char *to_add, int position);
 void	ft_add_to_str_end(t_data *data, char **str, char *to_add);
 // ft_rm_from_str.c
 void	ft_rm_from_str(t_data *data, char **s, int rm_len, int position);
+// ft_split with garbage collector
+char	**ft_split_garbage_collector(t_data *data, char const *s, char c);
+void	ft_free_split_garbage_collector(t_data *data, char **split_str);
 // lst_manipulation.c
 void    ft_lst_add(t_exec_elm **elm_list, t_exec_elm *new_elm);
 t_exec_elm	*ft_lst_get_last_elm(t_exec_elm *lst);
-
 // print_color
 void	ft_print_color(char *str);
 
@@ -137,6 +139,7 @@ void	ft_test_exec_list_creation(t_data *data);
 void	ft_test_expand_str(t_data *data);
 void	ft_test_expand_token(t_data *data);
 void	ft_test_expand(t_data *data);
+void	ft_test_split_garbage_collector(t_data *data);
 void    ft_test_garbage_collector(t_data *data);
 void	ft_test_rm_quotes_in_str(t_data *data);
 void	ft_test_rm_quotes_in_token(t_data *data);
