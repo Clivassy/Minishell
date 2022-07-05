@@ -7,7 +7,7 @@ int	ft_get_cmd(t_data *data)
 {
 	int	error_status_parser;
 
-	ft_lexer(data);
+	error_status_parser = ft_lexer(data);
 	error_status_parser = ft_parser(data); // ajouter empty list fct dans parser + heredoc?
 	if (error_status_parser != 0)
 		ft_print_error(data, error_status_parser);
