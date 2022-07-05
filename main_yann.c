@@ -53,10 +53,10 @@ int main(int argc, char **argv, char **envp)
 	//ft_print_error(&data, SYNTAX_ERR_PIPE);
 
 	//test split
-	ft_test_split_garbage_collector(&data);
+	//ft_test_split_garbage_collector(&data);
 
 	//test command execution
-	//ft_test_command_execution(&data);
+	ft_test_command_execution(&data);
 
 
 

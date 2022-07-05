@@ -10,4 +10,8 @@
 # define UNCLOSED_QUOTES_ERR 7
 # define TAB_OR_SPC_ERR 8
 
+# define EXIT_CODE_NO_SUCH_FILE_OR_DIR 127
+# define EXIT_CODE_COMMAND_NOT_FOUND 127
+
+
 #endif
