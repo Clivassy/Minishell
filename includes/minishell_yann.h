@@ -28,6 +28,8 @@ void	ft_exit_dup_error(t_data *data);
 void	ft_exit_fork_error(t_data *data);
 // print_error.c
 void	ft_print_error(t_data *data, int error_status);
+// print_error_open.c
+void	ft_print_open_error(t_data *data, char *file_name);
 // error_pipe.c
 void	ft_exit_pipe_error(t_data *data);
 

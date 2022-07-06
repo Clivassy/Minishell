@@ -34,14 +34,14 @@ void	create_exec_list_1(t_data *data)
 	ft_add_to_garbage_collector(data, token3->value);
 	token3->next = token4;
 
-	token4->type = T_REDIRECT_OUT;
+	token4->type = T_REDIRECT_IN;
 	//token4->value = ft_strdup("file\"$a\" - '$a'ca");
 	token4->value = ft_strdup("file2");
 	ft_add_to_garbage_collector(data, token4->value);
 	token4->next = token5;
 
 	token5->type = T_CMD;
-	token5->value = ft_strdup("cat");
+	token5->value = ft_strdup("ls");
 	ft_add_to_garbage_collector(data, token5->value);
 	token5->next = token6;
 

@@ -30,13 +30,13 @@ void	ft_fill_exec_list_cmd__and_redirect(t_data *data)
 	pt_token = data->gp_tokens_list;
 	while (pt_token)
 	{
+		if (pt_token->type == T_PIPE)
+			process++;
 		exec_elm = ft_get_exec_elm(data->exec_list, process);
+		//ft_printf("process: %d\n", process);
 		if (exec_elm->has_redirect_pb != 1)
 		{
-
-			if (pt_token->type == T_PIPE)
-				process++;
-			else if (pt_token->type == T_CMD)
+			if (pt_token->type == T_CMD)
 			{
 				ft_set_exec_with_t_cmd_token(data, pt_token, process);
 			}
