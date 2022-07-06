@@ -70,6 +70,8 @@ void    ft_exec_cmd(t_data *data);
 char	*ft_check_path_command(t_data *data, char **paths, char *cmd);
 char	*ft_find_command(t_data *data, char *cmd, char **envp);
 void	ft_launch_command(t_data *data, char **cmd, char **envp);
+// launch_command.c
+void	ft_launch_cmd_if_is_builtin(t_data *data, char **cmd, char **envp);
 
 //-----------------------------------------
 //               40 builtin

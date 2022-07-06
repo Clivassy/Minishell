@@ -81,6 +81,8 @@ void    ft_minishell_loop(t_data *env);
 
 // exit
 void    ft_exit(t_data *data);
+void    ft_exit2(t_data *data, int error_status); // a regroupe avec ft_exit et utiliser ce proto partout
+
 
 //-----------------------------------------
 //           60_tools
