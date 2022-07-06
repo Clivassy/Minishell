@@ -1,4 +1,4 @@
-
+#include <signal.h> 
 /*----------------------------------------
                20_LEXER
 -----------------------------------------*/
@@ -61,6 +61,13 @@ int     ft_get_redir_tkn(t_data *data, char *content, int type);
 void    ft_fill_new_token_2(char *content, t_data *data, int type);
 
 /*----------------------------------------
+            24_SIGNALS
+-----------------------------------------*/
+/********** signals.c ****************/
+void    ft_handle_signals(void);
+void ft_handle_sigint(int signal);
+
+/*----------------------------------------
             60_TOOLS
 -----------------------------------------*/
 /******** tkn_manipulation.c ************/
@@ -70,6 +77,7 @@ t_token *ft_lstlast_token(t_token *lst);
 
 /********** TEMP ****************/
 int ft_is_empty_list(t_token *list);
+
 
 /* TEST */
 void ft_test(int file[2]);

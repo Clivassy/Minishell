@@ -26,9 +26,11 @@ void	ft_minishell_loop(t_data *data)
 	error_status = 0;
         while (data->exit_asked != 1)
         {
+			ft_handle_signals();
             data->read_line  = readline("minishell> "); // ajouter secu fct
 			ft_add_to_garbage_collector(data, data->read_line);
-			add_history(data->read_line);
+			if (data->read_line)
+				add_history(data->read_line);
 			error_status = ft_get_cmd(data);
 			if (error_status != 0)
 				ft_print_error(data, error_status);

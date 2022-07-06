@@ -12,7 +12,7 @@ char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 
     str = NULL;
     while (1)
-    {
+    {   
         str = readline("> ");
         ft_add_to_garbage_collector(data, str); 
         if (!str)
@@ -62,7 +62,6 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     if (!str)
         ft_exit(data);
     write(file[1], str, ft_strlen(str)+ 1);
-    free(str);
     /*///// TMP ///////
     ft_test(file);
     ////// TMP /////*/

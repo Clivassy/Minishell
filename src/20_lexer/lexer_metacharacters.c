@@ -12,7 +12,17 @@ int ft_is_space(t_data *data, char *read_line, int index)
     char *space_token;
     t_token *space;
 
-    if (!ft_is_space_sep(read_line[index]) 
+    if (!ft_is_space_sep(read_line[index]) && index == 0)
+    {
+        space_token = ft_substr(read_line, index, 1);
+        if (!space_token)
+            ft_exit(data);
+        ft_add_to_garbage_collector(data, space_token);
+        space = ft_new_token(data, space_token, T_SPACE);
+        ft_lstadd_back_token(&data->tokens_list, space);
+        return (0);
+    }
+    if (!ft_is_space_sep(read_line[index])
         && ft_is_space_sep(read_line[index -1]))
     {
         space_token = ft_substr(read_line, index, 1);
