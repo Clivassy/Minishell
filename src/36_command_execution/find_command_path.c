@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-
-
 static char	*ft_strjoin3(t_data *data, char *s1, char *s2, char *s3)
 {
 	char	*tmp;
@@ -16,25 +14,7 @@ static char	*ft_strjoin3(t_data *data, char *s1, char *s2, char *s3)
 		ft_exit(data);
 	ft_add_to_garbage_collector(data, final_str);
 	ft_free(data, tmp);
-	printf ("tmp and finaltr %p %p\n", tmp, final_str);
 	return (final_str);
-}
-
-
-static void	ft_free_pointer_array(t_data *data, char **array)
-{
-	int	i;
-
-	if (!array)
-		return ;
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		array[i] = NULL;
-		i++;
-	}
-	free(array);
 }
 
 // check if 1 path is valid in the paths list and return the 1st valid
@@ -47,8 +27,6 @@ char	*ft_check_path_command(t_data *data, char **paths, char *cmd)
 	while (paths[j])
 	{
 		full_path = ft_strjoin3(data, paths[j], "/", cmd);
-		if (!full_path)
-			ft_exit(data);
 		if (access(full_path, X_OK) == 0)
 			return (full_path);
 		else
@@ -71,20 +49,15 @@ char	*ft_find_command(t_data *data, char *cmd, char **envp)
 		if (ft_strnstr(envp[i], "PATH", 4))
 		{
 			paths = ft_split(envp[i] + 5, ':');
-			if (!paths)
-			{
-				ft_exit(data);
-			}
 			full_path = ft_check_path_command(data, paths, cmd);
+			ft_free_split_garbage_collector(data, paths);
 			if (full_path)
 			{
-				ft_free_pointer_array(data, paths);
 				return (full_path);
 			}
-			// check que path soit bien free a tous les coups ?
+			ft_free(data, full_path);
 		}
 		i++;
 	}
-	ft_free_pointer_array(data, paths);
 	return (NULL);
 }
