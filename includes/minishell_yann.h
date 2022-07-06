@@ -18,7 +18,18 @@ void	ft_minishell_loop(t_data *data);
 //-----------------------------------------
 //           17_error_management
 //-----------------------------------------
+// error_close.c
+void	ft_exit_close_error(t_data *data);
+// error_cmd_not_found.c
+void	ft_exit_cmd_not_found_error(t_data *data, char **cmd);
+// error_dup2.c
+void	ft_exit_dup_error(t_data *data);
+// error_fork.c
+void	ft_exit_fork_error(t_data *data);
+// print_error.c
 void	ft_print_error(t_data *data, int error_status);
+// error_pipe.c
+void	ft_exit_pipe_error(t_data *data);
 
 //-----------------------------------------
 //               25 expand
@@ -51,9 +62,10 @@ void	ft_create_exec_elm_list(t_data *data);
 // read_gp_token_list.c
 void	ft_build_exec_list(t_data *data);
 // read_redirection_token.c
-void	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process);
-void	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process);
-void	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process);
+int	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process);
+int	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process);
+int	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process);
+int	ft_set_exec_t_redirect_token(t_data *data, t_token *token, int process);
 // read_token_cmd.c
 void	ft_set_exec_with_t_cmd_token(t_data *data, t_token *token, int process);
 void	ft_add_to_command_list(t_data *data, char ***cmd_lst, char *to_add);
@@ -63,15 +75,14 @@ void	ft_set_exec_with_t_heredoc(t_data *data, t_token *token, int process);
 //-----------------------------------------
 //          36_command_execution
 //-----------------------------------------
-//exec_command.c
-void    ft_launch_processus(t_data *data, t_exec_elm *exec_elm);
-void    ft_exec_cmd(t_data *data);
-// find_command_path.c
-char	*ft_check_path_command(t_data *data, char **paths, char *cmd);
+//close_fd.c
+void	ft_close_fd_exept_current(t_data *data, int current_index);
+//exec_all_commands.c
+void    ft_exec_all_cmds(t_data *data);
+//exec_one_command.c
+void	ft_exec_one_command(t_data *data, t_exec_elm *exec_elm);
+//find_command_path.c
 char	*ft_find_command(t_data *data, char *cmd, char **envp);
-void	ft_launch_command(t_data *data, char **cmd, char **envp);
-// launch_command.c
-void	ft_launch_cmd_if_is_builtin(t_data *data, char **cmd, char **envp);
 
 //-----------------------------------------
 //               40 builtin

@@ -31,7 +31,7 @@ void    ft_exec_elm_lst_print(t_exec_elm *elm)
 		ft_printf("\n| fd_in = %d\n", elm->fd_in);
 		ft_printf("| fd_out = %d\n", elm->fd_out);
 		ft_printf("| index = %d\n", elm->index);
-
+		ft_printf("| has_redirect_pb = %d\n", elm->has_redirect_pb);
 		ft_printf("| pid = %d\n", elm->pid);
 
 		ft_printf("| next element = %p\n", elm->next);

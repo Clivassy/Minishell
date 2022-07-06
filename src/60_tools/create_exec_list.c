@@ -20,7 +20,7 @@ void	create_exec_list_1(t_data *data)
 	data->gp_tokens_list = token1;
 
 	token1->type = T_CMD;
-	token1->value = ft_strdup("casdt");
+	token1->value = ft_strdup("cat");
 	ft_add_to_garbage_collector(data, token1->value);
 	token1->next = token2;
 
@@ -41,7 +41,7 @@ void	create_exec_list_1(t_data *data)
 	token4->next = token5;
 
 	token5->type = T_CMD;
-	token5->value = ft_strdup("aacat");
+	token5->value = ft_strdup("cat");
 	ft_add_to_garbage_collector(data, token5->value);
 	token5->next = token6;
 

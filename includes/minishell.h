@@ -56,6 +56,7 @@ typedef struct s_exec_elm
     int fd_in;
     int fd_out;
 	int index;
+	int	has_redirect_pb;
 	pid_t pid;
     struct s_exec_elm *next;
 

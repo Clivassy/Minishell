@@ -2,7 +2,7 @@
 
 
 //check pas fermetrue stdin
-void	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
+int	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 {
 	// a faire : check fct avec partie excec fonctionnelle
 	int	fd_infile;
@@ -11,14 +11,15 @@ void	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 	ft_rm_quotes_in_token(data, token);
 	fd_infile = open(token->value, O_RDONLY); // verifier ces parametres
 	if (fd_infile < 0)
-		ft_exit(data); // erreur a gerer pour revenir dans boucle minishell
+		return(1); // erreur a gerer pour revenir dans boucle minishell
 	if (ft_get_exec_elm(data->exec_list, process)->fd_in != 0)
 		close(ft_get_exec_elm(data->exec_list, process)->fd_in);
 	ft_get_exec_elm(data->exec_list, process)->fd_in = fd_infile;
+	return(0);
 }
 
 // ajouter check pour pas fermer stdout
-void	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
+int	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
 {
 	// a faire : check fct avec partie excec fonctionnelle
 	int	fd_outfile;
@@ -32,10 +33,11 @@ void	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
 	if (ft_get_exec_elm(data->exec_list, process)->fd_out != 1)
 		close(ft_get_exec_elm(data->exec_list, process)->fd_out);
 	ft_get_exec_elm(data->exec_list, process)->fd_out = fd_outfile;
+	return(0);
 }
 
 // ajouter check pour pas fermer stdout
-void	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
+int	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
 {
 	// a faire : check fct avec partieC excec fonctionnelle
 	int	fd_outfile;
@@ -49,4 +51,35 @@ void	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
 	if (ft_get_exec_elm(data->exec_list, process)->fd_out != 1)
 		close(ft_get_exec_elm(data->exec_list, process)->fd_out);
 	ft_get_exec_elm(data->exec_list, process)->fd_out = fd_outfile;
+	return(0);
+}
+
+int	ft_set_exec_t_redirect_token(t_data *data, t_token *token, int process)
+{
+	if (token->type == T_REDIRECT_IN)
+	{
+		if(ft_set_exec_t_redirect_in(data, token, process) == 1)
+		{
+			perror(NULL);
+			return (1);
+		}
+
+	}
+	else if (token->type == T_REDIRECT_OUT)
+	{
+		if(ft_set_exec_t_redirect_out(data, token, process) == 1)
+		{
+			perror(NULL);
+			return (1);
+		}
+	}
+	else if (token->type == D_REDIRECT_OUT)
+	{
+		if(ft_set_exec_d_redirect_out(data, token, process) == 1)
+		{
+			perror(NULL);
+			return (1);
+		}
+	}
+	return (0);
 }

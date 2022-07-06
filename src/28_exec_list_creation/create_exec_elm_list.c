@@ -8,7 +8,7 @@ static int	*ft_create_pipe(t_data *data)
 	if (!fd_pipe)
 		ft_exit(data);
 	if (pipe(fd_pipe) == -1)
-		ft_exit(data);
+		ft_exit_pipe_error(data);
 	return (fd_pipe);
 }
 

@@ -14,6 +14,7 @@ t_exec_elm	*ft_create_new_exec_elm(t_data *data)
     new_elm->fd_in = -1;
     new_elm->fd_out = -1;
     new_elm->index = -1;
+	new_elm->has_redirect_pb = 0;
     new_elm->pid = -1;
     new_elm->next = NULL;
     return (new_elm);
