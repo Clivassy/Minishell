@@ -11,13 +11,14 @@ int ft_is_expand_required(char *heretag)
 {
     if (ft_strchr(heretag, '$'))
     {
-        printf("expand needed\n");
+       // printf("expand needed\n");
         return (1);
     }
-    printf("NO expand needed\n");
+    //printf("NO expand needed\n");
     return (0);
 }
 
+/*
 void ft_test(int file[2])
 {
     char buf[4096];
@@ -25,7 +26,7 @@ void ft_test(int file[2])
 
     read_p = read(file[0], buf, 4096);
     printf("BUFF = %s\n", buf);
-}
+}*/
 
 int	ft_strcmp(char *s1, char *s2)
 {

@@ -20,6 +20,20 @@ Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
 
 -----------------------------------------------------------------------*/
 
+int ft_is_only_spc(char *str)
+{
+    int i;
+
+    i = 0;
+    while (i < ft_strlen(str))
+    {
+        if (ft_is_space_sep(str[i]))
+            return(1);
+        i++;
+    }
+    return(TAB_OR_SPC_ERR);
+}
+
 int    ft_fill_tokens_list(t_data *data)
 {
     int index;
@@ -28,7 +42,6 @@ int    ft_fill_tokens_list(t_data *data)
     statut = ft_check_unclose_quote(data->read_line);
     if (statut > 0)
         return(UNCLOSED_QUOTES_ERR);
-        // ft_lexer_error("Error: quotes non closed");
     index = 0;
     while (index < ft_strlen(data->read_line))
     {
@@ -45,10 +58,11 @@ int    ft_lexer(t_data *data)
         return(UNCLOSED_QUOTES_ERR);
     if (!data->tokens_list)
         ft_exit(data);
-    return (0);
+    //ft_print_token_list(data->tokens_list);
+        return (0);
 }
 
-// add error management : to Makefile
+/*
 void    ft_minishell(t_data *data)
 {
     int	error_status;
@@ -61,4 +75,4 @@ void    ft_minishell(t_data *data)
     ft_group_tokens(data);
     ft_print_token_list(data->gp_tokens_list);
     //ft_print_token_list(data->tokens_list);
-}
+}*/

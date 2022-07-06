@@ -1,20 +1,7 @@
 #include "minishell.h"
 
-int ft_next_isnt_space(int type)
-{
-    if(type == T_PIPE)
-        return(SYNTAX_ERR_PIPE);
-    if (type == T_REDIRECT_IN)
-        return(SYNTAX_ERR_REDIRECT_IN);
-    if (type == T_REDIRECT_OUT)
-        return(SYNTAX_ERR_REDIRECT_OUT);
-    if (type == D_REDIRECT_OUT)
-        return(SYNTAX_ERR_D_REDIRECT_OUT);
-    return (0);
-}
-
 /* error: redirect followed by space and no word */
-int ft_next_is_space(int type)
+int ft_is_next_tkn_ok(int type)
 {
     if (type == T_PIPE)
         return(SYNTAX_ERR_PIPE);
@@ -24,9 +11,12 @@ int ft_next_is_space(int type)
         return(SYNTAX_ERR_REDIRECT_OUT);
     if (type == D_REDIRECT_OUT)
         return(SYNTAX_ERR_D_REDIRECT_OUT);
+    if (type == T_HEREDOC)
+        return(SYNTAX_ERR_HEREDOC);
     return (0);
 }
 
+void    ft_lexer_error(char *msg);
 /* check les listes avec seulement espaces ou tab 
 + pipe at the begining
 + space suivi d'un pipe at the beggining*/ 
@@ -34,7 +24,8 @@ int ft_pre_parser(t_data *data, t_token *list)
 {
     // a placer au tout debut
     if (!ft_is_empty_list(list))
-        ft_lexer_error("error : only space and tab");
+        return(TAB_OR_SPC_ERR);
+       // ft_lexer_error("error : only space and tab");
     if (list->type == T_PIPE)
         return(SYNTAX_ERR_PIPE);
         //ft_lexer_error("Error 1 : pipe at the begining");

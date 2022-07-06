@@ -13,7 +13,7 @@ int   ft_get_redir_tkn(t_data *data, char *content, int type)
     t_token *new_list;
 
     if (!content || !data)
-        return(ERROR);
+        ft_exit(data);
     if (type == T_REDIRECT_OUT)
         ft_fill_new_token_2(content, data, T_REDIRECT_OUT);
     if (type == T_REDIRECT_IN)

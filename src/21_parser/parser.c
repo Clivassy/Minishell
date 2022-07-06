@@ -25,15 +25,15 @@ int ft_redirect_errors(t_token *token)
         {
             if (!token->next->next)
                 return(SYNTAX_ERR_NEWLINE);
-            if (ft_next_is_space(token->next->next->type)
+            if (ft_is_next_tkn_ok(token->next->next->type)
                 != 0)
-                return(ft_next_is_space(token->next->next->type));
+                return(ft_is_next_tkn_ok(token->next->next->type));
         }
         if (token->next->type != T_SPACE)
         {
-            if (ft_next_isnt_space(token->next->type)
+            if (ft_is_next_tkn_ok(token->next->type)
                 != 0)
-                return(ft_next_isnt_space(token->next->type));
+                return(ft_is_next_tkn_ok(token->next->type));
         }
     }
     return (0);
