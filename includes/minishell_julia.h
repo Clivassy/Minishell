@@ -65,7 +65,9 @@ void    ft_fill_new_token_2(char *content, t_data *data, int type);
 -----------------------------------------*/
 /********** signals.c ****************/
 void    ft_handle_signals(void);
-void ft_handle_sigint(int signal);
+void    ft_handle_sigint(int signal);
+void    ft_handle_sigquit(int signal);
+void    ft_handle_heredoc_signal(int signal);
 
 /*----------------------------------------
             60_TOOLS

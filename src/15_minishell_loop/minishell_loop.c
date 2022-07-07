@@ -36,8 +36,8 @@ void	ft_minishell_loop(t_data *data)
 				ft_print_error(data, error_status);
 			else
 			{
-				//ft_exec_elm_lst_print(data->exec_list);
-				//ft_exec_cmd(data);
+			//	ft_exec_elm_lst_print(data->exec_list);
+			//	ft_exec_cmd(data);
 			}
 		ft_reinitialisation_read_data(data);
         }
