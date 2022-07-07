@@ -203,6 +203,7 @@ JULIACOMPILE += src/36_command_execution/exec_all_commands.c
 JULIACOMPILE += src/36_command_execution/exec_one_command.c
 JULIACOMPILE += src/36_command_execution/find_command_path.c
 JULIACOMPILE += src/40_builtin/echo.c
+JULIACOMPILE += src/40_builtin/builtin_exit.c
 JULIACOMPILE += src/40_builtin/cd.c
 JULIACOMPILE += src/45_environment/env_initialisation.c
 JULIACOMPILE += src/45_environment/env_manipulation.c
