@@ -91,6 +91,8 @@ char	*ft_find_command(t_data *data, char *cmd, char **envp);
 //-----------------------------------------
 void    ft_echo(char **argument_list);
 void	ft_cd(char **arguments);
+void	ft_builtin_exit(t_data *data);
+
 
 //-----------------------------------------
 //             45_environment
