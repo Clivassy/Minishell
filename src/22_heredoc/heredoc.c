@@ -1,20 +1,20 @@
 #include "minishell.h"
 /*----------------------------- PARSER ------------------------------
-Gestion des heredocs + erreurs de syntaxe de heredocs 
-// realine pour recuperer tout ce qui vient jusqu'au EOF  
+Gestion des heredocs + erreurs de syntaxe de heredocs
+// realine pour recuperer tout ce qui vient jusqu'au EOF
 - stocké dans un pipe.
 - j'expand ce qui est a l'intérieur si jamais il y a des variables d'emvironnement
-- ?? 
+- ??
 ----------------------------------------------------------------------*/
 char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 {
-    char *str; 
+    char *str;
 
     str = NULL;
     while (1)
-    {   
+    {
         str = readline("> ");
-        ft_add_to_garbage_collector(data, str); 
+        ft_add_to_garbage_collector(data, str);
         if (!str)
             ft_exit(data);
         if (ft_strcmp(str, heretag) != 0)
@@ -67,5 +67,6 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     ////// TMP /////*/
     fd_list = ft_new_fd(data, file[0]);
     ft_lstadd_back_fd(&data->fd_lst, fd_list);
-    close(file[1]);
+	if( close(file[1]) == -1)
+		ft_exit_close_error(data);
 }

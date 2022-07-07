@@ -1,4 +1,28 @@
 #include "minishell.h"
+static void	ft_wait_pid(t_data *data)
+{
+	t_exec_elm *exec_elm;
+	int	return_status;
+
+	return_status = -1;
+	exec_elm = data->exec_list;
+	while(exec_elm)
+	{
+		//ft_printf("attente fin processus: %d\n", exec_elm->index);
+		//waitpid(exec_elm->pid, &(data->last_pipeline_exit_status), 0); // remplacer NULL pour avoir l'id status
+		waitpid(exec_elm->pid, &return_status, 0); // remplacer NULL pour avoir l'id status
+		printf("pid: %d, return status: %d\n", exec_elm->pid, return_status);
+		printf("pid: %d, conv status: %d\n", exec_elm->pid, WEXITSTATUS(return_status));
+		// partie a verifier
+		if(WIFEXITED(return_status))
+		{
+			data->last_pipeline_exit_status = WEXITSTATUS(return_status);
+		}
+		else
+			data->last_pipeline_exit_status = return_status;
+		exec_elm = exec_elm->next;
+	}
+}
 
 void	ft_exec_cmd_with_many_processus(t_data *data)
 {
@@ -30,14 +54,9 @@ void	ft_exec_cmd_with_many_processus(t_data *data)
 		exec_elm = exec_elm->next;
 	}
 	ft_close_fd_exept_current(data, -1);
+	ft_wait_pid(data);
 
-	exec_elm = data->exec_list;
-	while(exec_elm)
-	{
-		//ft_printf("attente fin processus: %d\n", exec_elm->index);
-		waitpid(exec_elm->pid, NULL, 0); // remplacer NULL pour avoir l'id status
-		exec_elm = exec_elm->next;
-	}
+
 }
 
 void	ft_exec_cmd_with_one_processus(t_data *data)
@@ -47,7 +66,7 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 	exec_elm = data->exec_list;
 	if (exec_elm->has_redirect_pb == 1)
 		return ;
-	if (strcmp((exec_elm->cmd)[0], "exit") == 0)
+	if (ft_strcmp((exec_elm->cmd)[0], "exit") == 0)
 	{
 		ft_close_fd_exept_current(data, -1);
 		ft_builtin_exit(data);
