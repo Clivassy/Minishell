@@ -2,10 +2,12 @@
 
 void ft_handle_sigquit(int signal)
 {
-    if (signal == SIGQUIT)
-    {
-       ft_putstr_fd("\b\b  \b\b", 1);
-    }
+    if (signal == SIGUSR1)
+        printf("received SIGUSR1\n");
+    else if (signal == SIGKILL)
+        printf("received SIGKILL\n");
+    else if (signal == SIGSTOP)
+        printf("received SIGSTOP\n");
 }
 
 /* handle ctrl -c in heredoc */
@@ -20,7 +22,8 @@ void    ft_handle_heredoc_signal(int signal)
 {
     if(signal == SIGINT)
     {
-       ft_putstr_fd("\b\b  \b\b", 1);
+        close(STDIN_FILENO);
+        write(STDERR_FILENO, "\n", 1);
     }
 }
 
@@ -38,8 +41,8 @@ void ft_handle_sigint(int signal)
 
 void    ft_handle_signals(void)
 {
-    if (signal(SIGINT, &sigaddset) == SIG_ERR)
-        printf("error\n");
-    signal(SIGINT, &ft_handle_sigint);
-    signal(SIGQUIT, &ft_handle_sigquit);
+    if (signal(SIGINT, &ft_handle_sigint) == SIG_ERR)
+        printf("error 1\n");
+    if (signal(SIGQUIT, &ft_handle_sigquit) == SIG_ERR)
+        printf("error 2\n");
 }
