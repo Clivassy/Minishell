@@ -27,14 +27,3 @@ void ft_test(int file[2])
     read_p = read(file[0], buf, 4096);
     printf("BUFF = %s\n", buf);
 }*/
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
