@@ -52,7 +52,7 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     char *here_tag;
     int file[2];
     t_fd_heredoc *fd_list;
-
+    
     fd_list = NULL;
     here_tag = heredoc_tkn->value;
     ft_rm_quotes_in_str(data, &here_tag);
