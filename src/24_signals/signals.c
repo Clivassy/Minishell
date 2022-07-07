@@ -2,12 +2,8 @@
 
 void ft_handle_sigquit(int signal)
 {
-    if (signal == SIGUSR1)
-        printf("received SIGUSR1\n");
-    else if (signal == SIGKILL)
-        printf("received SIGKILL\n");
-    else if (signal == SIGSTOP)
-        printf("received SIGSTOP\n");
+    if (signal == SIGKILL)
+        exit(0);
 }
 
 /* handle ctrl -c in heredoc */
