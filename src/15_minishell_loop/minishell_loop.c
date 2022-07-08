@@ -31,13 +31,18 @@ void	ft_minishell_loop(t_data *data)
 			ft_add_to_garbage_collector(data, data->read_line);
 			if (data->read_line == NULL)
 				ft_handle_ctrld(data);
-			add_history(data->read_line);
+			if (data->read_line[0] != 0)
+				add_history(data->read_line);
 			error_status = ft_get_cmd(data);
 			if (error_status != 0)
 				ft_print_error(data, error_status);
 			else
 			{
+<<<<<<< HEAD
 			//ft_exec_elm_lst_print(data->exec_list);
+=======
+			//	ft_exec_elm_lst_print(data->exec_list);
+>>>>>>> julia
 			ft_exec_all_cmds(data);
 
 			}

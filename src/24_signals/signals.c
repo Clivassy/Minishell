@@ -18,18 +18,12 @@ void    ft_handle_ctrld_heredoc(t_data *data)
     ft_exit(data);
 }
 
-void ft_heredoc_sigint(int signal)
+void    ft_heredoc_sigint(int signal)
 {
     if (signal == SIGINT)
-	{
-		write(STDERR_FILENO, "\n", 1);
-        rl_on_new_line();
-		rl_redisplay();
-	}
-    /*if (signal == SIGINT)
     {
-       exit(1);
-    }*/
+        return;
+    }
 }
 
 void   ft_handle_heredoc_signal(void)
