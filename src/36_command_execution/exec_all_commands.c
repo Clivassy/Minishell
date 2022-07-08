@@ -11,8 +11,8 @@ static void	ft_wait_pid(t_data *data)
 		//ft_printf("attente fin processus: %d\n", exec_elm->index);
 		//waitpid(exec_elm->pid, &(data->last_pipeline_exit_status), 0); // remplacer NULL pour avoir l'id status
 		waitpid(exec_elm->pid, &return_status, 0); // remplacer NULL pour avoir l'id status
-		printf("pid: %d, return status: %d\n", exec_elm->pid, return_status);
-		printf("pid: %d, conv status: %d\n", exec_elm->pid, WEXITSTATUS(return_status));
+		//printf("pid: %d, return status: %d\n", exec_elm->pid, return_status);
+		//printf("pid: %d, conv status: %d\n", exec_elm->pid, WEXITSTATUS(return_status));
 		// partie a verifier
 		if(WIFEXITED(return_status))
 		{

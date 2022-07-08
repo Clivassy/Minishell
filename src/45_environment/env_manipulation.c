@@ -104,7 +104,7 @@ int	ft_env_key_is_present(t_data *data, char *key_searched)
 		key = ft_env_get_key_on_line(data, data->env[i]);
 		//ft_printf("key : %s\n",key);
 		//ft_printf("key_searched : %s\n",key_searched);
-		//ft_printf("cmp: %d\n",ft_strncmp(key, key_searched, strlen(key_searched)));
+		//ft_printf("cmp: %d\n",ft_strncmp(key, key_searched, ft_strlen(key_searched)));
 
 
 		if (ft_strncmp(key, key_searched, ft_max_len(key, key_searched)) == 0)
@@ -129,7 +129,7 @@ char *ft_env_get_value(t_data *data, char *key_searched)
 	while (data->env[i])
 	{
 		key = ft_env_get_key_on_line(data, data->env[i]);
-		if (ft_strncmp(key, key_searched, strlen(key_searched)) == 0)
+		if (ft_strncmp(key, key_searched, ft_strlen(key_searched)) == 0)
 			return (ft_env_get_value_on_line(data, data->env[i]));
 		i++;
 	}

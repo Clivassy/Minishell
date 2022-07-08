@@ -41,7 +41,7 @@ static void	ft_expand_pipeline_exit_status(t_data *data, char **str, int *i)
 	if (!tmp)
 		ft_exit(data);
 	ft_add_to_str(data, str, tmp, *i);
-	*i += strlen(tmp);
+	*i += ft_strlen(tmp);
 	free(tmp);
 	tmp = NULL;
 }
@@ -55,14 +55,14 @@ static void	ft_expand_normal_key(t_data *data, char **str, int *i)
 	key = ft_get_key_for_expand(data, &(*str)[*i + 1]);
 	if (ft_env_key_is_present(data, key))
 	{
-		ft_rm_from_str(data, str, strlen(key) + 1, *i);
+		ft_rm_from_str(data, str, ft_strlen(key) + 1, *i);
 		ft_add_to_str(data, str, ft_env_get_value(data, key), *i);
-		*i += strlen(ft_env_get_value(data, key));
+		*i += ft_strlen(ft_env_get_value(data, key));
 		(*i)--;
 	}
 	else
 	{
-		ft_rm_from_str(data, str, strlen(key) + 1, *i);
+		ft_rm_from_str(data, str, ft_strlen(key) + 1, *i);
 		(*i)--;
 	}
 	ft_free(data, key);

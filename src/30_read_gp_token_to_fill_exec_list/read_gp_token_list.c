@@ -1,23 +1,23 @@
 #include "minishell.h"
-void	ft_fill_exec_list_heredoc(t_data *data)
-{
-	int	process;
-	t_token *pt_token;
+//void	ft_fill_exec_list_heredoc(t_data *data)
+//{
+//	int	process;
+//	t_token *pt_token;
 
-	// boucle heredoc
-	process = 0;
-	pt_token = data->gp_tokens_list;
-	while (pt_token)
-	{
-		if (pt_token->type == T_PIPE)
-			process++;
-		else if (pt_token->type == T_HEREDOC)
-		{
-			ft_set_exec_with_t_heredoc(data, pt_token, process);
-		}
-		pt_token = pt_token->next;
-	}
-}
+//	// boucle heredoc
+//	process = 0;
+//	pt_token = data->gp_tokens_list;
+//	while (pt_token)
+//	{
+//		if (pt_token->type == T_PIPE)
+//			process++;
+//		else if (pt_token->type == T_HEREDOC)
+//		{
+//			ft_set_exec_with_t_heredoc(data, pt_token, process);
+//		}
+//		pt_token = pt_token->next;
+//	}
+//}
 
 void	ft_fill_exec_list_cmd__and_redirect(t_data *data)
 {
@@ -34,6 +34,11 @@ void	ft_fill_exec_list_cmd__and_redirect(t_data *data)
 			process++;
 		exec_elm = ft_get_exec_elm(data->exec_list, process);
 		//ft_printf("process: %d\n", process);
+		if (pt_token->type == T_HEREDOC)
+		{
+			ft_set_exec_with_t_heredoc(data, pt_token, process);
+		}
+
 		if (exec_elm->has_redirect_pb != 1)
 		{
 			if (pt_token->type == T_CMD)
@@ -70,7 +75,7 @@ void	ft_fill_exec_list_cmd__and_redirect(t_data *data)
 void	ft_build_exec_list(t_data *data)
 {
 	ft_create_exec_elm_list(data);
-	ft_fill_exec_list_heredoc(data);
+	//ft_fill_exec_list_heredoc(data);
 	ft_fill_exec_list_cmd__and_redirect(data);
 
 

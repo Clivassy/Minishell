@@ -41,7 +41,7 @@ void	ft_launch_cmd_if_is_builtin(t_data *data, char **cmd, char **envp)
 
 void    ft_make_fd_redirection(t_data *data, t_exec_elm *exec_elm)
 {
-	ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
+	//ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
 	//ft_printf("fd_in: %d, fd_out: %d\n", exec_elm->fd_in, exec_elm->fd_out);
 
 	if (exec_elm->fd_in != STDIN_FILENO)
