@@ -34,8 +34,6 @@ void	ft_exec_cmd_with_many_processus(t_data *data)
 	exec_elm = data->exec_list;
 	while(exec_elm)
 	{
-	printf("test\n");
-
 		id = fork();
 		if (id < 0)
 			ft_exit_fork_error(data);
