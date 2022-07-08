@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_garbage_collector(&data);
 
 	//test env
-	//ft_test_env(&data);
+	ft_test_env(&data);
 
 	// test add to str
 	//ft_test_add_to_str(&data);
@@ -56,7 +56,7 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_split_garbage_collector(&data);
 
 	//test command execution
-	ft_test_command_execution(&data);
+	//ft_test_command_execution(&data);
 
 
 

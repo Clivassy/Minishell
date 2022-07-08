@@ -121,6 +121,7 @@ YANNCOMPILE += src/17_error_management/error_fork.c
 YANNCOMPILE += src/17_error_management/error_pipe.c
 YANNCOMPILE += src/17_error_management/print_error_open.c
 YANNCOMPILE += src/17_error_management/print_error.c
+YANNCOMPILE += src/22_heredoc/heredoc_manipulation.c
 YANNCOMPILE += src/25_expand/expand.c
 YANNCOMPILE += src/27_rm_quotes/rm_quotes_in_token.c
 YANNCOMPILE += src/27_rm_quotes/rm_quotes_in_token_list.c
