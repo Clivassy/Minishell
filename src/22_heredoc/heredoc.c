@@ -18,16 +18,12 @@ char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
         ft_add_to_garbage_collector(data, str);
         if (str == NULL)
             ft_handle_ctrld_heredoc(data);
-        if (ft_strcmp(str, heretag) != 0)
-        {
-            tmp = ft_strjoin(tmp, "\n");
-            ft_add_to_garbage_collector(data, tmp);
-        }
         if (ft_strcmp(str, heretag) == 0)
             break;
         if (exp > 0 && ft_is_expand_required(str))
             ft_expand_str(data, &str);
         tmp = ft_strjoin(tmp, str);
+        tmp = ft_strjoin(tmp, "\n");
         ft_add_to_garbage_collector(data, tmp);
     }
     return(tmp);
@@ -63,9 +59,9 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     if (!str)
         ft_exit(data);
     write(file[1], str, ft_strlen(str)+ 1);
-    ///// TMP ///////
+    /*///// TMP ///////
     ft_test(file);
-    ////// TMP /////
+    ////// TMP /////*/
     fd_list = ft_new_fd(data, file[0]);
     ft_lstadd_back_fd(&data->fd_lst, fd_list);
 	if( close(file[1]) == -1)
