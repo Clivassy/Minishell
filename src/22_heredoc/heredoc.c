@@ -12,11 +12,12 @@ char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 
     str = NULL;
     while (1)
-    {
+    {   
+        ft_handle_heredoc_signal();
         str = readline("> ");
         ft_add_to_garbage_collector(data, str);
-        if (!str)
-            ft_exit(data);
+        if (str == NULL)
+            ft_handle_ctrld_heredoc(data);
         if (ft_strcmp(str, heretag) != 0)
         {
             tmp = ft_strjoin(tmp, "\n");
@@ -52,7 +53,7 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     char *here_tag;
     int file[2];
     t_fd_heredoc *fd_list;
-
+    
     fd_list = NULL;
     here_tag = heredoc_tkn->value;
     ft_rm_quotes_in_str(data, &here_tag);

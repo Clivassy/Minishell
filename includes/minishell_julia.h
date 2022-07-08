@@ -1,4 +1,5 @@
 #include <signal.h> 
+#include <string.h> 
 /*----------------------------------------
                20_LEXER
 -----------------------------------------*/
@@ -64,11 +65,13 @@ void    ft_fill_new_token_2(char *content, t_data *data, int type);
             24_SIGNALS
 -----------------------------------------*/
 /********** signals.c ****************/
+void   ft_handle_heredoc_signal(void);
 void    ft_handle_signals(void);
 void    ft_handle_sigint(int signal);
 void    ft_handle_sigquit(int signal);
-void    ft_handle_heredoc_signal(int signal);
-
+void    ft_handle_ctrld_heredoc(t_data *data);
+void    ft_handle_ctrld(t_data *data);
+void ft_heredoc_sigint(int signal);
 /*----------------------------------------
             60_TOOLS
 -----------------------------------------*/
