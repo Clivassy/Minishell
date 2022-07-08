@@ -63,9 +63,9 @@ void ft_heredoc(t_data *data, t_token *heredoc_tkn)
     if (!str)
         ft_exit(data);
     write(file[1], str, ft_strlen(str)+ 1);
-    /*///// TMP ///////
+    ///// TMP ///////
     ft_test(file);
-    ////// TMP /////*/
+    ////// TMP /////
     fd_list = ft_new_fd(data, file[0]);
     ft_lstadd_back_fd(&data->fd_lst, fd_list);
 	if( close(file[1]) == -1)
