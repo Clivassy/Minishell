@@ -1,37 +1,54 @@
 #include "minishell.h"
 
-void ft_handle_sigquit(int signal)
+void    ft_handle_ctrld(t_data *data)
 {
-    if (signal == SIGKILL)
-        exit(0);
+    ft_putstr_fd("\b\b  \b\b", 1);
+    write(1, "exit\n", 6);
+    ft_exit(data);
 }
 
-/* handle ctrl -c in heredoc */
-/*void    ft_handle_heredoc_signal(t_data *data, int signal)
+void ft_handle_sigquit(int signal)
 {
-
-}*/
-// bien faire la distinction ente si on est dans le process 
-//child ou le parent process.
-
-void    ft_handle_heredoc_signal(int signal)
-{
-    if(signal == SIGINT)
+    if (signal == SIGQUIT)
     {
-        close(STDIN_FILENO);
-        write(STDERR_FILENO, "\n", 1);
+        ft_putstr_fd("\b\b  \b\b", 1);
     }
+}
+
+void    ft_handle_ctrld_heredoc(t_data *data)
+{
+    ft_putstr_fd("\b\b  \b\b", 1);
+    ft_exit(data);
+}
+
+void ft_heredoc_sigint(int signal)
+{
+    if (signal == SIGINT)
+	{
+		write(STDERR_FILENO, "\n", 1);
+        rl_on_new_line();
+		rl_redisplay();
+	}
+    /*if (signal == SIGINT)
+    {
+       exit(1);
+    }*/
+}
+
+void   ft_handle_heredoc_signal(void)
+{
+    signal(SIGINT, &ft_heredoc_sigint);
 }
 
 /* handle ctrl -c*/
 void ft_handle_sigint(int signal)
 {
-    ft_printf("\n");
     if (signal == SIGINT)
     {
-        rl_on_new_line();
-        rl_replace_line("", 0);
-        rl_redisplay();
+        ft_printf("\n");
+        //rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
     }
 }
 
