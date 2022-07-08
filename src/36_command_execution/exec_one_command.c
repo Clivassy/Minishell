@@ -61,6 +61,12 @@ void	ft_exec_one_command(t_data *data, t_exec_elm *exec_elm)
 {
 	char	*command_with_path;
 
+	if (exec_elm->has_redirect_pb == 1)
+	{
+		ft_exit2(data, 1);
+	}
+	if (!exec_elm->cmd)
+		ft_exit2(data, 0);
 	ft_make_fd_redirection(data, exec_elm);
 	ft_launch_cmd_if_is_builtin(data, exec_elm->cmd, data->env);
 

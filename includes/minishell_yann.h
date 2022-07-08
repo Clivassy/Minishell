@@ -34,6 +34,12 @@ void	ft_print_open_error(t_data *data, char *file_name);
 void	ft_exit_pipe_error(t_data *data);
 
 //-----------------------------------------
+//               22 heredoc
+//-----------------------------------------
+// heredoc_manipulation.c (complement avec .h julia)
+t_fd_heredoc *ft_pop_first_fd_lst(t_data *data);
+
+//-----------------------------------------
 //               25 expand
 //-----------------------------------------
 // expand.c

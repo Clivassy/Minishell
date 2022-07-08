@@ -34,6 +34,8 @@ void	ft_exec_cmd_with_many_processus(t_data *data)
 	exec_elm = data->exec_list;
 	while(exec_elm)
 	{
+	printf("test\n");
+
 		id = fork();
 		if (id < 0)
 			ft_exit_fork_error(data);
@@ -65,6 +67,11 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 
 	exec_elm = data->exec_list;
 	if (exec_elm->has_redirect_pb == 1)
+	{
+		data->last_pipeline_exit_status = 1;
+		return ;
+	}
+	if (!exec_elm->cmd || !(exec_elm->cmd)[0] )
 		return ;
 	if (ft_strcmp((exec_elm->cmd)[0], "exit") == 0)
 	{

@@ -11,6 +11,8 @@ void    ft_exec_elm_lst_print(t_exec_elm *elm)
 		return;
 	}
 	i= 0;
+	ft_print_color(COLOR_CYAN);
+	ft_printf("###### exec list ######\n");
 	while (elm)
 	{
 		ft_printf("----------------------------\n");
@@ -41,4 +43,6 @@ void    ft_exec_elm_lst_print(t_exec_elm *elm)
 		elm = elm->next;
 		i++;
 	}
+	ft_print_color(COLOR_NORMAL);
+
 }

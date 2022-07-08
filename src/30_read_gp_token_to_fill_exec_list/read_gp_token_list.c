@@ -77,6 +77,7 @@ void	ft_build_exec_list(t_data *data)
 	ft_create_exec_elm_list(data);
 	//ft_fill_exec_list_heredoc(data);
 	ft_fill_exec_list_cmd__and_redirect(data);
+    //ft_exec_elm_lst_print(data->exec_list);
 
 
 }
