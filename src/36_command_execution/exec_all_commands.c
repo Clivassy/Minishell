@@ -24,7 +24,7 @@ static void	ft_wait_pid(t_data *data)
 	}
 }
 
-void	ft_exec_cmd_with_many_processus(t_data *data)
+void	ft_exec_cmd_list_with_fork(t_data *data)
 {
 	int curent_index;
 	t_exec_elm *exec_elm;
@@ -39,11 +39,12 @@ void	ft_exec_cmd_with_many_processus(t_data *data)
 			ft_exit_fork_error(data);
 		else if (id == 0)
 		{
-			if (exec_elm->has_redirect_pb == 1) // a mettre dans exec_one_command ?
-			{
-				ft_close_fd_exept_current(data, -1);
-				ft_exit2(data, 1);
-			}
+			// ici avant, avoir si il faut enlever
+			//if (exec_elm->has_redirect_pb == 1) // a mettre dans exec_one_command ?
+			//{
+			//	ft_close_fd_exept_current(data, -1);
+			//	ft_exit2(data, 1);
+			//}
 			ft_close_fd_exept_current(data, curent_index);
 			ft_exec_one_command(data, exec_elm);
 		}
@@ -69,17 +70,17 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 		data->last_pipeline_exit_status = 1;
 		return ;
 	}
-	if (!exec_elm->cmd || !(exec_elm->cmd)[0] )
+	if (!exec_elm->cmd || !(exec_elm->cmd)[0])
 		return ;
-	if (ft_strcmp((exec_elm->cmd)[0], "exit") == 0)
+	if (ft_is_builtin(data, exec_elm->cmd))
 	{
+		ft_save_stdin_out(data);
+		ft_exec_builtin(data, exec_elm->cmd);
 		ft_close_fd_exept_current(data, -1);
-		ft_builtin_exit(data);
+		ft_restore_stdin_out(data);
 	}
 	else
-		ft_exec_cmd_with_many_processus(data);
-
-
+		ft_exec_cmd_list_with_fork(data);
 }
 
 void     ft_exec_all_cmds(t_data *data)
@@ -90,7 +91,7 @@ void     ft_exec_all_cmds(t_data *data)
 	}
 	else
 	{
-		ft_exec_cmd_with_many_processus(data);
+		ft_exec_cmd_list_with_fork(data);
 	}
 }
 

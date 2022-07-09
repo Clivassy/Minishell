@@ -1,60 +1,43 @@
 #include "minishell.h"
 
 
-// lance commande passee en parametre si c'est un builtin (chaque command doit exit proprement)
-// return sinon
-void	ft_launch_cmd_if_is_builtin(t_data *data, char **cmd, char **envp)
+// lance le builtin qui doit stocker le statut de retour dans data
+void	ft_exec_builtin(t_data *data, char **cmd)
 {
 	//// a completer avec les builtins (faire exit(STATUS_EXIT) dans chaque builtin)
-	//if (ft_strcmp(cmd[0], "echo") == 0)
-	//{
-	//	// lancer builtin echo
-	//}
-	//if (ft_strcmp(cmd[0], "cd") == 0)
-	//{
-	//	// lancer builtin cd
-	//}
-	//if (ft_strcmp(cmd[0], "pwd") == 0)
-	//{
-	//	// lancer builtin pwd
-	//}
-	//if (ft_strcmp(cmd[0], "export") == 0)
-	//{
-	//	// lancer builtin export
-	//}
-	//if (ft_strcmp(cmd[0], "unset") == 0)
-	//{
-	//	// lancer builtin unset
-	//}
-	//if (ft_strcmp(cmd[0], "env") == 0)
-	//{
-	//	// lancer builtin env
-	//}
-	//if (ft_strcmp(cmd[0], "exit") == 0)
-	//{
-	//	// lancer builtin exit
-	//}
+	if (ft_strcmp(cmd[0], "echo") == 0)
+	{
+		ft_echo(cmd);
+	}
+	if (ft_strcmp(cmd[0], "cd") == 0)
+	{
+		// lancer builtin cd
+	}
+	if (ft_strcmp(cmd[0], "pwd") == 0)
+	{
+		// lancer builtin pwd
+	}
+	if (ft_strcmp(cmd[0], "export") == 0)
+	{
+		// lancer builtin export
+	}
+	if (ft_strcmp(cmd[0], "unset") == 0)
+	{
+		// lancer builtin unset
+	}
+	if (ft_strcmp(cmd[0], "env") == 0)
+	{
+		// lancer builtin env
+	}
+	if (ft_strcmp(cmd[0], "exit") == 0)
+	{
+		ft_builtin_exit(data);
+	}
 	//else
 	//	return ;
 }
 
 
-void    ft_make_fd_redirection(t_data *data, t_exec_elm *exec_elm)
-{
-	//ft_printf("lancement processus, index: %d, pid %d\n", exec_elm->index, exec_elm->pid);
-	//ft_printf("fd_in: %d, fd_out: %d\n", exec_elm->fd_in, exec_elm->fd_out);
-
-	if (exec_elm->fd_in != STDIN_FILENO)
-	{
-		if (dup2(exec_elm->fd_in, STDIN_FILENO) == -1)
-			ft_exit_dup_error(data);
-	}
-	if (exec_elm->fd_out != STDOUT_FILENO)
-	{
-		if (dup2(exec_elm->fd_out, STDOUT_FILENO) == -1)
-			ft_exit_dup_error(data);
-	}
-}
 
 
 void	ft_exec_one_command(t_data *data, t_exec_elm *exec_elm)
@@ -63,13 +46,17 @@ void	ft_exec_one_command(t_data *data, t_exec_elm *exec_elm)
 
 	if (exec_elm->has_redirect_pb == 1)
 	{
-		// ajout close fd ?
+		ft_close_fd_exept_current(data, -1);
 		ft_exit2(data, 1);
 	}
 	if (!exec_elm->cmd)
 		ft_exit2(data, 0);
 	ft_make_fd_redirection(data, exec_elm);
-	ft_launch_cmd_if_is_builtin(data, exec_elm->cmd, data->env);
+	if (ft_is_builtin(data, exec_elm->cmd))
+	{
+		ft_exec_builtin(data, exec_elm->cmd);
+		ft_exit2(data, data->last_pipeline_exit_status);
+	}
 
 
 	//cmd_split = ft_split(cmd, ' ');

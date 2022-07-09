@@ -49,8 +49,13 @@ void	ft_echo(char **argument_list)
 
 	if (!argument_list || !argument_list[0])
 		return ;
+	if (argument_list[1] == 0)
+	{
+		write(STDIN_FILENO, "\n", 2);
+		return ;
+	}
 	n_flag_found = 0;
-	print_begin = 0;
+	print_begin = 1;
 	while (ft_is_n_flag(argument_list[print_begin]))
 	{
 		n_flag_found = 1;

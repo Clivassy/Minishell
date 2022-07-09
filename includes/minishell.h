@@ -74,6 +74,8 @@ typedef struct s_data
     t_token *gp_tokens_list;
     t_exec_elm	*exec_list;
     t_fd_heredoc  *fd_lst;
+	int	fd_save_stdout;
+	int	fd_save_stdin;
 	t_list	*garbage_collector;
 }	t_data;
 

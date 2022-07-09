@@ -11,8 +11,10 @@ void	ft_initialisation(t_data *data, char **envp)
     data->tokens_list = NULL;
     data->gp_tokens_list = NULL;
     data->exec_list = NULL;
-	data->garbage_collector = NULL;
     data->fd_lst = NULL;
+	data->fd_save_stdout = -1;
+	data->fd_save_stdin = -1;
+	data->garbage_collector = NULL;
     ft_dup_env(data, envp);
 
 }

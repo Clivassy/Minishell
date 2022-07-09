@@ -88,9 +88,14 @@ void	ft_close_fd_exept_current(t_data *data, int current_index);
 //exec_all_commands.c
 void    ft_exec_all_cmds(t_data *data);
 //exec_one_command.c
+void	ft_exec_builtin(t_data *data, char **cmd);
 void	ft_exec_one_command(t_data *data, t_exec_elm *exec_elm);
 //find_command_path.c
 char	*ft_find_command(t_data *data, char *cmd, char **envp);
+// manage_fd_and_redirections.c
+void	ft_save_stdin_out(t_data *data);
+void	ft_restore_stdin_out(t_data *data);
+void    ft_make_fd_redirection(t_data *data, t_exec_elm *exec_elm);
 
 //-----------------------------------------
 //               40 builtin
@@ -98,6 +103,7 @@ char	*ft_find_command(t_data *data, char *cmd, char **envp);
 void    ft_echo(char **argument_list);
 void	ft_cd(char **arguments);
 void	ft_builtin_exit(t_data *data);
+int	ft_is_builtin(t_data *data, char **cmd);
 
 
 //-----------------------------------------
