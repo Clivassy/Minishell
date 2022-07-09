@@ -15,7 +15,7 @@ void	ft_print_error(t_data *data, int error_status)
 	else if (error_status == SYNTAX_ERR_HEREDOC)
 		ft_printf("bash: syntax error near unexpected token `<<'\n");
 	else if (error_status == TAB_OR_SPC_ERR)
-		ft_printf("");
+		ft_printf("\0");
 	else
 		ft_printf("error detected, unknown status\n");
 }

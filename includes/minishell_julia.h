@@ -40,7 +40,7 @@ int ft_is_only_spc(char *str);
                 22_HEREDOC
 -----------------------------------------*/
 /******** heredoc.c ************/
-void ft_heredoc(t_data *data, t_token *heredoc_tkn);
+int ft_heredoc(t_data *data, t_token *heredoc_tkn);
 
 /******** heredoc_utils.c ************/
 int         ft_is_quoted(char *heretag);
@@ -65,13 +65,13 @@ void    ft_fill_new_token_2(char *content, t_data *data, int type);
             24_SIGNALS
 -----------------------------------------*/
 /********** signals.c ****************/
-void   ft_handle_heredoc_signal(void);
+void    ft_handle_ctrld(t_data *data);
 void    ft_handle_signals(void);
 void    ft_handle_sigint(int signal);
 void    ft_handle_sigquit(int signal);
+void    ft_handle_heredoc_signal(void);
+void    ft_sigint_heredoc(int signal);
 void    ft_handle_ctrld_heredoc(t_data *data);
-void    ft_handle_ctrld(t_data *data);
-void ft_heredoc_sigint(int signal);
 /*----------------------------------------
             60_TOOLS
 -----------------------------------------*/

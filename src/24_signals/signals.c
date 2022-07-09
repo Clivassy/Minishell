@@ -1,5 +1,18 @@
 #include "minishell.h"
 
+void    ft_sigint_heredoc(int signal)
+{
+    if (signal == SIGINT)
+    {
+        ft_printf("\n");
+        exit(130);
+    }
+}
+void    ft_handle_heredoc_signal(void)
+{
+    signal(SIGINT, &ft_sigint_heredoc);
+}
+
 void    ft_handle_ctrld(t_data *data)
 {
     write(1, "exit\n", 6);
@@ -12,26 +25,6 @@ void ft_handle_sigquit(int signal)
         ft_putstr_fd("\b\b  \b\b", 1);
 }
 
-void    ft_handle_ctrld_heredoc(t_data *data)
-{
-    ft_putstr_fd("\b\b  \b\b", 1);
-    ft_exit(data);
-}
-
-void    ft_heredoc_sigint(int signal)
-{
-    if (signal == SIGINT)
-    {
-        return;
-    }
-}
-
-void   ft_handle_heredoc_signal(void)
-{
-    signal(SIGINT, &ft_heredoc_sigint);
-}
-
-/* handle ctrl -c*/
 void ft_handle_sigint(int signal)
 {
     if (signal == SIGINT)
@@ -49,4 +42,10 @@ void    ft_handle_signals(void)
         printf("error 1\n");
     if (signal(SIGQUIT, &ft_handle_sigquit) == SIG_ERR)
         printf("error 2\n");
+}
+
+void    ft_handle_ctrld_heredoc(t_data *data)
+{
+    printf("\n");
+    ft_exit(data);
 }

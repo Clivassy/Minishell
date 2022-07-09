@@ -12,8 +12,7 @@ char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 
     str = NULL;
     while (1)
-    {   
-
+    {
         ft_handle_heredoc_signal();
         str = readline("> ");
         ft_add_to_garbage_collector(data, str);
@@ -45,28 +44,36 @@ char *ft_read_heredoc(t_data *data, char *heretag)
     return (tmp);
 }
 
-void ft_heredoc(t_data *data, t_token *heredoc_tkn)
+int ft_heredoc(t_data *data, t_token *heredoc_tkn)
 {
+    int id;
     char *str;
     char *here_tag;
     int file[2];
     t_fd_heredoc *fd_list;
 
+    signal(SIGINT, SIG_IGN);
+    signal(SIGQUIT, SIG_IGN);
     fd_list = NULL;
     here_tag = heredoc_tkn->value;
     ft_rm_quotes_in_str(data, &here_tag);
     if (pipe(file) == -1)
         ft_exit(data);
-   // fork();
-    str = ft_read_heredoc(data, here_tag);
-    if (!str)
+    id = fork();
+    if (id == 0)
+    {
+        signal(SIGINT, SIG_DFL);
+        str = ft_read_heredoc(data, here_tag);
+       // if (!str)
+         //   ft_exit(data);
+    }
+    if (waitpid(id, &(data->last_pipeline_exit_status), 0) < 0)
         ft_exit(data);
     write(file[1], str, ft_strlen(str)+ 1);
-    /*///// TMP ///////
-    ft_test(file);
-    ////// TMP /////*/
+   /* ft_test(file);*/
     fd_list = ft_new_fd(data, file[0]);
     ft_lstadd_back_fd(&data->fd_lst, fd_list);
 	if( close(file[1]) == -1)
 		ft_exit_close_error(data);
+    return(TAB_OR_SPC_ERR);
 }

@@ -38,11 +38,7 @@ void	ft_minishell_loop(t_data *data)
 				ft_print_error(data, error_status);
 			else
 			{
-<<<<<<< HEAD
-			//ft_exec_elm_lst_print(data->exec_list);
-=======
 			//	ft_exec_elm_lst_print(data->exec_list);
->>>>>>> julia
 			ft_exec_all_cmds(data);
 
 			}
