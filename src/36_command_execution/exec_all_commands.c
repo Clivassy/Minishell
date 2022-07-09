@@ -39,7 +39,7 @@ void	ft_exec_cmd_with_many_processus(t_data *data)
 			ft_exit_fork_error(data);
 		else if (id == 0)
 		{
-			if (exec_elm->has_redirect_pb == 1)
+			if (exec_elm->has_redirect_pb == 1) // a mettre dans exec_one_command ?
 			{
 				ft_close_fd_exept_current(data, -1);
 				ft_exit2(data, 1);
@@ -82,7 +82,7 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 
 }
 
-void    ft_exec_all_cmds(t_data *data)
+void     ft_exec_all_cmds(t_data *data)
 {
 	if(data->nb_of_process == 1)
 	{
