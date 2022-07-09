@@ -138,12 +138,16 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     if (pipe(file) == -1)
         ft_exit(data);
     id = fork();
+    //proteger
     if (id == 0)
     {   
         signal(SIGINT, SIG_DFL);
-        //close(file[0]);
+        //securiser le close
+        close(file[0]);
         str = ft_read_heredoc(data, here_tag);
         write(file[1], str, ft_strlen(str)+ 1);
+        close(file[1]);
+        ft_exit(data);
     }
     if (!str)
         ft_exit(data);
