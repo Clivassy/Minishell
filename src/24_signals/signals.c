@@ -44,8 +44,8 @@ void    ft_handle_signals(void)
         printf("error 2\n");
 }
 
-void    ft_handle_ctrld_heredoc(t_data *data)
+void    ft_handle_ctrld_heredoc(t_data *data, char *end)
 {
-    printf("\n");
+    printf("bash: warning : here-document delimited by end_of_file (wanted `%s')\n", end);
     ft_exit(data);
 }

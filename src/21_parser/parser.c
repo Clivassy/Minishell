@@ -53,16 +53,14 @@ int ft_is_heredoc(t_data *data, t_token *list)
         if (list->next->next->type == T_PIPE)
             return(SYNTAX_ERR_PIPE);
             //ft_lexer_error("error 1: no heretag after heredoc");
-        if (ft_heredoc(data, list->next->next) > 0)
-            return(TAB_OR_SPC_ERR);
+        ft_heredoc(data, list->next->next);
     }
     else
     {
         if(list->next->type != T_WORD)
             return(SYNTAX_ERR_HEREDOC);
             //ft_lexer_error("error 4: NO WORD after heredoc");
-        if (ft_heredoc(data, list->next) > 0)
-            return(TAB_OR_SPC_ERR);
+        ft_heredoc(data, list->next);
     }
     return (0);
 }
