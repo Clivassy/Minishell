@@ -1,37 +1,67 @@
 #include "minishell.h"
 
-t_token    *ft_simulation_token_1(t_token *heretag)
+/* SAVE */ 
+
+/*
+char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 {
-    heretag = malloc(sizeof(t_token));
-    heretag->type = T_CMD;
-    heretag->value = "end";
+    char *str;
 
-    printf("TOKEN VALUE : %s\n", heretag->value);
-    printf("TOKEN TYPE : %d\n", heretag->type);
-
-    return(heretag);
+    str = NULL;
+    while (1)
+    {   
+        ft_handle_heredoc_signal();
+        str = readline("> ");
+        ft_add_to_garbage_collector(data, str);
+        if (str == NULL)
+            ft_handle_ctrld_heredoc(data);
+        if (ft_strcmp(str, heretag) == 0)
+            break;
+        if (exp > 0 && ft_is_expand_required(str))
+            ft_expand_str(data, &str);
+        tmp = ft_strjoin(tmp, str);
+        tmp = ft_strjoin(tmp, "\n");
+        ft_add_to_garbage_collector(data, tmp);
+    }
+    return(tmp);
 }
 
-t_token    *ft_simulation_token_2(t_token *heretag)
+char *ft_read_heredoc(t_data *data, char *heretag)
 {
-    heretag = malloc(sizeof(t_token));
-    heretag->type = T_CMD;
-    heretag->value = "\"end\"";
+    char *tmp;
+    int expand;
 
-    printf("TOKEN VALUE : %s\n", heretag->value);
-    printf("TOKEN TYPE : %d\n", heretag->type);
-
-    return(heretag);
+    expand = 0;
+    tmp = ft_strdup("");
+    ft_add_to_garbage_collector(data, tmp);
+    if (ft_is_quoted(heretag))
+        expand = 1;
+    tmp = ft_stock_heredoc(expand, data, tmp, heretag);
+    return (tmp);
 }
 
-t_token    *ft_simulation_token_3(t_token *heretag)
+void ft_heredoc(t_data *data, t_token *heredoc_tkn)
 {
-    heretag = malloc(sizeof(t_token));
-    heretag->type = T_CMD;
-    heretag->value = "\'end\'";
+    char *str;
+    char *here_tag;
+    int file[2];
+    t_fd_heredoc *fd_list;
+    
+    fd_list = NULL;
+    here_tag = heredoc_tkn->value;
+    ft_rm_quotes_in_str(data, &here_tag);
+    if (pipe(file) == -1)
+        ft_exit(data);
+    str = ft_read_heredoc(data, here_tag);
+    if (!str)
+        ft_exit(data);
+    write(file[1], str, ft_strlen(str)+ 1);
 
-    printf("TOKEN VALUE : %s\n", heretag->value);
-    printf("TOKEN TYPE : %d\n", heretag->type);
+  //  ft_test(file);
 
-    return(heretag);
+    fd_list = ft_new_fd(data, file[0]);
+    ft_lstadd_back_fd(&data->fd_lst, fd_list);
+	if( close(file[1]) == -1)
+		ft_exit_close_error(data);
 }
+*/

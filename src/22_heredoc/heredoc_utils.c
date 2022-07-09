@@ -18,12 +18,11 @@ int ft_is_expand_required(char *heretag)
     return (0);
 }
 
-/*void ft_test(int file[2])
+void ft_test(int file[2])
 {
     char buf[4096];
     char *read_p;
 
     read_p = read(file[0], buf, 4096);
-    printf("%s", buf);
+    printf("BUFFER = %s\n", buf);
 }
-*/

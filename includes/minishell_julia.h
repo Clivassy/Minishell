@@ -71,7 +71,7 @@ void    ft_handle_sigint(int signal);
 void    ft_handle_sigquit(int signal);
 void    ft_handle_heredoc_signal(void);
 void    ft_sigint_heredoc(int signal);
-void    ft_handle_ctrld_heredoc(t_data *data);
+void    ft_handle_ctrld_heredoc(t_data *data, char *end);
 /*----------------------------------------
             60_TOOLS
 -----------------------------------------*/
