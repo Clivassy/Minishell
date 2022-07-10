@@ -216,6 +216,7 @@ JULIACOMPILE += src/40_builtin/builtin_env.c
 JULIACOMPILE += src/40_builtin/builtin_cd.c
 JULIACOMPILE += src/40_builtin/builtin_exit.c
 JULIACOMPILE += src/40_builtin/ft_is_builtin.c
+JULIACOMPILE += src/40_builtin/builtin_unset.c
 JULIACOMPILE += src/45_environment/env_initialisation.c
 JULIACOMPILE += src/45_environment/env_manipulation.c
 JULIACOMPILE += src/50_exit_functions/exit.c

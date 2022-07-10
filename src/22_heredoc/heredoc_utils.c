@@ -17,7 +17,7 @@ int ft_is_expand_required(char *heretag)
     //printf("NO expand needed\n");
     return (0);
 }
-
+/*
 void ft_test(int file[2])
 {
     char buf[4096];
@@ -25,4 +25,4 @@ void ft_test(int file[2])
 
     read_p = read(file[0], buf, 4096);
     printf("BUFFER = %s\n", buf);
-}
+}*/
