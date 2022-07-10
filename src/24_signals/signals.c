@@ -30,7 +30,7 @@ void ft_handle_sigint(int signal)
     if (signal == SIGINT)
     {
         ft_printf("\n");
-        rl_replace_line("", 0);
+        //rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
     }
@@ -38,10 +38,8 @@ void ft_handle_sigint(int signal)
 
 void    ft_handle_signals(void)
 {
-    if (signal(SIGINT, &ft_handle_sigint) == SIG_ERR)
-        printf("error 1\n");
-    if (signal(SIGQUIT, &ft_handle_sigquit) == SIG_ERR)
-        printf("error 2\n");
+    signal(SIGINT, &ft_handle_sigint);
+    signal(SIGQUIT, &ft_handle_sigquit);
 }
 
 void    ft_handle_ctrld_heredoc(t_data *data, char *end)

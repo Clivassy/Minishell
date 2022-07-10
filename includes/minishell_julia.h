@@ -72,6 +72,12 @@ void    ft_handle_sigquit(int signal);
 void    ft_handle_heredoc_signal(void);
 void    ft_sigint_heredoc(int signal);
 void    ft_handle_ctrld_heredoc(t_data *data, char *end);
+
+/*----------------------------------------
+            40_BUILTINS
+-----------------------------------------*/
+/********** builtins_unset.c ****************/
+void    ft_test_unset(t_data *data, char **envp, char **argv);
 /*----------------------------------------
             60_TOOLS
 -----------------------------------------*/
@@ -82,7 +88,6 @@ t_token *ft_lstlast_token(t_token *lst);
 
 /********** TEMP ****************/
 int ft_is_empty_list(t_token *list);
-
 
 /* TEST */
 void ft_test(int file[2]);
