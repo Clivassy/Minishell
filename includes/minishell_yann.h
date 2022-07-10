@@ -100,9 +100,10 @@ void    ft_make_fd_redirection(t_data *data, t_exec_elm *exec_elm);
 //-----------------------------------------
 //               40 builtin
 //-----------------------------------------
-void    ft_echo(char **argument_list);
-void	ft_cd(char **arguments);
-void	ft_builtin_exit(t_data *data);
+int	ft_echo(char **cmd);
+int	ft_builtin_env(t_data *data);
+int	ft_cd(char **cmd);
+int	ft_builtin_exit(t_data *data);
 int	ft_is_builtin(t_data *data, char **cmd);
 
 

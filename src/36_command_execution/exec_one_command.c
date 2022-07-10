@@ -7,7 +7,7 @@ void	ft_exec_builtin(t_data *data, char **cmd)
 	//// a completer avec les builtins (faire exit(STATUS_EXIT) dans chaque builtin)
 	if (ft_strcmp(cmd[0], "echo") == 0)
 	{
-		ft_echo(cmd);
+		data->last_pipeline_exit_status = ft_echo(cmd);
 	}
 	if (ft_strcmp(cmd[0], "cd") == 0)
 	{
@@ -27,14 +27,12 @@ void	ft_exec_builtin(t_data *data, char **cmd)
 	}
 	if (ft_strcmp(cmd[0], "env") == 0)
 	{
-		// lancer builtin env
+		data->last_pipeline_exit_status = ft_builtin_env(data);
 	}
 	if (ft_strcmp(cmd[0], "exit") == 0)
 	{
-		ft_builtin_exit(data);
+		data->last_pipeline_exit_status = ft_builtin_exit(data);
 	}
-	//else
-	//	return ;
 }
 
 

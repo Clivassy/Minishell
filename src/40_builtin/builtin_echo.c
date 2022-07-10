@@ -42,26 +42,27 @@ static void	ft_print_argument_list(char **argument_list)
 	}
 }
 
-void	ft_echo(char **argument_list)
+int	ft_echo(char **cmd)
 {
 	int	n_flag_found;
 	int	print_begin;
 
-	if (!argument_list || !argument_list[0])
-		return ;
-	if (argument_list[1] == 0)
+	if (!cmd || !cmd[0])
+		return (0);
+	if (cmd[1] == 0)
 	{
 		write(STDIN_FILENO, "\n", 2);
-		return ;
+		return (0);
 	}
 	n_flag_found = 0;
 	print_begin = 1;
-	while (ft_is_n_flag(argument_list[print_begin]))
+	while (ft_is_n_flag(cmd[print_begin]))
 	{
 		n_flag_found = 1;
 		print_begin += 1;
 	}
-	ft_print_argument_list(&(argument_list[print_begin]));
+	ft_print_argument_list(&(cmd[print_begin]));
 	if (!n_flag_found)
 		ft_printf("\n");
+	return (0);
 }
