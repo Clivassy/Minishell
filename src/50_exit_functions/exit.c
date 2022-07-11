@@ -17,7 +17,7 @@ void    ft_exit(t_data *data)
 // renomer ft_exit et changer partout
 void    ft_exit2(t_data *data, int error_status)
 {
-	//ft_print_color(COLOR_RED);
+	//(COLOR_RED);
     //ft_printf("#############################################\n");
     //ft_printf("###        ft_exit function called        ###\n");
     //ft_printf("###    free garbage collector and exit    ###\n");
