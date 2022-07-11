@@ -1,13 +1,9 @@
 #include "minishell.h"
 
 /* -----------------------------------------------------------
-remove variable from the env 
-unset + variable || variables 
-unset alone doesn't do anything 
-1) recupérer l'env 
-2) checker si la variable est présente dans l'env
-3) supprimer la variable et sa value de l'env.
+Descriptif : remove variable from the env 
 -----------------------------------------------------------*/
+
 char *ft_get_var_in_env(t_data *data, char *var)
 {
 	char	*copy_line;
@@ -32,25 +28,42 @@ char *ft_get_var_in_env(t_data *data, char *var)
 void    ft_rm_str_from_env(t_data *data, char *var)
 {
     int     i;
-
+    char **new_env;
+    
+    char *stock;
+    int delimit = 1;
+    stock = var;
+    ft_print_color(COLOR_YELLOW);
+    printf("--------------BEFORE REMOVAL-----------\n");
+    ft_print_env(data->env);
+    new_env = ft_malloc(data, sizeof(char *) * (ft_env_nb_of_lines(data->env)));
+    if(!new_env)
+        ft_exit(data);
+    i = 0;
+    while (i < ft_env_nb_of_lines(data->env))
+    {
+        new_env[i] = NULL;
+        i++;
+    }
     i = 0;
     while(data->env[i])
     {
-        if(ft_strcmp(var, ft_get_var_in_env(data, data->env[i]))== 0)
+        if(ft_strcmp(stock, ft_get_var_in_env(data, data->env[i])) == 0
+        && delimit > 0)
         {
-            ft_print_color(COLOR_GREEN);
-            printf("Variable on this line\n");
-            printf("--------------BEFORE REMOVAL-----------\n");
-            printf("%s\n", data->env[i]);
-            printf("----------------------------------------\n\n");
+            ft_print_color(COLOR_RED);
+            printf("FOUND = %s\n", stock);
+            printf("FOUND = %s\n", data->env[i]);
+            delimit = -1;
             free(data->env[i]);
-            data->env[i] = data->env[i + 1];
         }
+        new_env[i] =  ft_strdup((const char *)data->env[i]);
+		ft_add_to_garbage_collector(data, new_env[i]);
         i++;
     }
-    ft_print_color(COLOR_NORMAL);
+    ft_print_color(COLOR_GREEN);
+    printf("--------------AFTER REMOVAL-----------\n");
     ft_print_env(data->env);
-   // printf("STRING =%s\n", &str);
 }
 
 int ft_unset_variable(t_data *data, char *var)
@@ -63,7 +76,7 @@ int ft_unset_variable(t_data *data, char *var)
 
 /* return (1) if char is a valid identifier
 return(0) if char isn't a valid char */
-int ft_is_valid_identifier(char *cmd)
+static int ft_is_valid_identifier(char *cmd)
 {
     if(!ft_isalpha(cmd[0]))
             return(0);

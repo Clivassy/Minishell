@@ -78,6 +78,9 @@ void    ft_handle_ctrld_heredoc(t_data *data, char *end);
 -----------------------------------------*/
 /********** builtins_unset.c ****************/
 void    ft_test_unset(t_data *data, char **envp, char **argv);
+
+/********** builtins_export.c ****************/
+void    ft_test_export(t_data *data, char **envp, char **argv);
 /*----------------------------------------
             60_TOOLS
 -----------------------------------------*/

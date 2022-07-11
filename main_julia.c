@@ -20,10 +20,10 @@ int main(int argc, char **argv, char **envp)
 		// message erreur + sortie
 	}*/
 	ft_initialisation(&data, envp);
-	// initialisation signaux
 	//ft_minishell_loop(&data);
     ft_test_unset(&data, envp, argv);
-    //ft_free_garbage_collector(&data);
+    //ft_test_export(&data, envp, argv);
+   // ft_free_garbage_collector(&data);
 	return (0);
 }
 
