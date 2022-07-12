@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void    ft_test_cd_pwd(t_data *data)
+void    ft_test_cd(t_data *data)
 {
 	ft_print_color(COLOR_CYAN);
 
@@ -45,6 +45,26 @@ void    ft_test_cd_pwd(t_data *data)
 	//ft_printf("value associe a la cle XMODIFIERS: %s\n", ft_env_get_value(data, "XMODIFIERS"));
 
 	ft_print_color(COLOR_NORMAL);
+
+}
+
+void    ft_test_pwd(t_data *data)
+{
+	ft_print_color(COLOR_CYAN);
+
+	char *buff = NULL;
+
+	ft_printf("repertoire courant = %s\n", getcwd(buff, 0));
+
+	ft_print_color(COLOR_GREEN);
+
+	ft_printf("1 -test normal PWD = %s\n", getcwd(buff, 0));
+	char *cmd1[5] = {"pwd",NULL};
+	ft_builtin_pwd(data, cmd1);
+
+	ft_printf("2- test trop d'argument (pas d'erreur attendue) PWD = %s\n", getcwd(buff, 0));
+	char *cmd2[5] = {"pwd", "arg1",NULL};
+	ft_builtin_pwd(data, cmd2);
 
 }
 

@@ -1,8 +1,5 @@
 #include "minishell.h"
 
-// get cmd
-// exec
-
 int	ft_get_cmd(t_data *data)
 {
 	int	error_status_parser;
@@ -14,7 +11,7 @@ int	ft_get_cmd(t_data *data)
 	else
 	{
 		ft_group_tokens(data);
-		//ft_build_exec_list(data);
+		ft_build_exec_list(data);
 	}
 	return (0);
 }
@@ -37,7 +34,7 @@ void	ft_minishell_loop(t_data *data)
 			if (error_status != 0)
 				ft_print_error(data, error_status);
 			else
-			{ 
+			{
 				//ft_exec_elm_lst_print(data->exec_list);
 				ft_exec_all_cmds(data);
 			}

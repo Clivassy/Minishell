@@ -30,12 +30,14 @@ void	ft_exit_cmd_not_found_error(t_data *data, char **cmd);
 void	ft_exit_dup_error(t_data *data);
 // error_fork.c
 void	ft_exit_fork_error(t_data *data);
+// error_pipe.c
+void	ft_exit_pipe_error(t_data *data);
+// error_pwd
+int	ft_pwd_error(t_data *data);
 // print_error.c
 void	ft_print_error(t_data *data, int error_status);
 // print_error_open.c
 void	ft_print_open_error(t_data *data, char *file_name);
-// error_pipe.c
-void	ft_exit_pipe_error(t_data *data);
 
 //-----------------------------------------
 //               22 heredoc
@@ -166,7 +168,8 @@ void	ft_print_color(char *str);
 void    ft_print_env(char **env);
 void    ft_exec_elm_lst_print(t_exec_elm *elm);
 void    ft_print_token_list(t_token *token_list);
-void    ft_test_cd_pwd(t_data *data);
+void    ft_test_cd(t_data *data);
+void    ft_test_pwd(t_data *data);
 void	ft_test_add_to_str(t_data *data);
 void	ft_test_add_to_str_end(t_data *data);
 void	ft_test_rm_from_str(t_data *data);
