@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	ft_builtin_env(t_data *data)
+int	ft_builtin_env(t_data *data, char **cmd)
 {
 	char	**env;
 

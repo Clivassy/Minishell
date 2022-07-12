@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	ft_builtin_exit(t_data *data)
+int	ft_builtin_exit(t_data *data, char **cmd)
 {
 	if (data->nb_of_process == 1)
 		write(2, "exit\n", 5);

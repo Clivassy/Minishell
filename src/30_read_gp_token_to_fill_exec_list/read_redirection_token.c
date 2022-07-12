@@ -49,7 +49,7 @@ int	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
 
 	ft_expand_token(data, token);
 	ft_rm_quotes_in_token(data, token);
-	fd_outfile = open(token->value, O_RDWR | O_APPEND, 0644); // verifier ces parametres
+	fd_outfile = open(token->value, O_RDWR | O_CREAT | O_APPEND, 0644); // verifier ces parametres
 	if (fd_outfile < 0)
 	{
 		ft_print_open_error(data, token->value);

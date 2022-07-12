@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_garbage_collector(&data);
 
 	//test env
-	ft_test_env(&data);
+	//ft_test_env(&data);
 
 	// test add to str
 	//ft_test_add_to_str(&data);
@@ -58,7 +58,8 @@ int main(int argc, char **argv, char **envp)
 	//test command execution
 	//ft_test_command_execution(&data);
 
-
+	// test cd
+	ft_test_cd_pwd(&data);
 
 	ft_free_garbage_collector(&data);
     return(0);
