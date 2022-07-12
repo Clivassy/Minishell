@@ -26,5 +26,5 @@ void    ft_exit2(t_data *data, int error_status)
 	ft_free_garbage_collector(data);
     exit(error_status);
 
-    // TBD
+    // TBD : ajout free des fd
 }
