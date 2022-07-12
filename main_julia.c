@@ -21,9 +21,9 @@ int main(int argc, char **argv, char **envp)
 	}*/
 	ft_initialisation(&data, envp);
 	//ft_minishell_loop(&data);
-    ft_test_unset(&data, envp, argv);
-    //ft_test_export(&data, envp, argv);
-   // ft_free_garbage_collector(&data);
+   // ft_test_unset(&data, envp, argv);
+    ft_test_export(&data, envp, argv);
+    ft_free_garbage_collector(&data);
 	return (0);
 }
 
