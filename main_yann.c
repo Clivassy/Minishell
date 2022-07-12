@@ -59,7 +59,9 @@ int main(int argc, char **argv, char **envp)
 	//ft_test_command_execution(&data);
 
 	// test cd
-	ft_test_cd_pwd(&data);
+	//ft_test_cd(&data);
+	ft_test_pwd(&data);
+
 
 	ft_free_garbage_collector(&data);
     return(0);
