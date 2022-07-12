@@ -18,6 +18,10 @@ void	ft_minishell_loop(t_data *data);
 //-----------------------------------------
 //           17_error_management
 //-----------------------------------------
+// error_cd.c
+int	ft_cd_error_too_many_arg(t_data *data);
+int	ft_cd_error_no_arg(t_data *data);
+int	ft_cd_error_no_dir(t_data *data, char *cmd);
 // error_close.c
 void	ft_exit_close_error(t_data *data);
 // error_cmd_not_found.c
@@ -100,10 +104,11 @@ void    ft_make_fd_redirection(t_data *data, t_exec_elm *exec_elm);
 //-----------------------------------------
 //               40 builtin
 //-----------------------------------------
-int	ft_echo(char **cmd);
-int	ft_builtin_env(t_data *data);
-int	ft_cd(char **cmd);
-int	ft_builtin_exit(t_data *data);
+int	ft_builtin_echo(t_data *data, char **cmd);
+int	ft_builtin_env(t_data *data, char **cmd);
+int	ft_builtin_cd(t_data *data, char **cmd);
+int	ft_builtin_exit(t_data *data, char **cmd);
+int	ft_builtin_pwd(t_data *data, char **cmd);
 int	ft_is_builtin(t_data *data, char **cmd);
 
 
@@ -142,6 +147,8 @@ t_exec_elm	*ft_get_exec_elm(t_exec_elm *lst, int index);
 // ft_add_to_str.c
 void	ft_add_to_str(t_data *data, char **str, char *to_add, int position);
 void	ft_add_to_str_end(t_data *data, char **str, char *to_add);
+//ft_null_terminated_tab_len.c
+size_t	ft_null_terminated_tab_len(char **tab);
 // ft_rm_from_str.c
 void	ft_rm_from_str(t_data *data, char **s, int rm_len, int position);
 // ft_split with garbage collector
@@ -159,6 +166,7 @@ void	ft_print_color(char *str);
 void    ft_print_env(char **env);
 void    ft_exec_elm_lst_print(t_exec_elm *elm);
 void    ft_print_token_list(t_token *token_list);
+void    ft_test_cd_pwd(t_data *data);
 void	ft_test_add_to_str(t_data *data);
 void	ft_test_add_to_str_end(t_data *data);
 void	ft_test_rm_from_str(t_data *data);

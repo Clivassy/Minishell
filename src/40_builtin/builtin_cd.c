@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 // a faire
-int	ft_cd(char **cmd)
+int	ft_builtin_cd(t_data *data, char **cmd)
 {
 	// var d'env PWD pour repertoire courrant
 	// cd sans arguments ouvre repertoire de la variable d'env HOME
@@ -13,6 +13,21 @@ int	ft_cd(char **cmd)
 	//char *buf = malloc(sizeof(char) * 500);
 	//getcwd(buf, 500);
 	//ft_printf("buf : %s\n", buf);
-	return (0);
+
+	int error_status;
+
+	if (ft_null_terminated_tab_len(cmd) < 2)
+		return (ft_cd_error_no_arg(data));
+	if (ft_null_terminated_tab_len(cmd) > 2)
+		return (ft_cd_error_too_many_arg(data));
+	error_status = chdir(cmd[1]);
+	if (error_status != 0)
+	{
+		return (ft_cd_error_no_dir(data, cmd[1]));
+	}
+	else
+	{
+		return (0);
+	}
 
 }
