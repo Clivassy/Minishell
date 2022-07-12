@@ -9,6 +9,14 @@ If input format != [variable]=[value]
 else
     Proceed export
 -----------------------------------------------------------------*/
+/* ft_put_var_into_env 
+- passer la string en parametre
+- check si null ou si pas de  = 
+- la logique : 
+j'alloue la place pour la taille de l'env + 2 (null + new_var)
++ je copie l'env dans le nouvel env avec la nouvelle variable et sa value. 
+*/
+
 static int ft_is_valid_identifier(char *cmd)
 {
     int i;
