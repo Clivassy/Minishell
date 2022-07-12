@@ -9,7 +9,7 @@ Standard input is NOT from the terminal
 
 int main(int argc, char **argv, char **envp)
 {
-//	int	error_status;
+    int	error_status;
 	t_data	data;
 	/*if (!isatty(0)) // check if the standar input is from a terminal
 	{
@@ -20,9 +20,9 @@ int main(int argc, char **argv, char **envp)
 		// message erreur + sortie
 	}*/
 	ft_initialisation(&data, envp);
-	//ft_minishell_loop(&data);
+	ft_minishell_loop(&data);
    // ft_test_unset(&data, envp, argv);
-    ft_test_export(&data, envp, argv);
+   // ft_test_export(&data, envp, argv);
     ft_free_garbage_collector(&data);
 	return (0);
 }

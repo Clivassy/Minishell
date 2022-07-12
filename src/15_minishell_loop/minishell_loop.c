@@ -14,7 +14,7 @@ int	ft_get_cmd(t_data *data)
 	else
 	{
 		ft_group_tokens(data);
-		ft_build_exec_list(data);
+		//ft_build_exec_list(data);
 	}
 	return (0);
 }

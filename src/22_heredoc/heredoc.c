@@ -6,7 +6,7 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
 - j'expand ce qui est a l'intérieur si jamais il y a des variables d'emvironnement
 - ??
 ----------------------------------------------------------------------*/
-/*void    ft_stock_heredoc(int fd[2], int exp, t_data *data, char *heretag)
+void    ft_stock_heredoc(int fd[2], int exp, t_data *data, char *heretag)
 {
     char *str;
 
@@ -36,12 +36,10 @@ Gestion des heredocs + erreurs de syntaxe de heredocs
     }
     fd_list = ft_new_fd(data, fd[0]);
     ft_lstadd_back_fd(&data->fd_lst, fd_list);
-//    ft_test(fd);
 }
 
 void    ft_read_heredoc(int fd[2], t_data *data, char *heretag)
 {
-    printf("LOL\n");
     int expand;
 
     expand = 0;
@@ -56,16 +54,15 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     char *here_tag;
     int file[2];
 
-    signal(SIGINT, SIG_IGN);
-    signal(SIGQUIT, SIG_IGN);
-    here_tag = heredoc_tkn->value;
+   signal(SIGINT, SIG_IGN);
+   signal(SIGQUIT, SIG_IGN);
+   here_tag = heredoc_tkn->value;
     ft_rm_quotes_in_str(data, &here_tag);
-    if (pipe(file) == -1)
-        ft_exit(data);
-    id = fork();
+   if (pipe(file) == -1)
+      ft_exit(data);
+   id = fork();
     if (id == 0)
     {
-        close(file[0]);
         signal(SIGINT, SIG_DFL);
         ft_read_heredoc(file, data, here_tag);
     }
@@ -73,13 +70,13 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
 		ft_exit_close_error(data);
    if (waitpid(id, &(data->last_pipeline_exit_status), 0) < 0)
         ft_exit(data);
-   //ft_test(file);
+    ft_test(file);
+    waitpid(id, &(data->last_pipeline_exit_status), 0);
     return(0);
-}*/
-
+}
 
 /*/////////////// VERSION FONCTONNELLE ///////////////////////////*/
-char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
+/*char *ft_stock_heredoc(int exp, t_data *data, char *tmp, char *heretag)
 {
     char *str;
 
@@ -159,6 +156,8 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
 		ft_exit_close_error(data);
     return (0);
 }
+*/
+
 
 /*
 void    ft_stock_heredoc(int file[2], int exp, t_data *data, char *heretag)

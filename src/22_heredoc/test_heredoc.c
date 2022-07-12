@@ -1,5 +1,32 @@
 #include "minishell.h"
 
+/*
+int ft_heredoc(t_data *data, t_token *heredoc_tkn)
+{
+    pid_t id; 
+    char *here_tag;
+
+    here_tag = heredoc_tkn->value;
+    ft_rm_quotes_in_str(data, &here_tag);
+    id = fork();
+    if (id == -1)
+        ft_exit(data);
+    if (id == 0)
+    {
+        printf("lol\n");
+    }
+    waitpid(id, &(data->last_pipeline_exit_status), 0);
+    return(0);
+}
+*/
+
+
+
+
+
+
+
+
 /* SAVE */ 
 
 /*

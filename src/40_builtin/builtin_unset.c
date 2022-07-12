@@ -116,7 +116,7 @@ int ft_unset(t_data *data, char **cmd)
 
 void    ft_test_unset(t_data *data, char **envp, char **argv)
 {
-    ft_dup_env(data, envp);
+   // ft_dup_env(data, envp);
     ft_unset(data, &argv[1]);
 
 }
