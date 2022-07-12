@@ -21,7 +21,7 @@ void    ft_rm_str_from_env(t_data *data, char **new_env, char *var)
 
     status = 1;
     len = ft_env_nb_of_lines(data->env);
-    ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);
+   // ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);
     i = 0;
     j = 0;
     while(i < len)
@@ -42,7 +42,7 @@ void    ft_rm_str_from_env(t_data *data, char **new_env, char *var)
     }
     ft_free(data, data->env);
     data->env = new_env;
-    ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
+   // ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
 }
 
 void    ft_unset_variable(t_data *data, char *var)
@@ -60,8 +60,8 @@ void    ft_unset_variable(t_data *data, char *var)
         new_env[i] = NULL;
         i++;
     }
-    ft_print_color(COLOR_CYAN);
-    printf("\n---PROCEED UNSET OF \"%s\" VARIABLE------\n\n", var);
+   // ft_print_color(COLOR_CYAN);
+   // printf("\n---PROCEED UNSET OF \"%s\" VARIABLE------\n\n", var);
     ft_rm_str_from_env(data, new_env, var);
 
 }
@@ -105,7 +105,7 @@ int ft_unset(t_data *data, char **cmd)
         }
         else
         {
-            ft_print_color(COLOR_NORMAL);
+           // ft_print_color(COLOR_NORMAL);
             ft_printf("bash: unset: `%s': not a valid identifier\n",cmd[i]);
             exit_code = 1;
         }

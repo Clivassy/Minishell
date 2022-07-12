@@ -35,7 +35,7 @@ void    ft_add_var_to_env(t_data *data, char **new_env, char *var)
     ft_add_to_garbage_collector(data, new_env[j]);
     ft_free(data, data->env);
     data->env = new_env;
-    ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
+    //ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
 }
 
 int ft_is_arg_ok(t_data *data, char *cmd)
@@ -68,9 +68,9 @@ void    ft_create_new_env(t_data *data, char *var)
         new_env[i] = NULL;
         i++;
     }
-    ft_print_color(COLOR_CYAN);
-    printf("\n---PROCEED EXPORT OF \"%s\" VARIABLE------\n\n", var);
-    ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);
+   // ft_print_color(COLOR_CYAN);
+   // printf("\n---PROCEED EXPORT OF \"%s\" VARIABLE------\n\n", var);
+   // ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);
     ft_add_var_to_env(data, new_env, var);
 }
 
@@ -84,7 +84,7 @@ int ft_export(t_data *data, char **cmd)
     i = 1;
     if (!cmd[1])
     {
-        printf("No argument after commande unset\n");
+       // printf("No argument after commande unset\n");
         return (0);
     }
     while(cmd[i])
@@ -92,8 +92,8 @@ int ft_export(t_data *data, char **cmd)
          //printf("STRING= \'%s\'", cmd[i]);
         if (ft_is_arg_ok(data, cmd[i]))
         {
-            ft_print_color(COLOR_GREEN);
-            printf("--------Input is valid-------------\n");
+           // ft_print_color(COLOR_GREEN);
+           // printf("--------Input is valid-------------\n");
             ft_create_new_env(data, cmd[i]);
         }
         else
@@ -108,6 +108,6 @@ int ft_export(t_data *data, char **cmd)
 
 void    ft_test_export(t_data *data, char **envp, char **argv)
 {
-    printf("cmd = %s\n", argv[1]);
+   // printf("cmd = %s\n", argv[1]);
     ft_export(data, &argv[1]);
 }
