@@ -44,7 +44,6 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     t_fd_heredoc *fd_list;
 
     fd_list = NULL;
-   // data->last_pipeline_exit_status = 130;
     signal(SIGINT, SIG_IGN);
     signal(SIGQUIT, SIG_IGN);
     if (pipe(file) == -1)
