@@ -5,10 +5,8 @@ int ft_pipe_errors(t_token *token)
     //printf("first token is : %d\n", token->type);
     if (!token->next)
         return(SYNTAX_ERR_PIPE);
-        //ft_lexer_error("Error 2 : pipe at the end");
     if (token->next->type == T_PIPE)
         return(SYNTAX_ERR_PIPE);
-        //ft_lexer_error("Error 3 : multiple pipes ");
     if (ft_is_empty_pipe(token->next) == SYNTAX_ERR_PIPE)
         return(SYNTAX_ERR_PIPE);
     return(0);
@@ -20,7 +18,7 @@ int ft_redirect_errors(t_token *token)
     {
         //printf("token type is : %s\n", token->value);
         if (!token->next)
-            return(SYNTAX_ERR_NEWLINE);//ft_lexer_error("Error: nothing after redirect");
+            return(SYNTAX_ERR_NEWLINE);
         if (token->next->type == T_SPACE)
         {
             if (!token->next->next)
@@ -41,25 +39,20 @@ int ft_redirect_errors(t_token *token)
 
 int ft_is_heredoc(t_data *data, t_token *list)
 {
-    //printf("TOKEN = %s\n",list->next->value);
     if (list->next->type == T_SPACE)
     {
-       // printf("TOKEN = %s\n",list->next->value);
         if (!list->next->next)
             return(SYNTAX_ERR_NEWLINE);
-            //ft_lexer_error("error: only space after last heredoc");
         if (list->next->next->type == T_HEREDOC)
             return(SYNTAX_ERR_HEREDOC);
         if (list->next->next->type == T_PIPE)
             return(SYNTAX_ERR_PIPE);
-            //ft_lexer_error("error 1: no heretag after heredoc");
         ft_heredoc(data, list->next->next);
     }
     else
     {
         if(list->next->type != T_WORD)
             return(SYNTAX_ERR_HEREDOC);
-            //ft_lexer_error("error 4: NO WORD after heredoc");
         ft_heredoc(data, list->next);
     }
     return (0);
@@ -79,7 +72,7 @@ int ft_parser(t_data *data)
         if (list->type == T_HEREDOC)
         {
             if (!list->next)
-                return(SYNTAX_ERR_NEWLINE);//ft_lexer_error("Error 0: Nothing after heredoc");
+                return(SYNTAX_ERR_NEWLINE);
             error_status = ft_is_heredoc(data, list);
         }
         if (list->type == T_PIPE)

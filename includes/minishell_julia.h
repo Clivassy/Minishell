@@ -44,7 +44,7 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn);
 
 /******** heredoc_utils.c ************/
 int         ft_is_quoted(char *heretag);
-int	        ft_strcmp(char *s1, char *s2);
+
 int         ft_is_expand_required(char *heretag);
 
 /******** heredoc_manipulation.c ************/
@@ -56,7 +56,7 @@ t_fd_heredoc	*ft_lstlast_fd(t_fd_heredoc*lst);
 /*----------------------------------------
             23_LIST TOKENS
 -----------------------------------------*/
-int     ft_group_tokens(t_data *data);
+void    ft_group_tokens(t_data *data);
 t_token *ft_fill_redir_tkn(t_data *data, t_token *list);
 int     ft_get_redir_tkn(t_data *data, char *content, int type);
 void    ft_fill_new_token_2(char *content, t_data *data, int type);
@@ -93,13 +93,13 @@ void    ft_lstadd_back_token(t_token **alst, t_token *new);
 t_token	*ft_new_token(t_data *data, char *value, int type);
 t_token *ft_lstlast_token(t_token *lst);
 
+/******** ft_strcmp.c ************/
+int	        ft_strcmp(char *s1, char *s2);
+
 /********** TEMP ****************/
 int ft_is_empty_list(t_token *list);
 
 /* TEST */
 void ft_test(int file[2]);
-t_token    *ft_simulation_token_1(t_token *heretag);
-t_token    *ft_simulation_token_2(t_token *heretag);
-t_token    *ft_simulation_token_3(t_token *heretag);
 void    ft_debeug(t_data *data, char *msg, char **env, char *color);
 

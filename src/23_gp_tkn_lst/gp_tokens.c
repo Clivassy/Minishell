@@ -8,9 +8,8 @@ static int ft_is_redirect(t_token *curr)
     return(0);
 }
 
-int ft_group_tokens(t_data *data)
+void    ft_group_tokens(t_data *data)
 {
-	// possible de return un void
     t_token *new_list;
     t_token *list;
 
@@ -18,7 +17,7 @@ int ft_group_tokens(t_data *data)
     while (list)
     {
         if (!list->next && list->type != T_WORD)
-           return(0);
+           return;
         if (list->type == T_SPACE)
             list = list->next;
         if (ft_is_redirect(list))
@@ -29,5 +28,4 @@ int ft_group_tokens(t_data *data)
             ft_fill_new_token_2(list->value, data, T_PIPE);
         list = list->next;
     }
-    return (0);
 }
