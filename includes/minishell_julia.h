@@ -44,7 +44,7 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn);
 
 /******** heredoc_utils.c ************/
 int         ft_is_quoted(char *heretag);
-
+void	ft_wait_pid_heredoc(int id, t_data *data);
 int         ft_is_expand_required(char *heretag);
 
 /******** heredoc_manipulation.c ************/

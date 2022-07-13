@@ -35,6 +35,7 @@ void    ft_read_heredoc(int fd[2], t_data *data, char *heretag)
         expand = 1;
     ft_rm_quotes_in_str(data, &here_tag);
     ft_stock_heredoc(fd, expand, data, here_tag);
+    ft_exit2(data, 0);
 }
 
 int ft_heredoc(t_data *data, t_token *heredoc_tkn)
@@ -60,7 +61,8 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
     }
 	if( close(file[1]) == -1)
 		ft_exit_close_error(data);
-    if (waitpid(id, &(data->last_pipeline_exit_status), 0) < 0)
-        ft_exit(data);
-    return(0);
+    ft_wait_pid_heredoc(id, data);
+    if(data->last_pipeline_exit_status == EXIT_CODE_CTRLC_HEREDOC)
+        return(EXIT_CODE_CTRLC_HEREDOC);
+    return(0);                                                                 
 }

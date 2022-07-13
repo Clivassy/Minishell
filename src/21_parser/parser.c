@@ -43,13 +43,15 @@ int ft_is_heredoc(t_data *data, t_token *list)
             return(SYNTAX_ERR_HEREDOC);
         if (list->next->next->type == T_PIPE)
             return(SYNTAX_ERR_PIPE);
-        ft_heredoc(data, list->next->next);
+        if (ft_heredoc(data, list->next->next) == EXIT_CODE_CTRLC_HEREDOC)
+            return(EXIT_CODE_CTRLC_HEREDOC);
     }
     else
     {
         if(list->next->type != T_WORD)
             return(SYNTAX_ERR_HEREDOC);
-        ft_heredoc(data, list->next);
+        if (ft_heredoc(data, list->next) == EXIT_CODE_CTRLC_HEREDOC)
+            return(EXIT_CODE_CTRLC_HEREDOC);
     }
     return (0);
 }
