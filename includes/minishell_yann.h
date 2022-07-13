@@ -133,16 +133,6 @@ char *ft_env_get_value(t_data *data, char *key_searched);
 //-----------------------------------------
 //                60_tools
 //-----------------------------------------
-// create_exec_list.c
-void	create_exec_list_1(t_data *data);
-// create token list
-void	create_token_list_1(t_data *data);
-void	create_token_list_2(t_data *data);
-void	create_token_list_3(t_data *data);
-void	create_token_list_empty(t_data *data);
-void	create_token_list_1_elm(t_data *data);
-void	create_token_list_3elm_avec_pipe(t_data *data);
-void	create_gp_token_list_1(t_data *data);
 // exec_elm_manipulation.c
 t_exec_elm	*ft_create_new_exec_elm(t_data *data);
 void    ft_add_exec_elm(t_exec_elm **elm_list, t_exec_elm *new_elm);
@@ -168,6 +158,17 @@ void	ft_print_color(char *str);
 //-----------------------------------------
 //               70 debug
 //-----------------------------------------
+// create_exec_list.c
+void	create_exec_list_1(t_data *data);
+// create token list
+void	create_token_list_1(t_data *data);
+void	create_token_list_2(t_data *data);
+void	create_token_list_3(t_data *data);
+void	create_token_list_empty(t_data *data);
+void	create_token_list_1_elm(t_data *data);
+void	create_token_list_3elm_avec_pipe(t_data *data);
+void	create_gp_token_list_1(t_data *data);
+//
 void    ft_print_env(char **env);
 void    ft_exec_elm_lst_print(t_exec_elm *elm);
 void	ft_print_fd_status(char *message);
