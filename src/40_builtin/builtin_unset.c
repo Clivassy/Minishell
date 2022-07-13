@@ -12,26 +12,6 @@ void    ft_debeug(t_data *data, char *msg, char **env, char *color)
     printf("NUMBER = %d\n",ft_env_nb_of_lines(data->env));
 }
 
-/*void    ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)
-{
-	int		i;
-
-	i = 0;
-	while (data->env[i] != var)
-	{
-		new_env[i] = data->env[i];
-		i++;
-	}
-	while (data->env[i + 1])
-	{
-		new_env[i] = data->env[i + 1];
-		i++;
-	}
-	new_env[i] = NULL;
-	//free(data->env);
-	data->env = new_env;
-}*/
-
 void    ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)
 {
     int i;
@@ -42,20 +22,23 @@ void    ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)
    // ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);
     i = 0;
     j = 0;
-    ft_print_color(COLOR_MAGENTA);
-    printf("\nLEN BEFORE UNSET = %d\n", len);
+  /*  ft_print_color(COLOR_MAGENTA);
+    printf("\nLEN BEFORE UNSET = %d\n", len);*/
     while(i < len)
     {
         if(ft_strcmp(var, ft_env_get_key_on_line(data, data->env[i])) == 0
         && status > 0)
         {
-           ft_print_color(COLOR_RED);
+            if (i == len -1)
+            {
+                new_env[j] = NULL;
+                data->env = new_env;
+                return;
+            }
+           /* ft_print_color(COLOR_RED);
             printf("FOUND = %s\n", var);
-            printf("FOUND = %s\n", data->env[i]);
+            printf("FOUND = %s\n", data->env[i]);*/
             status = -1;
-            // add a condition si on est sur la derniere ligne on ne 
-            // fait pas i++ mais on remplace la derniere ligne
-            // par la variable en question.
             i++;
         }
         new_env[j] =  ft_strdup((const char *)data->env[i]);
@@ -65,8 +48,8 @@ void    ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)
     }
     new_env[j] = NULL;
     data->env = new_env;
-    ft_print_color(COLOR_MAGENTA);
-    printf("\nLEN AFTER UNSET = %d\n",ft_env_nb_of_lines(data->env));
+    //ft_print_color(COLOR_MAGENTA);
+    //printf("\nLEN AFTER UNSET = %d\n",ft_env_nb_of_lines(data->env));
     //ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
 }
 
@@ -75,8 +58,8 @@ void    ft_unset_variable(t_data *data, char *var)
     char **new_env;
     int i;
 
-    ft_print_color(COLOR_MAGENTA);
-    printf("%d\n", ft_env_nb_of_lines(data->env));
+   /* ft_print_color(COLOR_MAGENTA);
+    printf("%d\n", ft_env_nb_of_lines(data->env));*/
     new_env = ft_malloc(data, sizeof(char *) * 
     (ft_env_nb_of_lines(data->env)));
     if(!new_env)
