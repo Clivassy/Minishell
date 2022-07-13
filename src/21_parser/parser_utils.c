@@ -52,7 +52,7 @@ int	ft_is_redirect_err(t_token *token)
 int	ft_is_empty_pipe(t_token *token)
 {
 	t_token	*tmp;
-	int		statut;
+	int		status;
 
 	status = 0;
 	tmp = token;
@@ -61,8 +61,8 @@ int	ft_is_empty_pipe(t_token *token)
 	while (tmp)
 	{
 		if (tmp->type == T_WORD)
-			statut = 1;
-		if (tmp->type == T_PIPE && statut < 1)
+			status = 1;
+		if (tmp->type == T_PIPE && status < 1)
 			return (SYNTAX_ERR_PIPE);
 		tmp = tmp->next;
 	}
