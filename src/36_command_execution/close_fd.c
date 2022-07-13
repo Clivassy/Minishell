@@ -9,21 +9,28 @@ void	ft_close_fd_exept_current(t_data *data, int current_index)
 	exec_elm = data->exec_list;
 	while(exec_elm)
 	{
+		//ft_printf("index:%d, close fdout: %d\n", current_index, exec_elm->fd_out);
+
 		if (exec_elm->index != current_index)
 			{
-				if (exec_elm->fd_in != STDIN_FILENO)
+				//ft_print_fd_status("status avant close");
+
+				if (exec_elm->fd_in != STDIN_FILENO && exec_elm->fd_in >= 0)
 				{
 					//ft_printf("index:%d, close fdin: %d\n", current_index, exec_elm->fd_in);
 					if(close(exec_elm->fd_in) == -1)
 						ft_exit_close_error(data);
+					exec_elm->fd_in = -1;
 				}
-				if (exec_elm->fd_out != STDOUT_FILENO)
+				if (exec_elm->fd_out != STDOUT_FILENO && exec_elm->fd_out >= 0)
 				{
 					//ft_printf("index:%d, close fdout: %d\n", current_index, exec_elm->fd_out);
 					if(close(exec_elm->fd_out) == -1)
 						ft_exit_close_error(data);
+					exec_elm->fd_out = -1;
 				}
 			}
 		exec_elm = exec_elm->next;
 	}
 }
+		//ft_print_fd_status("status avant dup2");

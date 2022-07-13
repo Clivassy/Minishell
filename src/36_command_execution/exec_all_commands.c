@@ -70,6 +70,7 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 	exec_elm = data->exec_list;
 	if (exec_elm->has_redirect_pb == 1)
 	{
+		ft_close_fd_exept_current(data, -1);
 		data->last_pipeline_exit_status = 1;
 		return ;
 	}
@@ -89,6 +90,8 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 
 void     ft_exec_all_cmds(t_data *data)
 {
+	//ft_exec_elm_lst_print(data->exec_list);
+
 	signal(SIGINT, SIG_IGN);
     signal(SIGQUIT, SIG_IGN);
 	if(data->nb_of_process == 1)
