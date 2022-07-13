@@ -24,7 +24,7 @@ void    ft_add_var_to_env(t_data *data, char **new_env, char *var, int len)
 
     i = 0;
     j = 0;
-  //  ft_debeug(data, "BETWEEN", data->env, COLOR_CYAN);
+    //ft_debeug(data, "BETWEEN", data->env, COLOR_CYAN);
     while (i < len)
     {
         new_env[j] =  ft_strdup((const char *)data->env[i]);
@@ -32,9 +32,16 @@ void    ft_add_var_to_env(t_data *data, char **new_env, char *var, int len)
         i++;
         j++;
     }
+    printf("LEN BETWEEN EXPORT = %d\n", ft_env_nb_of_lines(new_env)); 
+    //printf("ENV = %s\n", new_env[j]);
     new_env[j] = ft_strdup(var);
+    j++; 
+   // printf("ENV = %s\n", new_env[j]);
     ft_add_to_garbage_collector(data, new_env[j]);
     data->env = new_env;
+    ft_print_color(COLOR_CYAN);
+    printf("LEN AFTER EXPORT = %d\n", ft_env_nb_of_lines(new_env));
+   // ft_free(data,data->env);
     // terminer par null  ???
     //ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
 }
@@ -62,7 +69,8 @@ void    ft_create_new_env(t_data *data, char *value)
     int len = ft_env_nb_of_lines(data->env) + 2;
 
     var = ft_env_get_key_on_line(data, value);
-    printf("VAR= \'%d\'", len);
+    ft_print_color(COLOR_CYAN);
+    printf("LEN BEFORE EXPORT = \'%d\'", len -2);
     new_env = ft_calloc(len, sizeof(char *));
     ft_add_to_garbage_collector(data, new_env);
     i = 0;
@@ -71,14 +79,14 @@ void    ft_create_new_env(t_data *data, char *value)
         new_env[i] = NULL;
         i++;
     }
-    if (ft_env_key_is_present(data, var))
+    /*if (ft_env_key_is_present(data, var))
     {
         ft_rm_str_from_env(data, new_env, var, ft_env_nb_of_lines(data->env));
-    }
+    }*/
   /*  ft_print_color(COLOR_CYAN);
     printf("\n---PROCEED EXPORT OF \"%s\" VARIABLE------\n", value);
     ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);*/
-    ft_add_var_to_env(data, new_env, value, ft_env_nb_of_lines(data->env));
+    ft_add_var_to_env(data, new_env, value, len - 2);
 }
 
 int ft_builtin_export(t_data *data, char **cmd)
