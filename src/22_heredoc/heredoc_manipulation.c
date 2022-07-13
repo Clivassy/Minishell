@@ -4,7 +4,7 @@ t_fd_heredoc	*ft_new_fd(t_data *data, int fd)
 {
 	t_fd_heredoc	*new;
 
-	new = (t_fd_heredoc*)ft_malloc(data, sizeof(t_fd_heredoc));
+	new = (t_fd_heredoc *)ft_malloc(data, sizeof(t_fd_heredoc));
 	if (!new)
 		ft_exit(data);
 	new->fd = fd;
@@ -37,7 +37,7 @@ void	ft_lstadd_back_fd(t_fd_heredoc **alst, t_fd_heredoc *new)
 	}
 }
 
-void    ft_print_fds_list(t_fd_heredoc *fd_list)
+void	ft_print_fds_list(t_fd_heredoc *fd_list)
 {
 	if (!fd_list)
 	{
@@ -56,9 +56,7 @@ void    ft_print_fds_list(t_fd_heredoc *fd_list)
 	}
 }
 
-// return le 1er element de la fd_lst et le retire de la liste
-// /!\ l'element n'est pas free, il faudra le free dans la fonction qui le recupere
-t_fd_heredoc *ft_pop_first_fd_lst(t_data *data)
+t_fd_heredoc	*ft_pop_first_fd_lst(t_data *data)
 {
 	t_fd_heredoc	*first_fd;
 

@@ -16,13 +16,7 @@ int	ft_cd_error_no_dir(t_data *data, char *cmd)
 {
 	write(STDERR_FILENO, "bash: cd: ", ft_strlen("bash: cd: "));
 	write(STDERR_FILENO, "%s", ft_strlen(cmd));
-	write(STDERR_FILENO, ": No such file or directory\n", ft_strlen(": No such file or directory\n"));
-
+	write(STDERR_FILENO, ": No such file or directory\n",
+		ft_strlen(": No such file or directory\n"));
 	return (1);
 }
-
-//int	ft_cd_error_others(t_data *data)
-//{
-//	perror(NULL);
-//	return (1);
-//}
