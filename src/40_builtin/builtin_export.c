@@ -4,127 +4,82 @@
 Descriptif : Set one variable and its value to env
 Input format : export [variable]=[value]
 If input format != [variable]=[value] 
-    then : print error : bash: unset: ': not a valid identifier. 
-    (exit code == 1)
+then : print error : bash: unset: ': not a valid identifier. 
+(exit code == 1)
 else
-    Proceed export
+Proceed export
 -----------------------------------------------------------------*/
-/* ft_put_var_into_env 
-- passer la string en parametre
-- check si null ou si pas de  = 
-- la logique : 
-j'alloue la place pour la taille de l'env + 2 (null + new_var)
-+ je copie l'env dans le nouvel env avec la nouvelle variable et sa value. 
-*/
-
-void    ft_add_var_to_env(t_data *data, char **new_env, char *var, int len)
+void	ft_add_var_to_env(t_data *data, char **new_env, char *var, int len)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    //ft_debeug(data, "BETWEEN", data->env, COLOR_CYAN);
-    while (i < len)
-    {
-        new_env[j] =  ft_strdup((const char *)data->env[i]);
+	i = 0;
+	j = 0;
+	while (i < len)
+	{
+		new_env[j] = ft_strdup((const char *)data->env[i]);
 		ft_add_to_garbage_collector(data, new_env[j]);
-        i++;
-        j++;
-    }
-    //printf("LEN BETWEEN EXPORT = %d\n", ft_env_nb_of_lines(new_env)); 
-    //printf("ENV = %s\n", new_env[j]);
-    new_env[j] = ft_strdup(var);
-   // j++; 
-   // printf("ENV = %s\n", new_env[j]);
-    ft_add_to_garbage_collector(data, new_env[j]);
-    data->env = new_env;
-  /*  ft_print_color(COLOR_CYAN);
-    printf("LEN AFTER EXPORT = %d\n", ft_env_nb_of_lines(new_env));*/
-   // ft_free(data,data->env);
-    // terminer par null  ???
-    //ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
+		i++;
+		j++;
+	}
+	new_env[j] = ft_strdup(var);
+	ft_add_to_garbage_collector(data, new_env[j]);
+	data->env = new_env;
 }
 
-int ft_is_arg_ok(t_data *data, char *cmd)
+int	ft_is_arg_ok(t_data *data, char *cmd)
 {
-    int i;
-    char *new_var;
-    
-    //printf("STRING= \'%s\'", cmd);
-    if(!ft_strchr(cmd, '='))
-        return(0);
-    i = 0;
-    new_var = ft_env_get_key_on_line(data, &cmd[i]);
-    if (ft_is_valid_identifier(new_var))
-            return(1);
-    return(0);
+	int		i;
+	char	*new_var;
+
+	if (!ft_strchr(cmd, '='))
+		return (0);
+	i = 0;
+	new_var = ft_env_get_key_on_line(data, &cmd[i]);
+	if (ft_is_valid_identifier(new_var))
+		return (1);
+	return (0);
 }
 
-void    ft_create_new_env(t_data *data, char *value)
+void	ft_create_new_env(t_data *data, char *value)
 {
-    char **new_env;
-    char *var;
-  //  int i;
-    int len = ft_env_nb_of_lines(data->env) + 2;
+	char	**new_env;
+	char	*var;
+	int		len;
 
-    var = ft_env_get_key_on_line(data, value);
-   /* ft_print_color(COLOR_CYAN);
-    printf("LEN BEFORE EXPORT = \'%d\'", len -2);*/
-    new_env = ft_calloc(len, sizeof(char *));
-    ft_add_to_garbage_collector(data, new_env);
-  /*  i = 0;
-    while (i < len)
-    {
-        new_env[i] = NULL;
-        i++;
-    }*/
-    if (ft_env_key_is_present(data, var))
-    {
-      //  printf("LEN BEFORE UNSET = \'%d\'", len -2);
-        ft_rm_str_from_env(data, new_env, var, ft_env_nb_of_lines(data->env));
-        len--;
-    }
-  /*  ft_print_color(COLOR_CYAN);
-    printf("\n---PROCEED EXPORT OF \"%s\" VARIABLE------\n", value);
-    ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);*/
-    ft_add_var_to_env(data, new_env, value, len - 2);
+	len = ft_env_nb_of_lines(data->env) + 2;
+	var = ft_env_get_key_on_line(data, value);
+	new_env = ft_calloc(len, sizeof(char *));
+	ft_add_to_garbage_collector(data, new_env);
+	if (ft_env_key_is_present(data, var))
+	{
+		ft_rm_str_from_env(data, new_env, var, ft_env_nb_of_lines(data->env));
+		len--;
+	}
+	ft_add_var_to_env(data, new_env, value, len - 2);
 }
 
-int ft_builtin_export(t_data *data, char **cmd)
+int	ft_builtin_export(t_data *data, char **cmd)
 {
-    //printf("cmd = %s\n", cmd[0]);
-    int i;
-    int exit_code;
+	int	i;
+	int	exit_code;
 
-    exit_code = 0;
-    i = 1;
-    if (!cmd[1])
-    {
-       // printf("No argument after commande unset\n");
-        return (0);
-    }
-    while(cmd[i])
-    {
-         //printf("STRING= \'%s\'", cmd[i]);
-        if (ft_is_arg_ok(data, cmd[i]))
-        {
-           // ft_print_color(COLOR_GREEN);
-           // printf("--------Input is valid-------------\n");
-            ft_create_new_env(data, cmd[i]);
-        }
-        else
-        {
-            ft_printf("bash: unset: `%s': not a valid identifier\n",cmd[i]);
-            exit_code = 1;
-        }
-        i++;
-    }
-    return (exit_code);
+	exit_code = 0;
+	i = 1;
+	if (!cmd[1])
+		return (0);
+	while (cmd[i])
+	{
+		if (ft_is_arg_ok(data, cmd[i]))
+			ft_create_new_env(data, cmd[i]);
+		else
+		{
+			ft_printf("minishel: unset: `%s':", cmd[i]);
+			ft_printf(" not a valid identifier\n");
+			exit_code = 1;
+		}
+		i++;
+	}
+	return (exit_code);
 }
-/*
-void    ft_test_export(t_data *data, char **envp, char **argv)
-{
-   // printf("cmd = %s\n", argv[1]);
-    ft_export(data, &argv[1]);
-}*/
