@@ -21,10 +21,10 @@ void	ft_minishell_loop(t_data *data)
 	int	error_status;
 
 	error_status = 0;
-    while (data->exit_asked != 1)
-    {
+	while (data->exit_asked != 1)
+	{
 		ft_handle_signals();
-        data->read_line  = readline("minishell> "); // ajouter secu fct
+		data->read_line  = readline("minishell> "); // ajouter secu fct
 		ft_add_to_garbage_collector(data, data->read_line);
 		if (data->read_line == NULL)
 			ft_handle_ctrld(data);
@@ -38,7 +38,7 @@ void	ft_minishell_loop(t_data *data)
 			//ft_exec_elm_lst_print(data->exec_list);
 			ft_exec_all_cmds(data);
 		}
-	ft_reinitialisation_read_data(data);
-    }
-// faire fonction de free intermediaire + reinit de readline et data comme au debut
+		ft_reinitialisation_read_data(data);
+	}
+	// faire fonction de free intermediaire + reinit de readline et data comme au debut
 }
