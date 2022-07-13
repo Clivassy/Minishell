@@ -122,12 +122,13 @@ int	ft_is_builtin(t_data *data, char **cmd);
 //-----------------------------------------
 // env_initialisation
 void	ft_dup_env(t_data *data, char **envp);
-// env_manipulation
+// env_manipulation_1.c
 int ft_env_nb_of_lines(char **envp);
 char *ft_env_get_key_on_line(t_data *data, char *line);
 char *ft_env_get_value_on_line(t_data *data, char *line);
 int ft_max_len(char *str1, char *str2);
 int	ft_env_key_is_present(t_data *data, char *key_searched);
+// env_manipulation_2.c
 char *ft_env_get_value(t_data *data, char *key_searched);
 
 //-----------------------------------------

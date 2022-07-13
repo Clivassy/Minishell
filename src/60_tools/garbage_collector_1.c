@@ -33,11 +33,11 @@ static int	ft_is_in_garbage_collector(t_data *data, void *address)
 	{
 		if (elm->content == address)
 		{
-			return(1);
+			return (1);
 		}
 		elm = elm->next;
 	}
-	return(0);
+	return (0);
 }
 
 // cree un maillon a la fin du garbage_collector et definie le
@@ -54,7 +54,7 @@ void	ft_add_to_garbage_collector(t_data *data, void *content)
 		ft_printf("###       in the garbage collector        ###\n");
 		ft_printf("###         -> element not added          ###\n");
 		ft_printf("### adress doublon: ->%p<-\n", content);
-		ft_printf("### doublon: ->%s<-\n", (char*)content);
+		ft_printf("### doublon: ->%s<-\n", (char *)content);
 		ft_printf("#############################################\n");
 		ft_print_color(COLOR_NORMAL);
 		return ;
@@ -65,8 +65,6 @@ void	ft_add_to_garbage_collector(t_data *data, void *content)
 	new_elem->content = content;
 	new_elem->next = NULL;
 	ft_lstadd_back(&data->garbage_collector, new_elem);
-
-
 }
 
 // free tous les content du GC
@@ -87,34 +85,4 @@ void	ft_free_garbage_collector(t_data *data)
 		elm = next;
 	}
 	ft_init_garbage_collector(data);
-}
-
-// affiche le contenu du garbage collector
-void	ft_print_garbage_collector(t_data *data)
-{
-	int		i;
-	t_list	*elm;
-
-	ft_print_color(COLOR_CYAN);
-	if (!data->garbage_collector)
-	{
-		ft_printf("garbage collector vide\n");
-		ft_print_color(COLOR_NORMAL);
-		return ;
-	}
-	i = 0;
-	elm = data->garbage_collector;
-	while (elm)
-	{
-		ft_printf("----------------------------\n");
-		ft_printf("| element %d : %p\n", i, elm);
-		ft_printf("| content adress = %p\n", elm->content);
-		ft_printf("| next element = %p\n", elm->next);
-		ft_printf("----------------------------\n");
-		ft_printf("              |             \n");
-		ft_printf("              v             \n");
-		elm = elm->next;
-		i++;
-	}
-	ft_print_color(COLOR_NORMAL);
 }

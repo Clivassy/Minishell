@@ -32,6 +32,7 @@ void	ft_add_to_str(t_data *data, char **str, char *to_add, int position)
 {
 	int		new_size;
 	char	*new_str;
+
 	if (!to_add | !str | !*str)
 		return ;
 	new_size = ft_strlen(*str) + ft_strlen(to_add);

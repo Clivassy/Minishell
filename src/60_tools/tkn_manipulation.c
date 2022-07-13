@@ -7,7 +7,7 @@ t_token	*ft_new_token(t_data *data, char *value, int type)
 {
 	t_token	*new;
 
-	new = (t_token*)ft_malloc(data, sizeof(t_token));
+	new = (t_token *)ft_malloc(data, sizeof(t_token));
 	if (!new)
 		ft_exit(data);
 	new->value = value;

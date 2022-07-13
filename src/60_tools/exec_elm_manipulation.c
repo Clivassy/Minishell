@@ -2,25 +2,25 @@
 
 t_exec_elm	*ft_create_new_exec_elm(t_data *data)
 {
-    t_exec_elm  *new_elm;
+	t_exec_elm	*new_elm;
 
-    new_elm = ft_malloc(data, sizeof(t_exec_elm));
+	new_elm = ft_malloc(data, sizeof(t_exec_elm));
 	if (!new_elm)
 		ft_exit(data);
-    new_elm->cmd = ft_malloc(data, sizeof(char*) * 1);
+	new_elm->cmd = ft_malloc(data, sizeof(char *) * 1);
 	if (!new_elm->cmd)
 		ft_exit(data);
 	(new_elm->cmd)[0] = NULL;
-    new_elm->fd_in = -1;
-    new_elm->fd_out = -1;
-    new_elm->index = -1;
+	new_elm->fd_in = -1;
+	new_elm->fd_out = -1;
+	new_elm->index = -1;
 	new_elm->has_redirect_pb = 0;
-    new_elm->pid = -1;
-    new_elm->next = NULL;
-    return (new_elm);
+	new_elm->pid = -1;
+	new_elm->next = NULL;
+	return (new_elm);
 }
 
-void    ft_add_exec_elm(t_exec_elm **elm_list, t_exec_elm *new_elm)
+void	ft_add_exec_elm(t_exec_elm **elm_list, t_exec_elm *new_elm)
 {
 	t_exec_elm	*last;
 
@@ -38,7 +38,7 @@ void    ft_add_exec_elm(t_exec_elm **elm_list, t_exec_elm *new_elm)
 
 t_exec_elm	*ft_create_empty_exec_elm_list(t_data *data, int nb_elm)
 {
-	int	i;
+	int			i;
 	t_exec_elm	*list;
 	t_exec_elm	*new_exec_elm;
 
