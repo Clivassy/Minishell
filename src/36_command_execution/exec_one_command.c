@@ -44,7 +44,7 @@ void	ft_exec_one_command(t_data *data, t_exec_elm *exec_elm)
 
 	if (exec_elm->has_redirect_pb == 1)
 	{
-		ft_close_fd_exept_current(data, -1);
+		//ft_close_fd_exept_current(data, -1);
 		ft_exit2(data, 1);
 	}
 	if (!exec_elm->cmd)
