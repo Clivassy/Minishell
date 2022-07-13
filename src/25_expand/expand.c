@@ -171,7 +171,6 @@ void	ft_expand_str(t_data *data, char **str)
 	{
 		if ((*str)[i] == '$')
 		{
-			printf("check %c\n",(*str)[i]);
 			if ((*str)[i + 1] == '?')
 				ft_expand_pipeline_exit_status(data, str, &i);
 			else
