@@ -35,7 +35,7 @@ void    ft_add_var_to_env(t_data *data, char **new_env, char *var, int len)
     printf("LEN BETWEEN EXPORT = %d\n", ft_env_nb_of_lines(new_env)); 
     //printf("ENV = %s\n", new_env[j]);
     new_env[j] = ft_strdup(var);
-    j++; 
+   // j++; 
    // printf("ENV = %s\n", new_env[j]);
     ft_add_to_garbage_collector(data, new_env[j]);
     data->env = new_env;
@@ -79,10 +79,12 @@ void    ft_create_new_env(t_data *data, char *value)
         new_env[i] = NULL;
         i++;
     }
-    /*if (ft_env_key_is_present(data, var))
+    if (ft_env_key_is_present(data, var))
     {
+        printf("LEN BEFORE UNSET = \'%d\'", len -2);
         ft_rm_str_from_env(data, new_env, var, ft_env_nb_of_lines(data->env));
-    }*/
+        len--;
+    }
   /*  ft_print_color(COLOR_CYAN);
     printf("\n---PROCEED EXPORT OF \"%s\" VARIABLE------\n", value);
     ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);*/
