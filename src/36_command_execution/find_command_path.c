@@ -23,6 +23,8 @@ char	*ft_check_path_command(t_data *data, char **paths, char *cmd)
 	int		j;
 	char	*full_path;
 
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	j = 0;
 	while (paths[j])
 	{
