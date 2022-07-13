@@ -12,7 +12,23 @@ void    ft_handle_heredoc_signal(void)
 {
     signal(SIGINT, &ft_sigint_heredoc);
 }
+// ################
+void ft_handle_exec_sigint(int signal)
+{
+    if (signal == SIGINT)
+    {
+		printf("test2\n");
+		exit(130);
+    }
+}
 
+void    ft_handle_exec_signal(void)
+{
+	printf("test\n");
+
+    signal(SIGINT, &ft_handle_exec_sigint);
+}
+// #################
 void    ft_handle_ctrld(t_data *data)
 {
     write(1, "exit\n", 6);
@@ -33,7 +49,6 @@ void ft_handle_sigint(int signal)
         rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-        // exit code = 130
     }
 }
 
