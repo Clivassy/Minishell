@@ -9,6 +9,11 @@ void	ft_save_stdin_out(t_data *data)
 	data->fd_save_stdout = dup(STDOUT_FILENO);
 	if (data->fd_save_stdout == -1)
 		ft_exit_dup_error(data);
+	fprintf(stderr, "fd save fdout %d\n", data->fd_save_stdout);
+	close(1);
+	dup2(1, data->fd_save_stdout);
+	ft_print_fd_status("apres save fd");
+
 }
 
 // restore stdin stdout and close the saves

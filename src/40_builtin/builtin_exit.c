@@ -41,5 +41,6 @@ int	ft_builtin_exit(t_data *data, char **cmd)
 	else
 		return_statut = ft_atoi(cmd[1]);
 	ft_exit2(data, return_statut);
+	return (return_statut);
 	// verif free des fd dans ce cas particulier
 }

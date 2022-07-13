@@ -170,6 +170,7 @@ void	ft_print_color(char *str);
 //-----------------------------------------
 void    ft_print_env(char **env);
 void    ft_exec_elm_lst_print(t_exec_elm *elm);
+void	ft_print_fd_status(char *message);
 void    ft_print_token_list(t_token *token_list);
 void    ft_test_cd(t_data *data);
 void    ft_test_pwd(t_data *data);
