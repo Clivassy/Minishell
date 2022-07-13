@@ -13,13 +13,13 @@ void	ft_close_fd_exept_current(t_data *data, int current_index)
 			{
 				if (exec_elm->fd_in != STDIN_FILENO)
 				{
-					ft_printf("index:%d, close fdin: %d\n", current_index, exec_elm->fd_in);
+					//ft_printf("index:%d, close fdin: %d\n", current_index, exec_elm->fd_in);
 					if(close(exec_elm->fd_in) == -1)
 						ft_exit_close_error(data);
 				}
 				if (exec_elm->fd_out != STDOUT_FILENO)
 				{
-					ft_printf("index:%d, close fdout: %d\n", current_index, exec_elm->fd_out);
+					//ft_printf("index:%d, close fdout: %d\n", current_index, exec_elm->fd_out);
 					if(close(exec_elm->fd_out) == -1)
 						ft_exit_close_error(data);
 				}

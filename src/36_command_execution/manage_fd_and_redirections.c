@@ -9,19 +9,14 @@ void	ft_save_stdin_out(t_data *data)
 	data->fd_save_stdout = dup(STDOUT_FILENO);
 	if (data->fd_save_stdout == -1)
 		ft_exit_dup_error(data);
-	fprintf(stderr, "fd save fdout %d\n", data->fd_save_stdout);
-	close(1);
-	dup2(1, data->fd_save_stdout);
-	ft_print_fd_status("apres save fd");
-
 }
 
 // restore stdin stdout and close the saves
 void	ft_restore_stdin_out(t_data *data)
 {
-	if (dup2(STDIN_FILENO, data->fd_save_stdin) == -1)
+	if (dup2(data->fd_save_stdin, STDIN_FILENO) == -1)
 		ft_exit_dup_error(data);
-	if (dup2(STDOUT_FILENO, data->fd_save_stdout) == -1)
+	if (dup2(data->fd_save_stdout, STDOUT_FILENO) == -1)
 		ft_exit_dup_error(data);
 
 	if(close(data->fd_save_stdin) == -1)

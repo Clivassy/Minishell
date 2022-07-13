@@ -1,5 +1,5 @@
-#include <signal.h> 
-#include <string.h> 
+#include <signal.h>
+#include <string.h>
 /*----------------------------------------
                20_LEXER
 -----------------------------------------*/
@@ -72,6 +72,9 @@ void    ft_handle_sigquit(int signal);
 void    ft_handle_heredoc_signal(void);
 void    ft_sigint_heredoc(int signal);
 void    ft_handle_ctrld_heredoc(t_data *data, char *end);
+
+void ft_handle_exec_sigint(int signal);
+void    ft_handle_exec_signal(void);
 
 /*----------------------------------------
             40_BUILTINS
