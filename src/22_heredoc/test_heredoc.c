@@ -21,12 +21,6 @@ int ft_heredoc(t_data *data, t_token *heredoc_tkn)
 */
 
 
-
-
-
-
-
-
 /* SAVE */ 
 
 /*

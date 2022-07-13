@@ -10,13 +10,11 @@ int ft_is_quoted(char *heretag)
 int ft_is_expand_required(char *heretag)
 {
     if (ft_strchr(heretag, '$'))
-    {
-       // printf("expand needed\n");
         return (1);
-    }
-    //printf("NO expand needed\n");
     return (0);
 }
+
+
 /*
 void ft_test(int file[2])
 {

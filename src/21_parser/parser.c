@@ -2,7 +2,6 @@
 
 int ft_pipe_errors(t_token *token)
 {
-    //printf("first token is : %d\n", token->type);
     if (!token->next)
         return(SYNTAX_ERR_PIPE);
     if (token->next->type == T_PIPE)
@@ -16,21 +15,18 @@ int ft_redirect_errors(t_token *token)
 {
     if (ft_is_redirect_err(token))
     {
-        //printf("token type is : %s\n", token->value);
         if (!token->next)
             return(SYNTAX_ERR_NEWLINE);
         if (token->next->type == T_SPACE)
         {
             if (!token->next->next)
                 return(SYNTAX_ERR_NEWLINE);
-            if (ft_is_next_tkn_ok(token->next->next->type)
-                != 0)
+            if (ft_is_next_tkn_ok(token->next->next->type) != 0)
                 return(ft_is_next_tkn_ok(token->next->next->type));
         }
         if (token->next->type != T_SPACE)
         {
-            if (ft_is_next_tkn_ok(token->next->type)
-                != 0)
+            if (ft_is_next_tkn_ok(token->next->type) != 0)
                 return(ft_is_next_tkn_ok(token->next->type));
         }
     }

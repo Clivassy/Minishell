@@ -2,37 +2,18 @@
 
 /*----------------------------- LEXER ------------------------------
 
-1 ) Récupérer la string entrée en input avec readline = OK
-
-2 ) Stocker dans une liste chaînée les différents tokens.
-DOLLARS $
+Stocker dans une liste chaînée les différents tokens.
 PIPE |
 REDIRECT_IN <
 REDIRECT_OUT >
 HEREDOC <<
 D_REDIRECT_OUT >>
-S_QUOTE '
-D_QUOTE "
-SPACE ' '
+SPACE (all isspaces)
 
 Tout ce qui est situé entre ces métacharactère sera considéré comme un mot
 -> WORD
 
 -----------------------------------------------------------------------*/
-
-int ft_is_only_spc(char *str)
-{
-    int i;
-
-    i = 0;
-    while (i < ft_strlen(str))
-    {
-        if (ft_is_space_sep(str[i]))
-            return(1);
-        i++;
-    }
-    return(TAB_OR_SPC_ERR);
-}
 
 int    ft_fill_tokens_list(t_data *data)
 {
@@ -56,21 +37,5 @@ int    ft_lexer(t_data *data)
 {
     if (ft_fill_tokens_list(data) != 0)
         return(UNCLOSED_QUOTES_ERR);
-    //ft_print_token_list(data->tokens_list);
-        return (0);
+    return (0);
 }
-
-/*
-void    ft_minishell(t_data *data)
-{
-    int	error_status;
-
-    error_status = 0;
-    ft_lexer(data);
-    error_status = ft_parser(data);
-    if (error_status!= 0)
-        ft_print_error(data, error_status);
-    ft_group_tokens(data);
-    ft_print_token_list(data->gp_tokens_list);
-    //ft_print_token_list(data->tokens_list);
-}*/
