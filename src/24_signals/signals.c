@@ -17,15 +17,13 @@ void ft_handle_exec_sigint(int signal)
 {
     if (signal == SIGINT)
     {
-		printf("test2\n");
+        ft_printf("\n");
 		exit(130);
     }
 }
 
 void    ft_handle_exec_signal(void)
 {
-	printf("test\n");
-
     signal(SIGINT, &ft_handle_exec_sigint);
 }
 // #################

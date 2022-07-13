@@ -6,14 +6,16 @@ int main(int argc, char **argv, char **envp)
 	t_data	data;
 	if (!isatty(0)) // check if the standar input is from a terminal
 	{
-		// message erreur + sortie
+		ft_printf("error: bad standard input\n");
+		return(0);
 	}
+
 	if (argc != 1)
     {
-		// message erreur + sortie
+		ft_printf("error: invalid number of arguments\n");
+		return(0);	
 	}
 	ft_initialisation(&data, envp);
-	// initialisation signaux
 	ft_minishell_loop(&data);
     ft_free_garbage_collector(&data);
 	return (0);
