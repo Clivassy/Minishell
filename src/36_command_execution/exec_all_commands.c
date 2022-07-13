@@ -78,19 +78,14 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 		ft_make_fd_redirection(data, exec_elm);
 		ft_exec_builtin(data, exec_elm->cmd);
 		ft_close_fd_exept_current(data, -1);
-		ft_printf("test6\n");
 		ft_restore_stdin_out(data);
 	}
 	else
 		ft_exec_cmd_list_with_fork(data);
-	ft_printf("test7\n");
-
 }
 
 void     ft_exec_all_cmds(t_data *data)
 {
-	//ft_print_fd_status("Avant exec commande");
-
 	if(data->nb_of_process == 1)
 	{
 		ft_exec_cmd_with_one_processus(data);
@@ -99,8 +94,6 @@ void     ft_exec_all_cmds(t_data *data)
 	{
 		ft_exec_cmd_list_with_fork(data);
 	}
-	//ft_print_fd_status("Apres exec commande");
-
 }
 
 
