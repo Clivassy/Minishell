@@ -19,11 +19,11 @@ void	ft_exec_builtin(t_data *data, char **cmd)
 	}
 	if (ft_strcmp(cmd[0], "export") == 0)
 	{
-		// lancer builtin export
+		data->last_pipeline_exit_status = ft_builtin_export(data, cmd);
 	}
 	if (ft_strcmp(cmd[0], "unset") == 0)
 	{
-		// lancer builtin unset
+		data->last_pipeline_exit_status = ft_builtin_unset(data, cmd);
 	}
 	if (ft_strcmp(cmd[0], "env") == 0)
 	{

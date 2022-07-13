@@ -17,25 +17,33 @@ j'alloue la place pour la taille de l'env + 2 (null + new_var)
 + je copie l'env dans le nouvel env avec la nouvelle variable et sa value. 
 */
 
-void    ft_add_var_to_env(t_data *data, char **new_env, char *var)
+void    ft_add_var_to_env(t_data *data, char **new_env, char *var, int len)
 {
     int i;
     int j;
 
     i = 0;
     j = 0;
-    while (i < ft_env_nb_of_lines(data->env))
+    //ft_debeug(data, "BETWEEN", data->env, COLOR_CYAN);
+    while (i < len)
     {
         new_env[j] =  ft_strdup((const char *)data->env[i]);
 		ft_add_to_garbage_collector(data, new_env[j]);
         i++;
         j++;
     }
+    printf("LEN BETWEEN EXPORT = %d\n", ft_env_nb_of_lines(new_env)); 
+    //printf("ENV = %s\n", new_env[j]);
     new_env[j] = ft_strdup(var);
+   // j++; 
+   // printf("ENV = %s\n", new_env[j]);
     ft_add_to_garbage_collector(data, new_env[j]);
-    ft_free(data, data->env);
     data->env = new_env;
-    ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
+    ft_print_color(COLOR_CYAN);
+    printf("LEN AFTER EXPORT = %d\n", ft_env_nb_of_lines(new_env));
+   // ft_free(data,data->env);
+    // terminer par null  ???
+    //ft_debeug(data, "AFTER REMOVAL", data->env, COLOR_GREEN);
 }
 
 int ft_is_arg_ok(t_data *data, char *cmd)
@@ -53,28 +61,37 @@ int ft_is_arg_ok(t_data *data, char *cmd)
     return(0);
 }
 
-void    ft_create_new_env(t_data *data, char *var)
+void    ft_create_new_env(t_data *data, char *value)
 {
     char **new_env;
+    char *var;
     int i;
     int len = ft_env_nb_of_lines(data->env) + 2;
 
+    var = ft_env_get_key_on_line(data, value);
+    ft_print_color(COLOR_CYAN);
+    printf("LEN BEFORE EXPORT = \'%d\'", len -2);
     new_env = ft_calloc(len, sizeof(char *));
     ft_add_to_garbage_collector(data, new_env);
-    ft_print_color(COLOR_YELLOW);
     i = 0;
-    while (i < ft_env_nb_of_lines(data->env))
+    while (i < len)
     {
         new_env[i] = NULL;
         i++;
     }
-    ft_print_color(COLOR_CYAN);
-    printf("\n---PROCEED EXPORT OF \"%s\" VARIABLE------\n\n", var);
-    ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);
-    ft_add_var_to_env(data, new_env, var);
+    if (ft_env_key_is_present(data, var))
+    {
+        printf("LEN BEFORE UNSET = \'%d\'", len -2);
+        ft_rm_str_from_env(data, new_env, var, ft_env_nb_of_lines(data->env));
+        len--;
+    }
+  /*  ft_print_color(COLOR_CYAN);
+    printf("\n---PROCEED EXPORT OF \"%s\" VARIABLE------\n", value);
+    ft_debeug(data, "BEFORE REMOVAL", data->env, COLOR_YELLOW);*/
+    ft_add_var_to_env(data, new_env, value, len - 2);
 }
 
-int ft_export(t_data *data, char **cmd)
+int ft_builtin_export(t_data *data, char **cmd)
 {
     //printf("cmd = %s\n", cmd[0]);
     int i;
@@ -84,7 +101,7 @@ int ft_export(t_data *data, char **cmd)
     i = 1;
     if (!cmd[1])
     {
-        printf("No argument after commande unset\n");
+       // printf("No argument after commande unset\n");
         return (0);
     }
     while(cmd[i])
@@ -92,8 +109,8 @@ int ft_export(t_data *data, char **cmd)
          //printf("STRING= \'%s\'", cmd[i]);
         if (ft_is_arg_ok(data, cmd[i]))
         {
-            ft_print_color(COLOR_GREEN);
-            printf("--------Input is valid-------------\n");
+           // ft_print_color(COLOR_GREEN);
+           // printf("--------Input is valid-------------\n");
             ft_create_new_env(data, cmd[i]);
         }
         else
@@ -105,9 +122,9 @@ int ft_export(t_data *data, char **cmd)
     }
     return (exit_code);
 }
-
+/*
 void    ft_test_export(t_data *data, char **envp, char **argv)
 {
-    printf("cmd = %s\n", argv[1]);
+   // printf("cmd = %s\n", argv[1]);
     ft_export(data, &argv[1]);
-}
+}*/

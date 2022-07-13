@@ -78,12 +78,13 @@ void    ft_handle_ctrld_heredoc(t_data *data, char *end);
 -----------------------------------------*/
 /********** builtins_unset.c ****************/
 void    ft_test_unset(t_data *data, char **envp, char **argv);
-int     ft_unset(t_data *data, char **cmd);
+int     ft_builtin_unset(t_data *data, char **cmd);
 int     ft_is_valid_identifier(char *cmd);
+void    ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len);
 
 /********** builtins_export.c ****************/
 void    ft_test_export(t_data *data, char **envp, char **argv);
-int     ft_export(t_data *data, char **cmd);
+int ft_builtin_export(t_data *data, char **cmd);
 /*----------------------------------------
             60_TOOLS
 -----------------------------------------*/
