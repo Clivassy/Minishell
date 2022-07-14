@@ -55,14 +55,21 @@ t_fd_heredoc *ft_pop_first_fd_lst(t_data *data);
 void	ft_expand_token(t_data *data, t_token *token);
 void	ft_expand(t_data *data);
 void	ft_expand_str(t_data *data, char **str);
-
+int	    ft_is_next_word_to_expand(t_token *token);
+void	ft_expand_normal_key(t_data *data, char **str, int *i);
+void	ft_expand_pipeline_exit_status(t_data *data, char **str, int *i);
+char	*ft_get_key_for_expand(t_data *data, char *str);
+int	    ft_key_size_for_expand(t_data *data, char *str);
 //----------------------------------------
 //              27_rm_quotes
 //-----------------------------------------
 void	ft_rm_quotes_in_tokens_list(t_data *data);
 void	ft_rm_quotes_in_token(t_data *data, t_token *token);
 void	ft_rm_quotes_in_str(t_data *data, char **str);
-
+int	    manage_close_s_quote(t_data *data, char **str, int *i);
+int	    manage_close_d_quote(t_data *data, char **str, int *i);
+int	    manage_open_s_quote(t_data *data, char **str, int *i);
+int	    manage_open_d_quote(t_data *data, char **str, int *i);
 
 //-----------------------------------------
 //          28_exec_list_creation

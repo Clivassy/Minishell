@@ -1,5 +1,41 @@
 #include "minishell.h"
 
+int	manage_open_d_quote(t_data *data, char **str, int *i)
+{
+	if ((*str)[*i] == '"')
+	{
+		ft_rm_from_str(data, str, 1, *i);
+		(*i)--;
+		return (0);
+	}
+	return (1);
+}
+
+int	manage_open_s_quote(t_data *data, char **str, int *i)
+{
+	if ((*str)[*i] == '\'')
+	{
+		ft_rm_from_str(data, str, 1, *i);
+		(*i)--;
+		return (0);
+	}
+	return (1);
+}
+
+int	manage_close_d_quote(t_data *data, char **str, int *i)
+{
+	ft_rm_from_str(data, str, 1, *i);
+	(*i)--;
+	return (1);
+}
+
+int	manage_close_s_quote(t_data *data, char **str, int *i)
+{
+	ft_rm_from_str(data, str, 1, *i);
+	(*i)--;
+	return (1);
+}
+
 void	ft_rm_quotes_in_tokens_list(t_data *data)
 {
 	t_token	*token;
