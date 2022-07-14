@@ -15,7 +15,7 @@
 /* -----------------------------------------------------------
 Descriptif : remove variable from the env 
 -----------------------------------------------------------*/
-
+/*
 void	ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)
 {
 	int	i;
@@ -36,6 +36,52 @@ void	ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)
 				data->env = new_env;
 				return ;
 			}
+			new_env[j] = ft_is_last_line(data, i, len, j, new_env);
+			status = -1;
+			i++;
+		}
+		new_env[j] = ft_strdup((const char *)data->env[i]);
+		ft_add_to_garbage_collector(data, new_env[j]);
+		i++;
+		j++;
+	}
+	new_env[j] = NULL;
+	data->env = new_env;
+}*/
+
+
+
+
+char	**ft_is_last_line(t_data *data, char **new_env, int i, int len)
+{
+	int j;
+
+	j = i; 
+	if (i == len -1)
+	{
+		new_env[j] = NULL;
+		data->env = new_env;
+		return (new_env);
+	}
+	return(NULL);
+}
+
+void	ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)
+{
+	int	i;
+	int	j;
+	int	status;
+
+	status = 1;
+	i = 0;
+	j = 0;
+	while (i < len)
+	{
+		if (ft_strcmp(var, ft_env_get_key_on_line(data, data->env[i])) == 0
+			&& status > 0)
+		{
+			if (ft_is_last_line(data, new_env, i, len))
+				return;
 			status = -1;
 			i++;
 		}

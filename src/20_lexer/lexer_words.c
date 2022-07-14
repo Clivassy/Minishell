@@ -1,5 +1,52 @@
 #include "minishell.h"
 
+/*int	ft_word_len(char *read_line, int index)
+{
+	int	len;
+
+	len = 0;
+	while (read_line[index])
+	{
+		if (!ft_is_word(read_line, index))
+		{
+			printf("LEN == %d\n", len);
+			return (len);
+		}
+		if (read_line[index] == '\"')
+		{
+			index++;
+			len++;
+			while (read_line[index] != '\"')
+			{
+				index++;
+				len++;
+			}
+		}
+		if (ft_is_word(read_line, index))
+		{
+			if (read_line[index] == '\0')
+			{
+				printf("LEN == %d\n", len);
+				return (len);
+			}
+		}
+		len++;
+		index++;
+	}
+	printf("LEN == %d\n", len);
+	return (len);
+}*/
+
+int ft_is_word_util(char *read_line, int index, int len)
+{
+	if (ft_is_word(read_line, index))
+	{
+		if (read_line[index] == '\0')
+			return(len);
+	}
+	return(0);
+}
+
 /* Return word len */
 int	ft_word_len(char *read_line, int index)
 {
@@ -20,11 +67,8 @@ int	ft_word_len(char *read_line, int index)
 				len++;
 			}
 		}
-		if (ft_is_word(read_line, index))
-		{
-			if (read_line[index] == '\0')
-				return (len);
-		}
+		if(ft_is_word_util(read_line, index, len))
+			return(len);
 		len++;
 		index++;
 	}
