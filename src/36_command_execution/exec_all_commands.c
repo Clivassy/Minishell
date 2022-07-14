@@ -39,28 +39,18 @@ void	ft_exec_cmd_list_with_fork(t_data *data)
 			ft_exit_fork_error(data);
 		else if (id == 0)
 		{
-			// ici avant, avoir si il faut enlever
-			//if (exec_elm->has_redirect_pb == 1) // a mettre dans exec_one_command ?
-			//{
-			//	ft_close_fd_exept_current(data, -1);
-			//	ft_exit2(data, 1);
-			//}
 			signal(SIGINT, SIG_DFL);
 			ft_handle_exec_signal();
-
 			ft_close_fd_exept_current(data, curent_index);
 			ft_exec_one_command(data, exec_elm);
 		}
 		else
 			exec_elm->pid = id;
-		//sleep(1);
 		curent_index++;
 		exec_elm = exec_elm->next;
 	}
 	ft_close_fd_exept_current(data, -1);
 	ft_wait_pid(data);
-
-
 }
 
 void	ft_exec_cmd_with_one_processus(t_data *data)
@@ -90,10 +80,8 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 
 void     ft_exec_all_cmds(t_data *data)
 {
-	//ft_exec_elm_lst_print(data->exec_list);
-
 	signal(SIGINT, SIG_IGN);
-    signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	if(data->nb_of_process == 1)
 	{
 		ft_exec_cmd_with_one_processus(data);
