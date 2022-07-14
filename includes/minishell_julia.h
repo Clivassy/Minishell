@@ -11,7 +11,7 @@ int    ft_lexer(t_data *data);
 
 /******** lexer_metacharacters.c ************/
 int     ft_get_separators(t_data *data, int index);
-int	ft_is_space_sep(char c);
+int	    ft_is_space_sep(char c);
 
 /******** lexer_words.c ************/
 int     ft_get_word(t_data *data, int index);
@@ -40,11 +40,11 @@ int ft_is_only_spc(char *str);
                 22_HEREDOC
 -----------------------------------------*/
 /******** heredoc.c ************/
-int ft_heredoc(t_data *data, t_token *heredoc_tkn);
+int         ft_heredoc(t_data *data, t_token *heredoc_tkn);
 
 /******** heredoc_utils.c ************/
 int         ft_is_quoted(char *heretag);
-void	ft_wait_pid_heredoc(int id, t_data *data);
+void	    ft_wait_pid_heredoc(int id, t_data *data);
 int         ft_is_expand_required(char *heretag);
 
 /******** heredoc_manipulation.c ************/
@@ -64,17 +64,20 @@ void    ft_fill_new_token_2(char *content, t_data *data, int type);
 /*----------------------------------------
             24_SIGNALS
 -----------------------------------------*/
-/********** signals.c ****************/
-void    ft_handle_ctrld(t_data *data);
+/********** signals_exec.c ****************/
+void    ft_handle_exec_sigint(int signal);
+void    ft_handle_exec_signal(void);
+
+/********** signals_prompt.c ****************/
 void    ft_handle_signals(void);
 void    ft_handle_sigint(int signal);
 void    ft_handle_sigquit(int signal);
+void    ft_handle_ctrld(t_data *data);
+
+/********** signals_heredoc.c ****************/
 void    ft_handle_heredoc_signal(void);
 void    ft_sigint_heredoc(int signal);
 void    ft_handle_ctrld_heredoc(t_data *data, char *end);
-
-void ft_handle_exec_sigint(int signal);
-void    ft_handle_exec_signal(void);
 
 /*----------------------------------------
             40_BUILTINS
@@ -87,7 +90,7 @@ void    ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len);
 
 /********** builtins_export.c ****************/
 void    ft_test_export(t_data *data, char **envp, char **argv);
-int ft_builtin_export(t_data *data, char **cmd);
+int     ft_builtin_export(t_data *data, char **cmd);
 /*----------------------------------------
             60_TOOLS
 -----------------------------------------*/
@@ -97,12 +100,12 @@ t_token	*ft_new_token(t_data *data, char *value, int type);
 t_token *ft_lstlast_token(t_token *lst);
 
 /******** ft_strcmp.c ************/
-int	        ft_strcmp(char *s1, char *s2);
+int     ft_strcmp(char *s1, char *s2);
 
 /********** TEMP ****************/
-int ft_is_empty_list(t_token *list);
+int     ft_is_empty_list(t_token *list);
 
 /* TEST */
-void ft_test(int file[2]);
+void    ft_test(int file[2]);
 void    ft_debeug(t_data *data, char *msg, char **env, char *color);
 
