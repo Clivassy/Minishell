@@ -1,20 +1,17 @@
 #include "minishell.h"
+
 static void	ft_wait_pid(t_data *data)
 {
-	t_exec_elm *exec_elm;
-	int	return_status;
+	t_exec_elm	*exec_elm;
+	int			return_status;
 
-	return_status = -1;
+	return_status = 1;
 	exec_elm = data->exec_list;
-	while(exec_elm)
+	while (exec_elm)
 	{
-		//ft_printf("attente fin processus: %d\n", exec_elm->index);
-		//waitpid(exec_elm->pid, &(data->last_pipeline_exit_status), 0); // remplacer NULL pour avoir l'id status
-		waitpid(exec_elm->pid, &return_status, 0); // remplacer NULL pour avoir l'id status
-		//printf("pid: %d, return status: %d\n", exec_elm->pid, return_status);
-		//printf("pid: %d, conv status: %d\n", exec_elm->pid, WEXITSTATUS(return_status));
-		// partie a verifier
-		if(WIFEXITED(return_status))
+		// TBD ajouter macro pour capter signal stop (voir man waitpid)
+		waitpid(exec_elm->pid, &return_status, 0);
+		if (WIFEXITED(return_status))
 		{
 			data->last_pipeline_exit_status = WEXITSTATUS(return_status);
 		}
@@ -26,13 +23,13 @@ static void	ft_wait_pid(t_data *data)
 
 void	ft_exec_cmd_list_with_fork(t_data *data)
 {
-	int curent_index;
-	t_exec_elm *exec_elm;
-	pid_t id;
+	int			curent_index;
+	t_exec_elm	*exec_elm;
+	pid_t		id;
 
 	curent_index = 0;
 	exec_elm = data->exec_list;
-	while(exec_elm)
+	while (exec_elm)
 	{
 		id = fork();
 		if (id < 0)
@@ -55,7 +52,7 @@ void	ft_exec_cmd_list_with_fork(t_data *data)
 
 void	ft_exec_cmd_with_one_processus(t_data *data)
 {
-	t_exec_elm *exec_elm;
+	t_exec_elm	*exec_elm;
 
 	exec_elm = data->exec_list;
 	if (exec_elm->has_redirect_pb == 1)
@@ -78,11 +75,11 @@ void	ft_exec_cmd_with_one_processus(t_data *data)
 		ft_exec_cmd_list_with_fork(data);
 }
 
-void     ft_exec_all_cmds(t_data *data)
+void	ft_exec_all_cmds(t_data *data)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
-	if(data->nb_of_process == 1)
+	if (data->nb_of_process == 1)
 	{
 		ft_exec_cmd_with_one_processus(data);
 	}
@@ -91,5 +88,3 @@ void     ft_exec_all_cmds(t_data *data)
 		ft_exec_cmd_list_with_fork(data);
 	}
 }
-
-

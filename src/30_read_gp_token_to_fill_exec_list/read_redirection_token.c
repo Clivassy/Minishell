@@ -10,7 +10,7 @@ int	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 	if (fd_infile < 0)
 	{
 		ft_print_open_error(data, token->value);
-		return(1);
+		return (1);
 	}
 	if (ft_get_exec_elm(data->exec_list, process)->fd_in != 0)
 	{
@@ -18,7 +18,7 @@ int	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 			ft_exit_close_error(data);
 	}
 	ft_get_exec_elm(data->exec_list, process)->fd_in = fd_infile;
-	return(0);
+	return (0);
 }
 
 int	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
@@ -28,11 +28,11 @@ int	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
 
 	ft_expand_token(data, token);
 	ft_rm_quotes_in_token(data, token);
-	fd_outfile = open(token->value, O_RDWR | O_CREAT | O_TRUNC, 0644); // verifier ces parametres
+	fd_outfile = open(token->value, O_WRONLY | O_CREAT | O_TRUNC, 0644); // verifier ces parametres
 	if (fd_outfile < 0)
 	{
 		ft_print_open_error(data, token->value);
-		return(1);
+		return (1);
 	}
 	if (ft_get_exec_elm(data->exec_list, process)->fd_out != 1)
 	{
@@ -40,7 +40,7 @@ int	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
 			ft_exit_close_error(data);
 	}
 	ft_get_exec_elm(data->exec_list, process)->fd_out = fd_outfile;
-	return(0);
+	return (0);
 }
 
 int	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
@@ -53,15 +53,15 @@ int	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
 	if (fd_outfile < 0)
 	{
 		ft_print_open_error(data, token->value);
-		return(1);
+		return (1);
 	}
 	if (ft_get_exec_elm(data->exec_list, process)->fd_out != 1)
-		{
+	{
 		if(close(ft_get_exec_elm(data->exec_list, process)->fd_out) == -1)
 			ft_exit_close_error(data);
-		}
+	}
 	ft_get_exec_elm(data->exec_list, process)->fd_out = fd_outfile;
-	return(0);
+	return (0);
 }
 
 int	ft_set_exec_t_redirect_token(t_data *data, t_token *token, int process)
