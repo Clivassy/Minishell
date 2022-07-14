@@ -6,7 +6,7 @@ int	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 
 	ft_expand_token(data, token);
 	ft_rm_quotes_in_token(data, token);
-	fd_infile = open(token->value, O_RDONLY); // verifier ces parametres
+	fd_infile = open(token->value, O_RDONLY);
 	if (fd_infile < 0)
 	{
 		ft_print_open_error(data, token->value);
@@ -14,7 +14,7 @@ int	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 	}
 	if (ft_get_exec_elm(data->exec_list, process)->fd_in != 0)
 	{
-		if(close(ft_get_exec_elm(data->exec_list, process)->fd_in) == -1)
+		if (close(ft_get_exec_elm(data->exec_list, process)->fd_in) == -1)
 			ft_exit_close_error(data);
 	}
 	ft_get_exec_elm(data->exec_list, process)->fd_in = fd_infile;
@@ -23,12 +23,11 @@ int	ft_set_exec_t_redirect_in(t_data *data, t_token *token, int process)
 
 int	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
 {
-	// a faire : check fct avec partie excec fonctionnelle
 	int	fd_outfile;
 
 	ft_expand_token(data, token);
 	ft_rm_quotes_in_token(data, token);
-	fd_outfile = open(token->value, O_WRONLY | O_CREAT | O_TRUNC, 0644); // verifier ces parametres
+	fd_outfile = open(token->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_outfile < 0)
 	{
 		ft_print_open_error(data, token->value);
@@ -36,7 +35,7 @@ int	ft_set_exec_t_redirect_out(t_data *data, t_token *token, int process)
 	}
 	if (ft_get_exec_elm(data->exec_list, process)->fd_out != 1)
 	{
-		if(close(ft_get_exec_elm(data->exec_list, process)->fd_out) == -1)
+		if (close(ft_get_exec_elm(data->exec_list, process)->fd_out) == -1)
 			ft_exit_close_error(data);
 	}
 	ft_get_exec_elm(data->exec_list, process)->fd_out = fd_outfile;
@@ -49,7 +48,7 @@ int	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
 
 	ft_expand_token(data, token);
 	ft_rm_quotes_in_token(data, token);
-	fd_outfile = open(token->value, O_RDWR | O_CREAT | O_APPEND, 0644); // verifier ces parametres
+	fd_outfile = open(token->value, O_RDWR | O_CREAT | O_APPEND, 0644);
 	if (fd_outfile < 0)
 	{
 		ft_print_open_error(data, token->value);
@@ -57,7 +56,7 @@ int	ft_set_exec_d_redirect_out(t_data *data, t_token *token, int process)
 	}
 	if (ft_get_exec_elm(data->exec_list, process)->fd_out != 1)
 	{
-		if(close(ft_get_exec_elm(data->exec_list, process)->fd_out) == -1)
+		if (close(ft_get_exec_elm(data->exec_list, process)->fd_out) == -1)
 			ft_exit_close_error(data);
 	}
 	ft_get_exec_elm(data->exec_list, process)->fd_out = fd_outfile;
@@ -68,22 +67,21 @@ int	ft_set_exec_t_redirect_token(t_data *data, t_token *token, int process)
 {
 	if (token->type == T_REDIRECT_IN)
 	{
-		if(ft_set_exec_t_redirect_in(data, token, process) == 1)
+		if (ft_set_exec_t_redirect_in(data, token, process) == 1)
 		{
 			return (1);
 		}
-
 	}
 	else if (token->type == T_REDIRECT_OUT)
 	{
-		if(ft_set_exec_t_redirect_out(data, token, process) == 1)
+		if (ft_set_exec_t_redirect_out(data, token, process) == 1)
 		{
 			return (1);
 		}
 	}
 	else if (token->type == D_REDIRECT_OUT)
 	{
-		if(ft_set_exec_d_redirect_out(data, token, process) == 1)
+		if (ft_set_exec_d_redirect_out(data, token, process) == 1)
 		{
 			return (1);
 		}
