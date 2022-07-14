@@ -13,7 +13,7 @@
   -------------------------------------------------------------------------*/
 
 /* -----------------------------------------------------------
-Descriptif : remove variable from the env 
+Descriptif : remove variable from the env
 -----------------------------------------------------------*/
 
 void	ft_rm_str_from_env(t_data *data, char **new_env, char *var, int len)

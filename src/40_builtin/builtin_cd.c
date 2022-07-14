@@ -2,7 +2,7 @@
 
 int	ft_builtin_cd(t_data *data, char **cmd)
 {
-	int error_status;
+	int	error_status;
 
 	if (ft_null_terminated_tab_len(cmd) < 2)
 		return (ft_cd_error_no_arg(data));

@@ -36,10 +36,16 @@ void    ft_make_fd_redirection(t_data *data, t_exec_elm *exec_elm)
 	{
 		if (dup2(exec_elm->fd_in, STDIN_FILENO) == -1)
 			ft_exit_dup_error(data);
+		if(close(exec_elm->fd_in) == -1)
+			ft_exit_close_error(data);
+		exec_elm->fd_in = -1;
 	}
 	if (exec_elm->fd_out != STDOUT_FILENO)
 	{
 		if (dup2(exec_elm->fd_out, STDOUT_FILENO) == -1)
 			ft_exit_dup_error(data);
+		if(close(exec_elm->fd_out) == -1)
+			ft_exit_close_error(data);
+		exec_elm->fd_out = -1;
 	}
 }
