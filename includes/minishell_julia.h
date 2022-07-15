@@ -67,6 +67,7 @@ void    ft_fill_new_token_2(char *content, t_data *data, int type);
 /********** signals_exec.c ****************/
 void    ft_handle_exec_sigint(int signal);
 void    ft_handle_exec_signal(void);
+void	ft_handle_exec_sigquit(int signal);
 
 /********** signals_prompt.c ****************/
 void    ft_handle_signals(void);

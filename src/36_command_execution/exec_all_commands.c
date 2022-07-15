@@ -11,7 +11,12 @@ static void	ft_wait_pid(t_data *data)
 	{
 		// TBD ajouter macro pour capter signal stop (voir man waitpid)
 		waitpid(exec_elm->pid, &return_status, 0);
-		if (WIFEXITED(return_status))
+		if (WIFSIGNALED(return_status))
+		{
+			if (WIFSIGNALED(return_status) == 1)
+				data->last_pipeline_exit_status = 130;
+		}
+		else if (WIFEXITED(return_status))
 		{
 			data->last_pipeline_exit_status = WEXITSTATUS(return_status);
 		}
@@ -37,6 +42,7 @@ void	ft_exec_cmd_list_with_fork(t_data *data)
 		else if (id == 0)
 		{
 			signal(SIGINT, SIG_DFL);
+			//signal(SIGQUIT, SIG_DFL);
 			ft_handle_exec_signal();
 			ft_close_fd_exept_current(data, curent_index);
 			ft_exec_one_command(data, exec_elm);

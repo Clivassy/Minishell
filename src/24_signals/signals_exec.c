@@ -18,5 +18,5 @@ void	ft_handle_exec_sigint(int signal)
 void	ft_handle_exec_signal(void)
 {
 	signal(SIGINT, &ft_handle_exec_sigint);
-	signal(SIGINT, &ft_handle_exec_sigquit);
+	//signal(SIGINT, &ft_handle_exec_sigquit);
 }
