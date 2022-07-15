@@ -70,24 +70,6 @@ SRCS += src/60_tools/garbage_collector_1.c
 SRCS += src/60_tools/garbage_collector_2.c
 SRCS += src/60_tools/print_color.c
 SRCS += src/60_tools/tkn_manipulation.c
-SRCS += src/70_debug/create_exec_list.c
-SRCS += src/70_debug/create_token_list.c
-SRCS += src/70_debug/print_env.c
-SRCS += src/70_debug/print_exec_elm_list.c
-SRCS += src/70_debug/print_fd_status.c
-SRCS += src/70_debug/print_token_list.c
-SRCS += src/70_debug/test_add_to_str.c
-SRCS += src/70_debug/test_builtin_cd_pwd.c
-SRCS += src/70_debug/test_builtin_echo.c
-SRCS += src/70_debug/test_command_execution.c
-SRCS += src/70_debug/test_env.c
-SRCS += src/70_debug/test_exec_list_creation.c
-SRCS += src/70_debug/test_expand.c
-SRCS += src/70_debug/test_ft_split_garbage_collector.c
-SRCS += src/70_debug/test_garbage_collector.c
-SRCS += src/70_debug/test_read_gp_token_to_fill_exec_list.c
-SRCS += src/70_debug/test_rm_from_str.c
-SRCS += src/70_debug/test_rm_quotes.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -101,8 +83,8 @@ LIB_INCLUDE = -L ./libft -lft
 
 # Compilateurs
 CC = cc
-CFLAGS = -g
-#CFLAGS = -Wall -Wextra -Werror
+#CFLAGS = -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 ##########   RULES   ##########
 

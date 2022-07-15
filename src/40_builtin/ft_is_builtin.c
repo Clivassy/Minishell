@@ -2,6 +2,7 @@
 
 int	ft_is_builtin(t_data *data, char **cmd)
 {
+	(void)data;
 	if (!cmd | !(cmd)[0])
 		return (0);
 	if (ft_strcmp(cmd[0], "echo") == 0

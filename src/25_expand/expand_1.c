@@ -4,7 +4,6 @@
 void	ft_expand_token(t_data *data, t_token *token)
 {
 	int		i;
-	char	*key;
 	int		expand_active;
 
 	i = 0;

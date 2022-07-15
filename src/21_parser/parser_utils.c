@@ -18,6 +18,7 @@ int	ft_is_next_tkn_ok(int type)
 
 int	ft_pre_parser(t_data *data, t_token *list)
 {
+	(void)data;
 	if (!ft_is_empty_list(list))
 		return (TAB_OR_SPC_ERR);
 	if (list->type == T_PIPE)

@@ -22,8 +22,6 @@ void	*ft_malloc(t_data *data, size_t size)
 
 static int	ft_is_in_garbage_collector(t_data *data, void *address)
 {
-	t_list	*previous;
-	t_list	*next;
 	t_list	*elm;
 
 	if (!address)

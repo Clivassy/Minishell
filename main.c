@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	int	error_status;
+	(void)argv;
 	t_data	data;
 	if (!isatty(0)) // check if the standar input is from a terminal
 	{

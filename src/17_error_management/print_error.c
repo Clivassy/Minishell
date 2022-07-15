@@ -2,6 +2,7 @@
 
 void	ft_print_error(t_data *data, int error_status)
 {
+	(void)data;
 	if (error_status == SYNTAX_ERR_PIPE)
 		ft_printf("minishel: syntax error near unexpected token `|'\n");
 	else if (error_status == SYNTAX_ERR_REDIRECT_IN)

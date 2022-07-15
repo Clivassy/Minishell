@@ -2,6 +2,7 @@
 
 int	ft_builtin_pwd(t_data *data, char **cmd)
 {
+	(void)cmd;
 	char	*path;
 
 	path = NULL;

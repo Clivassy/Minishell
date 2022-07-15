@@ -2,6 +2,7 @@
 
 int	ft_key_size_for_expand(t_data *data, char *str)
 {
+	(void)data;
 	int	i;
 
 	i = 0;

@@ -2,6 +2,7 @@
 
 int	ft_builtin_env(t_data *data, char **cmd)
 {
+	(void)cmd;
 	char	**env;
 
 	env = data->env;

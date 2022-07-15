@@ -16,8 +16,8 @@
   -----------------------------------------------------------------------*/
 int	ft_fill_tokens_list(t_data *data)
 {
-	int	index;
-	int	statut;
+	size_t	index;
+	int		statut;
 
 	statut = ft_check_unclose_quote(data->read_line);
 	if (statut > 0)

@@ -2,6 +2,7 @@
 
 int	ft_count_pipe(t_data *data, t_token *token_list)
 {
+	(void)data;
 	int	nb_of_pipe;
 
 	nb_of_pipe = 0;

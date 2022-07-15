@@ -10,7 +10,6 @@ static int	ft_is_redirect(t_token *curr)
 
 void	ft_group_tokens(t_data *data)
 {
-	t_token	*new_list;
 	t_token	*list;
 
 	list = data->tokens_list;

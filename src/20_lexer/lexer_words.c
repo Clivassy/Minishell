@@ -1,42 +1,5 @@
 #include "minishell.h"
 
-/*int	ft_word_len(char *read_line, int index)
-{
-	int	len;
-
-	len = 0;
-	while (read_line[index])
-	{
-		if (!ft_is_word(read_line, index))
-		{
-			printf("LEN == %d\n", len);
-			return (len);
-		}
-		if (read_line[index] == '\"')
-		{
-			index++;
-			len++;
-			while (read_line[index] != '\"')
-			{
-				index++;
-				len++;
-			}
-		}
-		if (ft_is_word(read_line, index))
-		{
-			if (read_line[index] == '\0')
-			{
-				printf("LEN == %d\n", len);
-				return (len);
-			}
-		}
-		len++;
-		index++;
-	}
-	printf("LEN == %d\n", len);
-	return (len);
-}*/
-
 int ft_is_word_util(char *read_line, int index, int len)
 {
 	if (ft_is_word(read_line, index))
@@ -98,7 +61,6 @@ int	ft_check_no_space(char *line, int index, char c)
 int	ft_get_mixed_token(t_data *data, char *read_line, int index, int len)
 {
 	char	*word;
-	t_token	*word_token;
 
 	word = ft_substr(read_line, index, len);
 	if (!word)
@@ -110,7 +72,6 @@ int	ft_get_mixed_token(t_data *data, char *read_line, int index, int len)
 
 int	ft_get_word(t_data *data, int index)
 {
-	t_token	*word;
 	char	*word_token;
 	char	*line;
 

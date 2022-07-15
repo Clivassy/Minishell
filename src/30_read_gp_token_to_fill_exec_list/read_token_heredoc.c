@@ -2,6 +2,7 @@
 
 void	ft_set_exec_with_t_heredoc(t_data *data, t_token *token, int process)
 {
+	(void)token;
 	t_fd_heredoc	*fd_heredoc;
 
 	fd_heredoc = ft_pop_first_fd_lst(data);

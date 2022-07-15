@@ -44,6 +44,7 @@ static void	ft_print_argument_list(char **argument_list)
 
 int	ft_builtin_echo(t_data *data, char **cmd)
 {
+	(void)data;
 	int	n_flag_found;
 	int	print_begin;
 
