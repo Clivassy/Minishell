@@ -32,6 +32,8 @@ char	*ft_get_key_for_expand(t_data *data, char *str)
 	return (key);
 }
 
+// ancienne ligne apres ftadd_to_str
+// *i += ft_strlen(tmp);
 void	ft_expand_pipeline_exit_status(t_data *data, char **str, int *i)
 {
 	char	*tmp;
@@ -41,7 +43,6 @@ void	ft_expand_pipeline_exit_status(t_data *data, char **str, int *i)
 	if (!tmp)
 		ft_exit(data);
 	ft_add_to_str(data, str, tmp, *i);
-	*i += ft_strlen(tmp);
 	free(tmp);
 	tmp = NULL;
 }

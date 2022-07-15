@@ -50,7 +50,7 @@ char	*ft_find_command(t_data *data, char *cmd, char **envp)
 	{
 		if (ft_strnstr(envp[i], "PATH", 4))
 		{
-			paths = ft_split(envp[i] + 5, ':');
+			paths = ft_split_garbage_collector(data, envp[i] + 5, ':');
 			full_path = ft_check_path_command(data, paths, cmd);
 			ft_free_split_garbage_collector(data, paths);
 			if (full_path)

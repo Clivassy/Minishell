@@ -42,7 +42,6 @@ void	ft_exec_cmd_list_with_fork(t_data *data)
 		else if (id == 0)
 		{
 			signal(SIGINT, SIG_DFL);
-			//signal(SIGQUIT, SIG_DFL);
 			ft_handle_exec_signal();
 			ft_close_fd_exept_current(data, curent_index);
 			ft_exec_one_command(data, exec_elm);
