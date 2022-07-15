@@ -21,49 +21,29 @@ static	int	ft_is_number(char *str)
 	return (1);
 }
 
-
-
-
 int	ft_builtin_exit(t_data *data, char **cmd)
 {
-	// TBD en cours commente pour push
-	//int	return_statut;
+	int	return_statut;
 
-	//if (data->nb_of_process == 1)
-	//	write(2, "exit\n", 5);
-
-	//if (ft_null_terminated_tab_len(cmd) == 1)
-	//	ft_exit2(data, 1);
-	//if (ft_null_terminated_tab_len(cmd) == 2)
-	//{
-	//	if (!ft_is_number(cmd[1]))
-	//		return_statut = ft_exit_error_not_numeric_arg(data, cmd[1]);
-	//	else
-	//		return_statut = ft_atoi(cmd[1]);
-	//	ft_exit2(data, return_statut);
-	//}
-	//else
-	//{
-	//	if (!ft_is_number(cmd[1]))
-	//		ft_exit2(data, ft_exit_error_not_numeric_arg(data, cmd[1]));
-	//	else
-	//		return (ft_printf_exit_error_too_many_arg(data));
-	//}
-
-
-	// sup apres ici
-
-	//if (ft_null_terminated_tab_len(cmd) > 1)
-	//{
-	//	if (!ft_is_number(cmd[1]))
-	//		return (ft_exit_error_not_numeric_arg(data, cmd[1]));
-	//	if (ft_null_terminated_tab_len(cmd) > 2)
-	//		return (ft_exit_error_too_many_arg(data));
-	//}
-	//if (ft_null_terminated_tab_len(cmd) == 1)
-	//	return_statut = 0;
-	//else
-	//	return_statut = ft_atoi(cmd[1]);
-	//ft_exit2(data, return_statut);
-	//return (return_statut);
+	if (data->nb_of_process == 1)
+		write(2, "exit\n", 5);
+	if (ft_null_terminated_tab_len(cmd) == 1)
+		ft_exit2(data, 0);
+	if (ft_null_terminated_tab_len(cmd) == 2)
+	{
+		if (!ft_is_number(cmd[1]))
+			return_statut = ft_exit_print_error_not_numeric_arg(data, cmd[1]);
+		else
+			return_statut = ft_atoi(cmd[1]);
+		ft_exit2(data, return_statut);
+	}
+	else
+	{
+		if (!ft_is_number(cmd[1]))
+			ft_exit2(data, ft_exit_print_error_not_numeric_arg(data, cmd[1]));
+		else
+			return (ft_print_exit_error_too_many_arg(data));
+	}
+	ft_exit2(data, 1);
+	return (1);
 }
