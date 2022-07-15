@@ -106,7 +106,8 @@ int     ft_strcmp(char *s1, char *s2);
 /********** TEMP ****************/
 int     ft_is_empty_list(t_token *list);
 
+void	ft_init_ptr(t_data *data);
 /* TEST */
-void    ft_test(int file[2]);
+//void    ft_test(int file[2]);
 void    ft_debeug(t_data *data, char *msg, char **env, char *color);
 

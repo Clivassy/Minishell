@@ -15,6 +15,7 @@ void	ft_initialisation(t_data *data, char **envp)
 	data->fd_save_stdout = -1;
 	data->fd_save_stdin = -1;
 	data->garbage_collector = NULL;
+	ft_init_ptr(data);
 	ft_dup_env(data, envp);
 }
 
