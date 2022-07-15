@@ -19,7 +19,7 @@ void	ft_stock_heredoc(int fd[2], int exp, t_data *data, char *heretag)
 			break ;
 		if (exp > 0 && ft_is_expand_required(str))
 			ft_expand_str(data, &str);
-		write(fd[1], str, ft_strlen(str) + 1);
+		write(fd[1], str, ft_strlen(str));
 		write(fd[1], "\n", 1);
 	}
 }
