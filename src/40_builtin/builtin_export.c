@@ -3,8 +3,8 @@
 /* -----------------------------------------------------------
 Descriptif : Set one variable and its value to env
 Input format : export [variable]=[value]
-If input format != [variable]=[value] 
-then : print error : bash: unset: ': not a valid identifier. 
+If input format != [variable]=[value]
+then : print error : minishell: unset: ': not a valid identifier.
 (exit code == 1)
 else
 Proceed export
