@@ -31,8 +31,8 @@ void	ft_exit_dup_error(t_data *data);
 // error_execve.c
 void	ft_exit_execve_error(t_data *data);
 // error_exit
-int	ft_exit_error_too_many_arg(t_data *data);
-int	ft_exit_error_not_numeric_arg(t_data *data, char *arg);
+int	ft_printf_exit_error_too_many_arg(t_data *data);
+int	ft_exit_printf_error_not_numeric_arg(t_data *data, char *arg);
 // error_fork.c
 void	ft_exit_fork_error(t_data *data);
 // error_pipe.c

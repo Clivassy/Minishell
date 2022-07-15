@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-int	ft_exit_error_too_many_arg(t_data *data)
+int	ft_printf_exit_error_too_many_arg(t_data *data)
 {
 	(void)data;
 	write(STDERR_FILENO, "minishell: exit: too many arguments\n", 36);
 	return (1);
 }
 
-int	ft_exit_error_not_numeric_arg(t_data *data, char *arg)
+int	ft_exit_printf_error_not_numeric_arg(t_data *data, char *arg)
 {
 	(void)data;
 	write(STDERR_FILENO, "minishell: exit: ", ft_strlen("minishell: exit: "));
