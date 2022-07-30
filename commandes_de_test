@@ -1,0 +1,4 @@
+valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes
+
+check leaks child : valgrind --suppressions=ignoreleak --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./minishell
+
