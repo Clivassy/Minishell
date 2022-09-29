@@ -36,5 +36,6 @@ int	ft_lexer(t_data *data)
 {
 	if (ft_fill_tokens_list(data) != 0)
 		return (UNCLOSED_QUOTES_ERR);
+	ft_print_token_list(data->tokens_list);
 	return (0);
 }
