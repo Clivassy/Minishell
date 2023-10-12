@@ -1,5 +1,5 @@
 
-<h1 align="center">Forked_Philosophers</h1>
+<h1 align="center">Mini Shell</h1>
 
 # Overview
 Minishell is a command line interface project based on Bash, developed as part of the 42 curriculum.
